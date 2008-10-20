@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ PureMVC AS3 / Flex Demo - Slacker 
+ Copyright (c) 2008 Clifford Hall <clifford.hall@puremvc.org>
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
+-->
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" title="Editor" 
+	horizontalAlign="center" verticalAlign="middle"
+	width="100%" height="100%"
+	backgroundColor="#4D90FF"
+	>
+
+	<mx:Label id="message" fontSize="16"/>
+
+</mx:Panel>
+
