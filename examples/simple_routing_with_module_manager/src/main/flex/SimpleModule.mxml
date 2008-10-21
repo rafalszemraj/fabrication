@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fab:FlexModule 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*"
+	xmlns:local="simplemodule.view.components.*" width="100" height="100">
+	
+	<mx:Script>
+		<![CDATA[
+			import simplemodule.controller.SimpleModuleStartupCommand;
+			
+			private var count:int = 0;
+			
+			override public function getStartupCommand():Class {
+				return SimpleModuleStartupCommand;
+			}
+			
+			override public function getClassByName(path:String):Class {
+				return getDefinitionByName(path) as Class;	
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Canvas width="100" height="100">
+		<local:BackgroundCanvas id="backgroundCanvas" width="100" height="100" />
+		<local:MessageCount id="messageCount"  x="5" y="5"/>
+		<local:MessageNavBar id="messageNavBar"  x="7" y="73"/>
+	</mx:Canvas>
+</fab:FlexModule>
