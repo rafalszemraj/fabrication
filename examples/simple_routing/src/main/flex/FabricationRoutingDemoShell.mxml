@@ -8,7 +8,7 @@
 		<![CDATA[
 			import shell.controller.FabricationRoutingDemoShellStartupCommand;
 			
-			public var compile_count:int = 2;
+			public var compile_count:int = 0;
 			
 			override public function getStartupCommand():Class {
 				return FabricationRoutingDemoShellStartupCommand;		

@@ -138,7 +138,10 @@ package shell.view {
 			var selectionProxy:SelectionProxy = retrieveProxy(SelectionProxy.NAME) as SelectionProxy;
 			var module:IRouterAwareModule = selectionProxy.selection as IRouterAwareModule;
 
-			routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress.getInputName());			
+			// all three variations of routeNotification work
+			//routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress.getInputName());
+			//routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress.getClassName() + "/" + module.moduleAddress.getInstanceName());
+			routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress);
 		}
 		
 	}
