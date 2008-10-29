@@ -82,6 +82,15 @@
 			<expand-prop property="@{variable}" variable="${macro.var}.${macro.counter}" value="${macro.var}.${macro.counter}" />
 		</sequential>
 	</macrodef>
+	
+	<!-- prepares source and library folders prior to a compile -->
+	<macrodef name="prepare-source-paths">
+		<sequential>
+			<!-- creates the common source and swc directories if not present -->
+			<mkdir dir="${src.common.dir}" />
+			<mkdir dir="${swc.common.dir}" />
+		</sequential>
+	</macrodef>
 
 	<!-- Compiles a Flex or AS3 application with mxmlc -->
 	<macrodef name="flex-app">
@@ -95,9 +104,7 @@
 		<attribute name="debug" default="${debug}" />
 		
 		<sequential>
-			<!-- creates the common source and swc directories if not present -->
-			<mkdir dir="${src.common.dir}" />
-			<mkdir dir="${swc.common.dir}" />
+			<prepare-source-paths />
 			
 			<var name="mainclass.file" value="${src.main.flash}/@{mainclass}" />
 			<echo level="info">flex-app : @{mainclass}</echo>
@@ -203,6 +210,8 @@
 		<attribute name="config" default="${flex.config}" />
 		
 		<sequential>
+			<prepare-source-paths />
+			
 			<echo level="info">flex-comp : @{output}</echo>
 
 			<!--
@@ -351,6 +360,8 @@
 		<element name="source-files" implicit="yes" optional="no"/>
 		
 		<sequential>
+			<prepare-source-paths />
+			
 			<echo level="info">generating asdoc : @{window-title}</echo>
 
 			<!--
