@@ -3,7 +3,7 @@
 	<mx:Style>
 
 		@font-face {
-			src : url("assets/fff_spacedust.ttf");
+			src : url("../../assets/fff_spacedust.ttf");
 			font-family : spacedust; 
 			font-style : normal;
 		}
