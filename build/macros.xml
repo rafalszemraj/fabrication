@@ -556,4 +556,65 @@
 		</sequential>
 	</macrodef>
 	
+	<!-- macrodef to set correct mimetypes on files in svn -->
+	<macrodef name="set-mimetype">
+		<attribute name="file" />
+		<sequential>
+			<propertyregex property="@{file}.ext" input="@{file}" 
+				regexp=".*\.(.*)" select="\1" />
+
+			<var name="extension" value="${@{file}.ext}" />
+			<var name="mimetype=" value="text/plain" />
+			
+			<switch value="${extension}">
+				<case value="html">
+					<var name="mimetype" value="text/html" />
+				</case>
+				<case value="css">
+					<var name="mimetype" value="text/css" />
+				</case>
+				<case value="js">
+					<var name="mimetype" value="text/javascript" />
+				</case>
+				<case value="xml">
+					<var name="mimetype" value="text/xml" />
+				</case>
+				<case value="png">
+					<var name="mimetype" value="image/png" />
+				</case>
+				<case value="gif">
+					<var name="mimetype" value="image/gif" />
+				</case>
+				<case value="jpg">
+					<var name="mimetype" value="image/jpeg" />
+				</case>
+				<case value="swf">
+					<var name="mimetype" value="application/x-shockwave-flash" />
+				</case>
+				<default>
+					<var name="mimetype" value="application/octet-stream" />
+				</default>
+			</switch>
+			
+			<echo level="debug">@{file} : ${mimetype}</echo>
+			
+			<svn username="${svn.username}" password="${svn.password}">
+				<propset path="@{file}" name="svn:mime-type" value="${mimetype}" />
+			</svn>
+		</sequential>
+	</macrodef>
+	
+	<!-- sets mimetypes on a fileset -->
+	<macrodef name="set-mimetypes">
+		<element name="files" implicit="yes" optional="no" />
+		<sequential>
+			<for param="file">
+				<files />
+				<sequential>
+					<set-mimetype file="@{file}"/>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+	
 </project>
