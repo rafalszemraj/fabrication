@@ -116,7 +116,7 @@ package shell.view {
 		
 		private function addModuleButtonListener(event:MouseEvent):void {
 			/* TODO :: Add modules from a combobox selection */ 
-			var moduleDescriptor:ModuleDescriptor = new ModuleDescriptor("SimpleModule.swf");
+			var moduleDescriptor:ModuleDescriptor = new ModuleDescriptor("simple_module.swf");
 			sendNotification(FabricationRoutingDemoShellConstants.ADD_MODULE, moduleDescriptor);
 		}
 		
