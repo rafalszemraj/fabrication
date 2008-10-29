@@ -25,6 +25,9 @@
 	<!-- xmltask taskdefs -->
 	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpathref="antlib.path" />
 
+	<!-- googlecode upload taskdef -->
+	<taskdef name="gcupload" classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpathref="antlib.path"/>
+	
 	<!-- macro definitions -->
 	<import file="${fabrication.build.dirname}/macros.xml" />
 	
