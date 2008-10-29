@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project name="fabrication.build.entry" default="main">
+	
+	<dirname property="fabrication.build.entry.dirname" file="${ant.file.fabrication.build.entry}" />
+	<import file="${fabrication.build.entry.dirname}/common.xml" />
+	
+	<property name="project.dir" value="" />
+	<property name="project.name" value="" />
+	<property name="project.mainclass" value="" />
+	<property name="project.output" value="" />
+	<property name="project.output.width" value="550" />
+	<property name="project.output.height" value="400" />
+	<property name="scaffold.overwrite" value="no" />
+	
+	<target name="main">
+	</target>
+	
+	<target name="scaffold-build"
+		description="Generates the ant build for a project">
+		<scaffold-build 
+			project-dir="${project.dir}"
+			project-name="${project.name}"
+			project-mainclass="${project.mainclass}"
+			project-output="${project.output}"
+			project-output-width="${project.output.width}" 
+			project-output-height="${project.output.height}"
+			overwrite="${scaffold.overwrite}"
+		/>
+	</target>
+	
+	<target name="freeze-app"
+		description="Freezes the current fabrication swc into a project">
+		<freeze-app app-dir="${project.dir}" />
+	</target>
+	
+</project>

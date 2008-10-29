@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="fabrication.common.xml">
+	
+	<!-- ant libraries location -->
+	<dirname property="fabrication.build.dirname" file="${ant.file.fabrication.common.xml}" />
+	<property name="antlib.dir" location="${fabrication.build.dirname}/ant" />
+	
+	<!-- load user specific fabrication properties -->
+	<property file="${fabrication.build.dirname}/user.properties" />
+	
+	<!-- load system fabrication properties -->
+	<property file="${fabrication.build.dirname}/build.properties" />
+	
+	<!-- pathref to custom ant libraries -->
+	<path id="antlib.path">
+		<fileset dir="${antlib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- antcontrib tasksdefs -->
+	<taskdef classpathref="antlib.path" resource="net/sf/antcontrib/antlib.xml"/>
+	<taskdef name="svn" classpathref="antlib.path" classname="org.tigris.subversion.svnant.SvnTask" />
+	
+	<!-- xmltask taskdefs -->
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpathref="antlib.path" />
+
+	<!-- macro definitions -->
+	<import file="${fabrication.build.dirname}/macros.xml" />
+	
+	<!-- flex build paths -->
+	<import file="${fabrication.build.dirname}/flex-paths.xml" />
+	
+	<!-- source and library build paths -->
+	<import file="${fabrication.build.dirname}/build-paths.xml"/>
+	
+</project>
