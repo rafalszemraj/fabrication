@@ -15,7 +15,7 @@ package simplemodule.view {
 
 		static public const NAME:String = "MessageNavBarMediator";
 		
-		public function MessageNavBarMediator(viewComponent:MessageNavBar) {
+		public function MessageNavBarMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 		
@@ -34,6 +34,13 @@ package simplemodule.view {
 		override public function onRegister():void {
 			messageShellButton.addEventListener(FlexEvent.BUTTON_DOWN, messageShellButtonListener);
 			messageModulesButton.addEventListener(FlexEvent.BUTTON_DOWN, messageModulesButtonListener);
+		}
+		
+		override public function onRemove():void {
+			messageShellButton.removeEventListener(FlexEvent.BUTTON_DOWN, messageShellButtonListener);
+			messageModulesButton.removeEventListener(FlexEvent.BUTTON_DOWN, messageModulesButtonListener);
+			
+			super.onRemove();
 		}
 		
 		private function messageShellButtonListener(event:FlexEvent):void {

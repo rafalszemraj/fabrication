@@ -16,7 +16,7 @@ package simplemodule.view {
 		
 		static public const NAME:String = "MessageCountMediator";
 		
-		public function MessageCountMediator(viewComponent:MessageCount) {
+		public function MessageCountMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 		

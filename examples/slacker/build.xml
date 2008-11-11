@@ -8,7 +8,7 @@
 	<property file="build.properties" />
 	
 	<!-- import fabrication build file -->
-	<import file="${fabrication.build.dir}/common.xml" />
+	<import file="${fabrication.dir}/common.xml" />
 	
 	<target name="clean" description="Removes all build generated files">
 		<delete dir="${build.dir}" />

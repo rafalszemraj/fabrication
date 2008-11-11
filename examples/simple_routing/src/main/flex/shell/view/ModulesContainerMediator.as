@@ -1,4 +1,6 @@
 package shell.view {
+	import mx.events.ModuleEvent;	
+	
 	import org.puremvc.as3.multicore.utilities.fabrication.events.FabricatorEvent;	
 	
 	import flash.display.DisplayObject;
@@ -20,7 +22,7 @@ package shell.view {
 
 		static public const NAME:String = "ModulesContainerMediator";
 		
-		public function ModulesContainerMediator(viewComponent:ModulesContainer) {
+		public function ModulesContainerMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 		
@@ -84,6 +86,7 @@ package shell.view {
 			moduleLoader.router = applicationRouter;
 			moduleLoader.defaultRouteAddress = applicationAddress;
 			
+			moduleLoader.addEventListener(ModuleEvent.ERROR, moduleError);
 			moduleLoader.addEventListener(FabricatorEvent.FABRICATION_CREATED, moduleCreated);
 			moduleLoader.addEventListener(FabricatorEvent.FABRICATION_REMOVED, moduleRemoved);
 			
@@ -106,6 +109,11 @@ package shell.view {
 		private function moduleRemoved(event:FabricatorEvent):void {
 			event.target.removeEventListener(FabricatorEvent.FABRICATION_REMOVED, moduleRemoved);
 			trace("moduleRemoved " + event.target);
+		}
+		
+		private function moduleError(event:ModuleEvent):void {
+			event.target.removeEventListener(ModuleEvent.ERROR);
+			trace("moduleError " + event.errorText);
 		}
 		
 	}

@@ -7,9 +7,13 @@
 		}
 		
 	</mx:Style>
-
+	
+	<mx:Text id="memoryText" fontFamily="Trebuchet MS" fontSize="12" fontWeight="bold"
+			text=" - KB"/>
+			
 	<mx:Button styleName="button" id="addModuleButton" label="Add Module" />
 	<mx:Button styleName="button" id="removeSelectedModuleButton" label="Remove Selected Module" />
+	<mx:Button styleName="button" id="removeAllButton" label="Remove All" />
 	<mx:VRule height="20" alpha="0.5"/>
 	
 	<mx:Button styleName="button" id="messageAllButton" label="Notify All Modules" autoRepeat="true"/>

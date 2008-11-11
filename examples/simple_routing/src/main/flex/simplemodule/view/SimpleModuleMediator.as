@@ -37,9 +37,17 @@ package simplemodule.view {
 		}
 
 		override public function onRegister():void {
+			/* */
+			registerMediator(new BackgroundCanvasMediator(resolve(application)..backgroundCanvas));
+			registerMediator(new MessageCountMediator(resolve(application)..messageCount));
+			registerMediator(new MessageNavBarMediator(resolve(application)..messageNavBar));
+			/* */
+			/* *
 			registerMediator(new BackgroundCanvasMediator(backgroundCanvas));
 			registerMediator(new MessageCountMediator(messageCount));
 			registerMediator(new MessageNavBarMediator(messageNavBar));
+			/* */
+			 
 		} 
 		
 	}

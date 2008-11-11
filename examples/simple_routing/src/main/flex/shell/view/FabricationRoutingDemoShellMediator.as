@@ -28,8 +28,9 @@ package shell.view {
 		}
 		
 		override public function onRegister():void {
-			registerMediator(new MessageControlBarMediator(messageControlBar));
-			registerMediator(new ModulesContainerMediator(modulesContainer));
+			registerMediator(new MessageControlBarMediator(resolve(application).messageControlBar));
+			registerMediator(new ModulesContainerMediator(resolve(application).modulesContainer));
+			registerMediator(new SystemMemoryMediator(resolve(messageControlBar).memoryText));
 		}
 		
 	}

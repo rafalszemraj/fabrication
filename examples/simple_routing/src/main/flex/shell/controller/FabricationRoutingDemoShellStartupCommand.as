@@ -16,6 +16,7 @@ package shell.controller {
 	public class FabricationRoutingDemoShellStartupCommand extends SimpleFabricationCommand {
 		
 		override public function execute(note:INotification):void {
+			trace("simple_routing 0.1");
 			registerProxy(new ListProxy());
 			registerProxy(new SelectionProxy());
 			registerProxy(new CounterProxy());
@@ -24,6 +25,10 @@ package shell.controller {
 			registerCommand(FabricationRoutingDemoShellConstants.REMOVE_MODULE, RemoveModuleCommand);
 			registerCommand(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, UpdateMessageCountCommand);
 			registerCommand(FabricationRoutingDemoShellConstants.SELECT_MODULE, ChangeSelectedModuleCommand);
+			registerCommand(FabricationRoutingDemoShellConstants.REMOVE_ALL_MODULES, RemoveAllModulesCommand);
+			
+			registerCommand(FabricationRoutingDemoShellConstants.REMOVE_MODULE, ForceGarbageCollectionCommand);
+			registerCommand(FabricationRoutingDemoShellConstants.REMOVE_ALL_MODULES, ForceGarbageCollectionCommand);
 			
 			registerMediator(new FabricationRoutingDemoShellMediator(note.getBody() as FabricationRoutingDemoShell));
 		}

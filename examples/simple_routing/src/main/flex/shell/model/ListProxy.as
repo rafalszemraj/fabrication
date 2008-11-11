@@ -35,6 +35,12 @@ package shell.model {
 			}
 		}
 		
+		public function removeAll():void {
+			while (list.length > 0) {
+				remove(list.getItemAt(0) as IListElement);
+			}
+		}
+		
 		public function exists(element:IListElement):Boolean {
 			return list.contains(element);
 		}

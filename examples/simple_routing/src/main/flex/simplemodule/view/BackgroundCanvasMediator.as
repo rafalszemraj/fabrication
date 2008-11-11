@@ -23,7 +23,7 @@ package simplemodule.view {
 		private var color:int;
 		private var alpha:Number;
 		
-		public function BackgroundCanvasMediator(viewComponent:BackgroundCanvas) {
+		public function BackgroundCanvasMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 		
@@ -33,7 +33,7 @@ package simplemodule.view {
 		
 		override public function onRegister():void {
 			color = Math.random() * 0xFFFFFF;
-			alpha = Math.random();
+			alpha = 0.5;//Math.random();
 			
 			drawBackground(color, alpha);
 			
@@ -42,6 +42,14 @@ package simplemodule.view {
 			backgroundCanvas.addEventListener(MouseEvent.CLICK, backgroundMouseClickListener);
 			
 			backgroundCanvas.toolTip = applicationAddress.getClassName() + "/" + applicationAddress.getInstanceName();
+		}
+		
+		override public function onRemove():void {
+			backgroundCanvas.removeEventListener(MouseEvent.MOUSE_OVER, backgroundMouseOverListener);
+			backgroundCanvas.removeEventListener(MouseEvent.MOUSE_OUT, backgroundMouseOutListener);
+			backgroundCanvas.removeEventListener(MouseEvent.CLICK, backgroundMouseClickListener);
+			
+			super.onRemove();
 		}
 		
 		/*

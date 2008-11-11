@@ -27,7 +27,7 @@ package shell.view {
 
 		static public const NAME:String = "MessageControlBarMediator";
 		
-		public function MessageControlBarMediator(viewComponent:MessageControlBar) {
+		public function MessageControlBarMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 		
@@ -59,11 +59,16 @@ package shell.view {
 			return messageControlBar.messageCountText as Text;
 		}
 		
+		public function get removeAllButton():Button {
+			return messageControlBar.removeAllButton as Button;
+		}
+		
 		override public function onRegister():void {
 			addModuleButton.addEventListener(MouseEvent.CLICK, addModuleButtonListener);
 			removeSelectedModuleButton.addEventListener(MouseEvent.CLICK, removeSelectedModuleButtonListener);
 			messageAllButton.addEventListener(FlexEvent.BUTTON_DOWN, messageAllButtonListener);
 			messageSelectedModuleButton.addEventListener(FlexEvent.BUTTON_DOWN, messageSelectionModuleButtonListener);
+			removeAllButton.addEventListener(MouseEvent.CLICK, removeAllButtonListener);
 			
 			removeSelectedModuleButton.enabled = false;
 			messageSelectedModuleButton.enabled = false;	
@@ -142,6 +147,10 @@ package shell.view {
 			//routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress.getInputName());
 			//routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress.getClassName() + "/" + module.moduleAddress.getInstanceName());
 			routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Shell", null , module.moduleAddress);
+		}
+		
+		private function removeAllButtonListener(event:MouseEvent):void {
+			sendNotification(FabricationRoutingDemoShellConstants.REMOVE_ALL_MODULES);
 		}
 		
 	}
