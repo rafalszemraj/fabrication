@@ -1,19 +1,18 @@
 package shell.view {
-	import mx.events.ModuleEvent;	
-	
-	import org.puremvc.as3.multicore.utilities.fabrication.events.FabricatorEvent;	
-	
-	import flash.display.DisplayObject;
-	
-	import mx.modules.ModuleLoader;
+	import shell.model.ModuleDescriptor;
+	import shell.view.components.ModulesContainer;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexModuleLoader;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
+	import org.puremvc.as3.multicore.utilities.fabrication.events.FabricatorEvent;
 	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterAwareModule;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	
-	import shell.model.ModuleDescriptor;
-	import shell.view.components.ModulesContainer;	
+	import mx.core.Container;
+	import mx.events.ModuleEvent;
+	import mx.modules.ModuleLoader;
+	
+	import flash.display.DisplayObject;		
 
 	/**
 	 * @author Darshan Sawardekar
@@ -21,6 +20,8 @@ package shell.view {
 	public class ModulesContainerMediator extends FlexMediator {
 
 		static public const NAME:String = "ModulesContainerMediator";
+		
+		private var pendingModules:Array = new Array();
 		
 		public function ModulesContainerMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
@@ -89,8 +90,9 @@ package shell.view {
 			moduleLoader.addEventListener(ModuleEvent.ERROR, moduleError);
 			moduleLoader.addEventListener(FabricatorEvent.FABRICATION_CREATED, moduleCreated);
 			moduleLoader.addEventListener(FabricatorEvent.FABRICATION_REMOVED, moduleRemoved);
+			moduleLoader.addEventListener(ModuleEvent.READY, moduleReady);
 			
-			modulesContainer.addChild(moduleLoader);
+			pendingModules.push(moduleLoader);
 			moduleLoader.loadModule();
 		}
 		
@@ -99,6 +101,15 @@ package shell.view {
 			
 			modulesContainer.removeChild(moduleLoader);
 			moduleLoader.dispose();
+		}
+		
+		private function moduleReady(event:ModuleEvent):void {
+			event.target.removeEventListener(ModuleEvent.READY, moduleReady);
+			modulesContainer.addChild(event.target as DisplayObject);
+			var index:int = findModuleIndex(event.target);
+			if (index >= 0) {
+				pendingModules.splice(index, 1);
+			}
 		}
 		
 		private function moduleCreated(event:FabricatorEvent):void {
@@ -114,6 +125,19 @@ package shell.view {
 		private function moduleError(event:ModuleEvent):void {
 			event.target.removeEventListener(ModuleEvent.ERROR);
 			trace("moduleError " + event.errorText);
+		}
+		
+		private function findModuleIndex(module:Object):int {
+			var n:int = pendingModules.length;
+			var obj:Object;
+			for (var i:int = 0; i < n; i++) {
+				obj = pendingModules[i];
+				if (obj == module) {
+					return i;
+				}
+			}
+			
+			return -1;
 		}
 		
 	}
