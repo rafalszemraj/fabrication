@@ -1,12 +1,10 @@
 package shell.controller {
-	import shell.model.CounterProxy;	
-	import shell.FabricationRoutingDemoShellConstants;	
+	import shell.model.CounterProxy;
 	
-	import org.puremvc.as3.multicore.patterns.proxy.Proxy;	
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterAwareModule;	
-	import org.puremvc.as3.multicore.interfaces.INotification;	
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;	
-	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterAwareModule;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;		
+
 	/**
 	 * @author Darshan Sawardekar
 	 */

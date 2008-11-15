@@ -2,9 +2,7 @@ package shell.controller {
 	import shell.model.ListProxy;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
-	
-	import flash.net.LocalConnection;	
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;	
 
 	/**
 	 * @author Darshan Sawardekar

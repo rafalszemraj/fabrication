@@ -1,11 +1,10 @@
 package shell.controller {
-	import shell.model.ListProxy;	
-	import shell.FabricationRoutingDemoShellConstants;	
-	import shell.model.ModuleDescriptor;	
+	import shell.model.ListProxy;
+	import shell.model.ModuleDescriptor;
 	
-	import org.puremvc.as3.multicore.interfaces.INotification;	
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;	
-	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;		
+
 	/**
 	 * @author Darshan Sawardekar
 	 */

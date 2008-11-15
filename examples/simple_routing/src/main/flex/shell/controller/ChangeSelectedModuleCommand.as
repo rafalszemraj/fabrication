@@ -1,12 +1,11 @@
 package shell.controller {
-	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
-	
 	import common.FabricationRoutingDemoConstants;
 	
-	import shell.FabricationRoutingDemoShellConstants;
-	import shell.model.SelectionProxy;		
+	import shell.model.SelectionProxy;
+	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;	
 
 	/**
 	 * @author Darshan Sawardekar
