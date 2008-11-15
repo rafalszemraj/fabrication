@@ -11,12 +11,16 @@
 	<import file="${fabrication.dir}/common.xml" />
 	
 	<property name="rslserver" value="" />
-	<property name="fabrication.swc" location="${libs}/fabrication-0.5-flex.swc" />
-	<property name="fabrication.swf" value="${rslserver}fabrication-0.5.swf" />
+	
+	<property name="fabrication.swc" location="${libs}/fabrication-${fabrication.version}-flex.swc" />
+	<property name="fabrication.swf" value="${rslserver}fabrication-${fabrication.version}.swf" />
+	
 	<property name="puremvc.multicore.swc" location="${libs}/PureMVC_AS3_MultiCore_1_0_5.swc" />
 	<property name="puremvc.multicore.swf" value="${rslserver}puremvc_multicore.swf" />
+	
 	<property name="puremvc.pipes.swc" location="${libs}/Utility_AS3_MultiCore_Pipes_1_1.swc" />
 	<property name="puremvc.pipes.swf" value="${rslserver}puremvc_pipes.swf" />
+		
 	<property name="flex.framework.swc" location="${flex.frameworks.dir}/libs/framework.swc" />
 	<property name="flex.framework.swf" value="${rslserver}framework_3.1.0.2710.swf" />
 	
@@ -25,12 +29,36 @@
 		<mkdir dir="${build.dir}" />
 	</target>
 	
-	<target name="build" description="Compiles the project's main application">
+	<target name="build" description="Compiles the project's main application"
+		depends="extract-swfs">
 		<flex-app 
 			mainclass="${project.mainclass}" output="${bin}/${project.output}" 
 			width="${project.output.width}" height="${project.output.height}"
 			options="-runtime-shared-library-path=${flex.framework.swc},${flex.framework.swf} -runtime-shared-library-path=${puremvc.multicore.swc},${puremvc.multicore.swf} -runtime-shared-library-path=${puremvc.pipes.swc},${puremvc.pipes.swf} -runtime-shared-library-path=${fabrication.swc},${fabrication.swf}"
 		/>
+	</target>
+	
+	<target name="extract-swfs">
+		<unzip src="${fabrication.swc}" dest="${bin}">
+			<patternset>
+				<include name="library.swf" />
+			</patternset>
+			<mapper type="glob" from="library.swf" to="fabrication-${fabrication.version}.swf" />
+		</unzip>
+		
+		<unzip src="${puremvc.multicore.swc}" dest="${bin}">
+			<patternset>
+				<include name="library.swf" />
+			</patternset>
+			<mapper type="glob" from="library.swf" to="puremvc_multicore.swf" />
+		</unzip>
+		
+		<unzip src="${puremvc.pipes.swc}" dest="${bin}">
+			<patternset>
+				<include name="library.swf" />
+			</patternset>
+			<mapper type="glob" from="library.swf" to="puremvc_pipes.swf" />
+		</unzip>		
 	</target>
 	
 	<target name="run" description="Runs the project's main application">
