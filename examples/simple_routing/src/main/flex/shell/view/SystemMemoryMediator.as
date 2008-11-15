@@ -1,19 +1,15 @@
 package shell.view {
-	import flash.events.TimerEvent;	
-	import flash.utils.Timer;	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	
-	import mx.events.PropertyChangeEvent;	
-	import mx.utils.ObjectProxy;	
-	import mx.formatters.NumberFormatter;	
+	import mx.controls.Text;
+	import mx.formatters.NumberFormatter;
 	
-	import flash.events.Event;	
-	import flash.system.System;	
-	
-	import mx.controls.Text;	
-	
-	import org.puremvc.as3.multicore.interfaces.INotification;	
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;import flash.utils.setTimeout;	
-	
+	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.system.System;
+	import flash.utils.Timer;		
+
 	/**
 	 * @author Darshan Sawardekar
 	 */
