@@ -7,8 +7,8 @@
 
 =1. Requirements=
   * Fabrication uses the PureMVC Multicore and Pipes libraries. These need to be in your application's classpath as swcs or in source form, depending on your preference.
-	  # [http://trac.puremvc.org/Utility_AS3_MultiCore_Pipes Download PureMVC Multicore].
-	  # [http://trac.puremvc.org/PureMVC_AS3_MultiCore Download PureMVC Pipes utility].
+	  # [http://trac.puremvc.org/PureMVC_AS3_MultiCore Download Download PureMVC Multicore].
+	  # [http://trac.puremvc.org/Utility_AS3_MultiCore_Pipes PureMVC Pipes utility].
 
 =2. Create your application's startup command class=
 The first step is to create the startup command for your application. To get the most benefit out of Fabrication, your Mediators, Proxies and Commands should extend base classes provided by Fabrication instead of the standard onces. However you can also the PureMVC base classes as well. Lets extend the SimpleFabricationCommand class in this instance. StartupCommand classes must be named in the format {{{[MyApplicationName]StartupCommand}}}. This allows Fabrication to infer the application's name from its startup command. The code below creates an empty startup command class for the application _HelloFabrication_.
