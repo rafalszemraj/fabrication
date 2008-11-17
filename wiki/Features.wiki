@@ -26,4 +26,4 @@ Fabrication simplifies communication between multiple modules into PureMVC Notif
 Fabrication recognizes Undo-Redo as an integral part of rich internet applications and has extensive support for it. It provides support for n-level undos with a clean set of APIs for different types of undo operations like property changes, object adding and removal, grouping, and implicit undos.
 
 =PureMVC enhancements=
-Fabrication shortens some of the typical PureMVC programming syntax. Calls to {{{facade.<registerMediator|registerProxy>}}} etc can be performed directly with just {{{registerMediator, registerProxy}} etc. Fabrication allows mapping multiple commands with the same notification names resulting in an implicit macro command.
+Fabrication shortens some of the typical PureMVC programming syntax. Calls to {{{facade.<registerMediator|registerProxy>}}} etc can be performed directly with just {{{registerMediator, registerProxy}}} etc. Fabrication allows mapping multiple commands with the same notification names resulting in an implicit macro command.
