@@ -7,7 +7,7 @@
 
 =1. Requirements=
   * Fabrication uses the PureMVC Multicore and Pipes libraries. These need to be in your application's classpath as swcs or in source form, depending on your preference.
-	  # [http://trac.puremvc.org/PureMVC_AS3_MultiCore Download Download PureMVC Multicore].
+	  # [http://trac.puremvc.org/PureMVC_AS3_MultiCore PureMVC Multicore].
 	  # [http://trac.puremvc.org/Utility_AS3_MultiCore_Pipes PureMVC Pipes utility].
 
 =2. Create your application's startup command class=
