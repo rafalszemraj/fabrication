@@ -19,6 +19,7 @@
 		<flex-app 
 			mainclass="${project.mainclass}" output="${bin}/${project.output}" 
 			width="${project.output.width}" height="${project.output.height}" 
+			
 		/>
 	</target>
 	

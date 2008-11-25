@@ -25,7 +25,7 @@
         	paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
             <!-- Define each panel using a VBox container. -->
 
-            <mx:VBox id="vbox1" label="Panel 1">
+            <mx:VBox id="vbox1" name="Home" label="Panel 1">
                 <mx:Text text="TabNavigator container panel 1">
                 	<mx:filters>
                 		<mx:DropShadowFilter distance="1" color="#FFFFFF"/>
@@ -33,7 +33,7 @@
                 </mx:Text>
             </mx:VBox>
 
-            <mx:VBox id="vbox2" label="Panel 2">
+            <mx:VBox id="vbox2" name="Contacts" label="Panel 2">
                 <mx:Text text="TabNavigator container panel 2">
 	            	<mx:filters>
 	            		<mx:DropShadowFilter distance="1" color="#FFFFFF"/>
@@ -41,7 +41,7 @@
 	            </mx:Text>
             </mx:VBox>
 
-            <mx:VBox id="vbox3" label="Panel 3">
+            <mx:VBox id="vbox3" name="Portfolio" label="Panel 3">
                 <mx:Text text="TabNavigator container panel 3">
                 	<mx:filters>
                 		<mx:DropShadowFilter distance="1" color="#FFFFFF"/>
