@@ -6,7 +6,7 @@
     <div id="todolist"></div> 
     <script> 
       // Replace the SWF URL below with your own
-      var swfUrl = "http://gadgetads.googlecode.com/svn/trunk/test/test_content/fad.swf";
+      var swfUrl = "http://fabrication.googlecode.com/svn/examples/todolist/bin/todo_list.swf";
  
       // Update the width/height to the ad size
       var fWidth = 450;
