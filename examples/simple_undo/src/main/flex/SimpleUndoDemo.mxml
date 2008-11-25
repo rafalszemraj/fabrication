@@ -9,8 +9,6 @@
 		<![CDATA[
 			import controller.SimpleUndoDemoStartupCommand;
 			
-			private var count:int = 0;
-			
 			override public function getStartupCommand():Class {
 				return SimpleUndoDemoStartupCommand;
 			}
@@ -29,8 +27,6 @@
 		}
 		
 	</mx:Style>
-
-	
 	
 	<local:Heading id="heading" />
 	<mx:HRule width="80%"/>

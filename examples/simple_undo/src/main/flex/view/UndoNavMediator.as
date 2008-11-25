@@ -41,9 +41,8 @@ package view {
 		}
 		
 		public function respondToCommandHistoryChanged(note:UndoableNotification):void {
-			var undoableNote:UndoableNotification = note as UndoableNotification;
-			undoButton.enabled = undoableNote.undoable;
-			redoButton.enabled = undoableNote.redoable;
+			undoButton.enabled = note.undoable;
+			redoButton.enabled = note.redoable;
 		}
 		
 		private function undoButtonListener(event:MouseEvent):void {
