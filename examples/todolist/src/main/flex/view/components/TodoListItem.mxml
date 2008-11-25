@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:CheckBox 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	label="{data.name}"
+	click="sendClickEvent(event)">
+	
+	<mx:Script>
+		<![CDATA[
+			import vo.TodoItem;
+			import event.TodoListItemEvent;
+			
+			override public function set data($data:Object):void {
+				super.data = $data;
+				selected = false;				
+			}			
+			
+			private function sendClickEvent(event:MouseEvent):void {
+				listData.owner.dispatchEvent(
+					new TodoListItemEvent(TodoListItemEvent.TODO_LIST_ITEM_CLICK, data as TodoItem)
+				);
+			}
+			
+		]]>
+	</mx:Script>
+</mx:CheckBox>

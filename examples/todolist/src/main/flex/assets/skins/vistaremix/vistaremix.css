@@ -1,0 +1,772 @@
+/* CSS file */
+/*
+///////////////////////////////////////////////////////////////////////////////
+//
+//  Vista-Remix theme by Jerry Don. 
+//	http://www.blog.jerrydon.com
+//
+///////////////////////////////////////////////////////////////////////////////
+*/
+
+@font-face 
+{
+    src:url(arial.swf);
+    font-family:"Arial";
+    font-weight:normal;
+}
+
+@font-face 
+{
+    src:url(arial.swf);
+    font-family:"Arial";
+    font-weight:bold;
+}
+
+/*
+//------------------------------
+//  Global
+//------------------------------
+*/
+
+global
+{
+	theme-color:#DAECF3;
+	font-family:"Arial";
+	font-weight:normal;
+	font-size:12;
+}
+
+/*
+//------------------------------
+//  Application
+//------------------------------
+*/
+
+Application
+{
+	background-color:#000000;
+}
+
+/*
+//------------------------------
+//  MenuBar
+//------------------------------
+*/
+
+MenuBar
+{
+	backgroundSkin: Embed(source="vistaremix.swf", symbol="MenuBar_backgroundSkin");
+	itemUpSkin: Embed(source="vistaremix.swf", symbol="MenuBar_itemUpSkin");
+	itemOverSkin: Embed(source="vistaremix.swf", symbol="MenuBar_itemOverSkin");
+	itemDownSkin: Embed(source="vistaremix.swf", symbol="MenuBar_itemDownSkin");
+	color: #FFFFFF;
+	backgroundColor:#ffffff;
+	textSelectedColor:#ffffff;
+	textRollOverColor:#ffffff;
+	rollOverColor:#ffffff;
+	menuStyleName: "dropDown";
+}
+
+/*
+//------------------------------
+//  DropDownMenus
+//------------------------------
+*/
+.dropDown 
+{
+	separatorSkin: Embed(source="vistaremix.swf",symbol="Menu_separatorSkin");
+	backgroundColor:#F1F1F1;
+	borderStyle:solid;
+	borderThickness:1;
+	borderColor:#979797;
+	color:#000000;
+	textRollOverColor: #000000;
+	textSelectedColor:#000000;
+	rollOverColor:#DAECF3;
+	selectionColor:#DAECF3; 
+	openDuration:0;
+}
+
+/*
+//------------------------------
+//  Panel
+//------------------------------
+*/
+
+Panel
+{
+	border-color:#D9E2EB;
+	border-alpha:1;
+	borderThicknessLeft: 8;
+	borderThicknessRight: 8;
+	borderThicknessTop: 0;
+	borderThicknessBottom: 8;
+	headerHeight: 30;
+	cornerRadius:6;
+	titleStyleName: "panelTitle";
+}
+
+.panelTitle 
+{
+	fontSize: 12;
+	color: #000000;
+}
+
+/*
+//------------------------------
+//  Panel ControlBar
+//------------------------------
+*/
+
+ControlBar
+{
+	color:#000000;
+}
+
+/*
+//------------------------------
+//  Tab
+//------------------------------
+*/
+
+TabBar
+{
+	tabStyleName: "tabStyle";
+	selectedTabTextStyleName: "selectedTabText";
+	horizontalGap: 0;
+}
+
+.tabStyle 
+{
+	upSkin: Embed(source="vistaremix.swf", symbol="Tab_upSkin");
+	overSkin: Embed(source="vistaremix.swf", symbol="Tab_overSkin");
+	downSkin: Embed(source="vistaremix.swf", symbol="TabSelected_upSkin");
+	selectedUpSkin: Embed(source="vistaremix.swf", symbol="TabSelected_upSkin");
+	selectedOverSkin: Embed(source="vistaremix.swf", symbol="TabSelected_upSkin");
+	selectedDownSkin: Embed(source="vistaremix.swf", symbol="TabSelected_upSkin");
+	disabledSkin: Embed(source="vistaremix.swf", symbol="Tab_disabledSkin");
+	selectedDisabledSkin: Embed(source="vistaremix.swf", symbol="Tab_disabledSkin");
+	fontSize: 12;
+	color: #000000;
+	textRollOverColor:#000000;
+	textSelectedColor:#000000; 
+	fontWeight: normal;
+	disabledColor:#999999;
+}
+
+.selectedTabText 
+{
+	color: #333333;
+	textRollOverColor: #000000;
+	textSelectedColor:#000000;
+	disabledColor:#000000;
+	fontSize: 12;
+	fontWeight: normal;
+} 
+
+/*
+//------------------------------
+//  Tab Navigator
+//------------------------------
+*/
+
+TabNavigator
+{
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	backgroundColor:#ffffff;
+	fontWeight:normal;
+}
+
+/*
+//------------------------------
+//  Buttons
+//------------------------------
+*/
+
+Button
+{
+	upSkin: Embed(source="vistaremix.swf", symbol="Button_upSkin");
+	overSkin: Embed(source="vistaremix.swf", symbol="Button_overSkin");
+	downSkin: Embed(source="vistaremix.swf", symbol="Button_downSkin");
+	disabledSkin: Embed(source="vistaremix.swf", symbol="Button_disabledSkin");
+	selectedDisabledSkin: Embed(source="vistaremix.swf", symbol="Button_disabledSkin");
+	selectedDownSkin: Embed(source="vistaremix.swf", symbol="Button_downSkin");
+	selectedOverSkin: Embed(source="vistaremix.swf", symbol="Button_overSkin");
+	selectedUpSkin: Embed(source="vistaremix.swf", symbol="Button_upSkin");
+	fontSize: 12;
+	color: #000000;
+	textRollOverColor:#000000;
+	textSelectedColor:#000000; 
+	fontWeight: normal;
+	disabledColor:#999999;
+}
+
+/*
+//------------------------------
+//  CheckBox
+//------------------------------
+*/
+
+CheckBox
+{
+	upIcon: Embed(source="vistaremix.swf", symbol="CheckBox_upIcon");
+	overIcon: Embed(source="vistaremix.swf", symbol="CheckBox_overIcon");
+	downIcon: Embed(source="vistaremix.swf", symbol="CheckBox_downIcon");
+	disabledIcon: Embed(source="vistaremix.swf", symbol="CheckBox_disabledIcon");
+	selectedDisabledIcon: Embed(source="vistaremix.swf", symbol="CheckBox_selectedDisabledIcon");
+	selectedUpIcon: Embed(source="vistaremix.swf", symbol="CheckBox_selectedUpIcon");
+	selectedDownIcon: Embed(source="vistaremix.swf", symbol="CheckBox_selectedDownIcon");
+	selectedOverIcon: Embed(source="vistaremix.swf", symbol="CheckBox_selectedOverIcon");
+	fontSize: 12;
+	color: #000000;
+	textRollOverColor:#000000;
+	textSelectedColor:#000000; 
+	fontWeight: normal;
+	disabledColor:#999999;
+}
+
+/*
+//------------------------------
+//  RadioButton
+//------------------------------
+*/
+
+RadioButton
+{
+	upIcon: Embed(source="vistaremix.swf", symbol="RadioButton_upIcon");
+	downIcon: Embed(source="vistaremix.swf", symbol="RadioButton_downIcon");
+	overIcon: Embed(source="vistaremix.swf", symbol="RadioButton_overIcon"); 
+	disabledIcon: Embed(source="vistaremix.swf", symbol="RadioButton_disabledIcon");
+	selectedDisabledIcon: Embed(source="vistaremix.swf", symbol="RadioButtonSelected_disabledIcon");
+	selectedDownIcon: Embed(source="vistaremix.swf", symbol="RadioButtonSelected_downIcon");
+	selectedOverIcon: Embed(source="vistaremix.swf", symbol="RadioButtonSelected_overIcon");
+	selectedUpIcon: Embed(source="vistaremix.swf", symbol="RadioButtonSelected_upIcon");
+}
+
+/*
+//------------------------------
+//  ColorPicker
+//------------------------------
+*/
+
+ColorPicker
+{
+	upSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_upSkin");
+	disabledSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_disabledSkin");
+	downSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_downSkin");
+	overSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_overSkin");
+	editableDisabledSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_disabledSkin");
+	editableDownSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_downSkin");
+	editableOverSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_overSkin");
+	editableUpSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_upSkin"); 
+	horizontalGap:2;
+}
+
+/*
+//------------------------------
+//  TextInput
+//------------------------------
+*/
+
+TextInput
+{
+	color:#000000;
+	fontFamily:"Arial";
+	border-style:solid;
+}
+
+/*
+//------------------------------
+//  TextArea
+//------------------------------
+*/
+
+TextArea
+{
+	color: #000000;
+	fontFamily:"Arial";
+}			
+
+/*
+//------------------------------
+//  DateField
+//------------------------------
+*/
+
+DateField
+{
+	disabledSkin: Embed(source="vistaremix.swf",symbol="DateField_disabledSkin"); 
+	downSkin: Embed(source="vistaremix.swf",symbol="DateField_downSkin"); 
+	overSkin: Embed(source="vistaremix.swf",symbol="DateField_overSkin"); 
+	upSkin: Embed(source="vistaremix.swf",symbol="DateField_upSkin");
+	dateChooserStyleName:"DateChooser";
+}
+
+/*
+//------------------------------
+//  DateChooser
+//------------------------------
+*/
+
+DateChooser
+{
+	cornerRadius:4;
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	selection-color:#3399FF;
+	color:#000000;
+	textSelectedColor:#ffffff;
+	todayColor:#898C95;
+	headerColors: #D9E2EB, #D9E2EB;
+	nextMonthUpSkin: Embed(source="vistaremix.swf", symbol="DateChooser_nextMonthUpSkin");
+	nextMonthDisabledSkin: Embed(source="vistaremix.swf", symbol="DateChooser_nextMonthDisabledSkin");
+	nextMonthDownSkin: Embed(source="vistaremix.swf", symbol="DateChooser_nextMonthDownSkin");
+	nextMonthOverSkin: Embed(source="vistaremix.swf", symbol="DateChooser_nextMonthOverSkin");
+	prevMonthDisabledSkin: Embed(source="vistaremix.swf", symbol="DateChooser_prevMonthDisabledSkin");
+	prevMonthDownSkin: Embed(source="vistaremix.swf", symbol="DateChooser_prevMonthDownSkin");
+	prevMonthOverSkin: Embed(source="vistaremix.swf", symbol="DateChooser_prevMonthOverSkin");
+	prevMonthUpSkin: Embed(source="vistaremix.swf", symbol="DateChooser_prevMonthUpSkin");
+	headerStyleName: "calendarHeader";
+	weekDayStyleName: "weekDay"; 
+}
+
+.calendarHeader, .weekDay 
+{
+	fontSize: 12;
+	color: #000000;
+	textRollOverColor:#000000;
+	textSelectedColor:#000000; 
+	fontWeight: normal;
+	disabledColor:#999999;
+}
+
+/*
+//------------------------------
+//  NumericStepper
+//------------------------------
+*/
+
+NumericStepper
+{
+	upArrowUpSkin: Embed(source="vistaremix.swf", symbol="NumericStepperUpArrow_upSkin");
+	upArrowDisabledSkin: Embed(source="vistaremix.swf", symbol="NumericStepperUpArrow_disabledSkin");
+	upArrowDownSkin: Embed(source="vistaremix.swf", symbol="NumericStepperUpArrow_downSkin");
+	upArrowOverSkin: Embed(source="vistaremix.swf", symbol="NumericStepperUpArrow_overSkin");
+	downArrowDisabledSkin: Embed(source="vistaremix.swf", symbol="NumericStepperDownArrow_disabledSkin");
+	downArrowDownSkin: Embed(source="vistaremix.swf", symbol="NumericStepperDownArrow_downSkin");
+	downArrowOverSkin: Embed(source="vistaremix.swf", symbol="NumericStepperDownArrow_overSkin");
+	downArrowUpSkin: Embed(source="vistaremix.swf", symbol="NumericStepperDownArrow_upSkin");
+}
+
+/*
+//------------------------------
+//  PopUpButton
+//------------------------------
+*/
+
+PopUpButton
+{
+	upSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_upSkin");
+ 	disabledSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_disabledSkin");
+	downSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_downLeftSkin");
+	overSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_overLeftSkin");	 
+	popUpDownSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_downRightSkin");
+	popUpOverSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_overRightSkin");
+}
+
+/*
+//------------------------------
+//  ComboBox
+//------------------------------
+*/
+
+ComboBox
+{
+	upSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_upSkin");
+	disabledSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_disabledSkin");
+	downSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_downSkin");
+	editableDisabledSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_editableDisabledSkin");
+	editableDownSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_editableDownSkin");
+	editableOverSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_editableOverSkin");
+	editableUpSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_editableUpSkin");
+	overSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_overSkin");
+	fontWeight:normal;
+	dropdownStyleName:"comboDropDown";
+}
+
+.comboDropDown
+{
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	selection-color:#3399FF;
+	textSelectedColor:#ffffff;
+	drop-shadow-enabled:true;
+	shadow-distance:0;
+}
+
+/*
+//------------------------------
+//  List
+//------------------------------
+*/
+
+List
+{
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	selection-color:#3399FF;
+	textSelectedColor:#ffffff;
+}
+
+/*
+//------------------------------
+//  TileList
+//------------------------------
+*/
+
+TileList
+{
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	selection-color:#3399FF;
+	textSelectedColor:#ffffff;
+}
+
+/*
+//------------------------------
+//  HorizontalList
+//------------------------------
+*/
+
+HorizontalList
+{
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	selection-color:#3399FF;
+	textSelectedColor:#ffffff;
+}
+
+/*
+//------------------------------
+//  LinkButton
+//------------------------------
+*/
+
+LinkButton
+{
+	selection-color:#3399FF;
+	corner-radius:4;
+	text-decoration:underline;
+	color:#2C628B;
+	textSelectedColor:#ffffff;
+}
+
+/*
+//------------------------------
+//  Sliders
+//------------------------------
+*/
+
+HSlider, VSlider
+{
+	trackSkin: Embed(source="vistaremix.swf", symbol="SliderTrack_Skin");
+	thumbUpSkin: Embed(source="vistaremix.swf", symbol="SliderThumb_upSkin");
+	thumbDisabledSkin: Embed(source="vistaremix.swf", symbol="SliderThumb_disabledSkin");
+	thumbDownSkin: Embed(source="vistaremix.swf", symbol="SliderThumb_downSkin");
+	thumbOverSkin: Embed(source="vistaremix.swf", symbol="SliderThumb_overSkin");
+}
+
+/*
+//------------------------------
+//  Rules
+//------------------------------
+*/
+
+HRule
+{
+	strokeColor:#898C95;
+	shadowColor:#EEEEEE;
+}
+
+VRule
+{
+	strokeColor:#898C95;
+	shadowColor:#EEEEEE;
+}
+
+/*
+//------------------------------
+//  ProgressBar
+//------------------------------
+*/
+
+ProgressBar
+{
+	trackSkin: Embed(source="vistaremix.swf", symbol="ProgressTrackSkin");
+	barSkin: Embed(source="vistaremix.swf", symbol="ProgressBarSkin");
+	font-weight:normal;
+}
+
+/*
+//------------------------------
+//  Accordion
+//------------------------------
+*/
+
+Accordion
+{
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+}
+
+/*
+//------------------------------
+//  AccordionHeader
+//------------------------------
+*/
+
+AccordionHeader
+{
+	fontWeight:normal;
+	font-family:"Arial";
+	fontSize:12;
+	color: #000000;
+	textRollOverColor: #000000;
+	textSelectedColor:#000000;
+	disabledColor:#999999;
+	downSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_downSkin");
+	overSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_overSkin");
+	selectedDisabledSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_disabledSkin");
+	selectedDownSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_downSkin");
+	selectedOverSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_overSkin");
+	selectedUpSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_selectedSkin");
+	upSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_upSkin");
+	disabledSkin: Embed(source="vistaremix.swf", symbol="AccordionHeader_disabledSkin");
+}
+
+/* 
+//------------------------------ 
+//  ButtonBar 
+//------------------------------ 
+*/ 
+
+ButtonBar 
+{ 
+    buttonStyleName: "buttonBarButton"; 
+    firstButtonStyleName: "firstButtonBarButton"; 
+    lastButtonStyleName: "lastButtonBarButton";
+}
+
+.buttonBarButton 
+{ 
+    upSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonUpSkin");
+    disabledSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonDisabledSkin"); 
+    downSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonDownSkin"); 
+    overSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonOverSkin"); 
+    selectedDisabledSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonSelectedDisabledSkin"); 
+    selectedDownSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonSelectedUpSkin"); 
+    selectedOverSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonSelectedUpSkin");
+    selectedUpSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_buttonSelectedUpSkin"); 
+}
+
+.firstButtonBarButton 
+{ 
+	upSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstUpSkin");
+	disabledSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstDisabledSkin"); 
+    downSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstDownSkin"); 
+    overSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstOverSkin"); 
+    selectedDisabledSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstSelectedDisabledSkin"); 
+    selectedDownSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstSelectedUpSkin"); 
+    selectedOverSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstSelectedUpSkin");
+    selectedUpSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_firstSelectedUpSkin"); 
+}
+
+.lastButtonBarButton 
+{ 
+    disabledSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastDisabledSkin"); 
+    downSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastDownSkin"); 
+    overSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastOverSkin"); 
+    selectedDisabledSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastSelectedDisabledSkin"); 
+    selectedDownSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastSelectedUpSkin"); 
+    selectedOverSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastSelectedUpSkin");
+    selectedUpSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastSelectedUpSkin");
+    upSkin: Embed(source="vistaremix.swf", symbol="ButtonBar_lastUpSkin");
+}
+
+/* 
+//------------------------------ 
+//  ToggleButtonBar 
+//------------------------------ 
+*/ 
+
+ToggleButtonBar 
+{ 
+    buttonStyleName: "buttonBarButton"; 
+    firstButtonStyleName: "firstButtonBarButton"; 
+    lastButtonStyleName: "lastButtonBarButton";
+}
+
+/*
+//------------------------------
+//  Tree
+//------------------------------
+*/
+
+Tree
+{
+	disclosureClosedIcon:Embed(source="vistaremix.swf", symbol="Tree_disclosureClosedIcon");  
+	disclosureOpenIcon:Embed(source="vistaremix.swf", symbol="Tree_disclosureOpenIcon");  
+}
+
+/*
+//------------------------------
+//  DataGrid
+//------------------------------
+*/
+
+DataGrid
+{
+	headerBackgroundSkin:Embed(source="vistaremix.swf", symbol="DataGrid_headerSkin"); 
+	borderStyle:solid;
+	borderColor:#898C95;
+	borderThickness:1;
+	selection-color:#3399FF;
+	textSelectedColor:#ffffff;
+	headerStyleName: "dataGridHeader"; 
+}
+
+/*
+//------------------------------
+//  DataGridHeader
+//------------------------------
+*/
+
+.dataGridHeader
+{
+	font-weight:normal;
+}
+
+/*
+//------------------------------
+//  ScrollBars
+//------------------------------
+*/
+
+ScrollBar
+{
+	downArrowUpSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowDown_upSkin");
+	downArrowDisabledSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowDown_disabledSkin");
+	downArrowDownSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowDown_downSkin");
+	downArrowOverSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowDown_overSkin");
+	upArrowDisabledSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowUp_disabledSkin");
+	upArrowDownSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowUp_downSkin");
+	upArrowOverSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowUp_overSkin");
+	upArrowUpSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowUp_upSkin");
+	thumbUpSkin: Embed(source="vistaremix.swf", symbol="ScrollThumb_upSkin");
+	thumbDownSkin: Embed(source="vistaremix.swf", symbol="ScrollThumb_downSkin");
+	thumbOverSkin: Embed(source="vistaremix.swf", symbol="ScrollThumb_overSkin");
+	thumbIcon: Embed(source="vistaremix.swf", symbol="ScrollBar_thumbIcon");
+	trackSkin: Embed(source="vistaremix.swf", symbol="ScrollTrack_Skin");
+}
+
+/*
+//------------------------------
+//  Label
+//------------------------------
+*/
+
+Label
+{
+	color:#000000;
+}
+
+/*
+//------------------------------
+//  Text
+//------------------------------
+*/
+
+Text
+{
+	color:#000000;
+}
+
+/*
+//------------------------------
+//  Alert
+//------------------------------
+*/
+
+Alert
+{
+	borderColor:#D9E2EB;
+	borderAlpha:1;
+	borderThicknessLeft: 6;
+	borderThicknessRight: 6;
+	borderThicknessTop: 0;
+	borderThicknessBottom: 6;
+	headerHeight: 28;
+	cornerRadius:4;
+	titleStyleName: "panelTitle";
+	backgroundColor:#F0F0F0;
+	backgroundAlpha:1; 
+	color:#000000; 
+	shadowDistance:0;
+}
+
+/*
+//------------------------------
+//  TitleWindow
+//------------------------------
+*/
+
+TitleWindow
+{
+	shadowDistance:0; 
+	closeButtonUpSkin: Embed(source="vistaremix.swf", symbol="Panel_closeButtonUpSkin");  
+	closeButtonDisabledSkin: Embed(source="vistaremix.swf",symbol="Panel_closeButtonDisabledSkin");
+	closeButtonDownSkin: Embed(source="vistaremix.swf",symbol="Panel_closeButtonDownSkin");
+	closeButtonOverSkin: Embed(source="vistaremix.swf",symbol="Panel_closeButtonOverSkin");
+}
+
+/*
+//------------------------------
+//  ToolTip
+//------------------------------
+*/
+
+ToolTip
+{
+	borderSkin: Embed(source="vistaremix.swf", symbol="ToolTip_borderSkin");
+	color:#000000;
+	font-size:12;
+}
+
+/*
+//------------------------------
+//  ApplicationControlBar
+//------------------------------
+*/
+
+ApplicationControlBar
+{
+	borderSkin: Embed(source="vistaremix.swf", symbol="ApplicationControlBar_borderSkin");
+}
+
+/*
+//------------------------------
+//  CursorManager
+//------------------------------
+*/
+CursorManager
+{
+	busyCursor: Embed(source="vistaremix.swf", symbol="BusyCursor");
+}

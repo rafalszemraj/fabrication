@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="200" showCloseButton="true">
+	<mx:title>Advanced Todo Input</mx:title>
+	<mx:Text width="100%">
+		<mx:text>Enter comma or line delimited todo items and click the Add button.</mx:text>
+	</mx:Text>
+	<mx:TextArea id="todosTextArea" width="100%" height="100%"/>
+	<mx:HBox horizontalAlign="center" width="100%">
+		<mx:Button id="addButton" label="Add" />
+	</mx:HBox>
+</mx:TitleWindow>
