@@ -15,7 +15,13 @@ To build Fabrication you need the main frameworks branch of the repository. The 
 http://fabrication.googlecode.com/svn/framework/trunk/
 }}}
 
-Once you have checked out the framework repository, you can build the Fabrication swcs. To do this, run the following command from the directory that you checked out the repository.
+Once you have checked out the framework repository, you need to provide it the path to your flex sdk. To do this create a file user.properties in the directory that you checked out fabrication, along side the build.properties. Then add a property flex.dir pointing to the directory of your flex sdk. For instance, if you flex sdk was in C:\flex\sdk\3.0, your user.properties would look like,
+
+{{{
+flex.dir = C:/flex/sdk/3.0
+}}}
+
+you can build the Fabrication swcs. To do this, run the following command from the directory that you checked out the repository.
 
 {{{
 ant swc
