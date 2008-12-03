@@ -21,7 +21,7 @@ Once you have checked out the framework repository, you need to provide it the p
 flex.dir = C:/flex/sdk/3.0
 }}}
 
-you can build the Fabrication swcs. To do this, run the following command from the directory that you checked out the repository.
+Now you can build the Fabrication swcs. To do this, run the following command from the directory that you checked out the repository.
 
 {{{
 ant swc
