@@ -1,16 +1,19 @@
 package shell.view {
+import mx.utils.StringUtil;	
+	
 	import flash.events.MouseEvent;
 	
 	import mx.controls.Button;
+	import mx.controls.ComboBox;
 	import mx.controls.Text;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexModuleLoader;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
 	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterAwareModule;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	
 	import common.FabricationRoutingDemoConstants;
 	
@@ -61,6 +64,10 @@ package shell.view {
 		
 		public function get removeAllButton():Button {
 			return messageControlBar.removeAllButton as Button;
+		}
+		
+		public function get moduleGroupComboBox():ComboBox {
+			return messageControlBar.moduleGroupComboBox as ComboBox;
 		}
 		
 		override public function onRegister():void {
@@ -122,6 +129,12 @@ package shell.view {
 		private function addModuleButtonListener(event:MouseEvent):void {
 			/* TODO :: Add modules from a combobox selection */ 
 			var moduleDescriptor:ModuleDescriptor = new ModuleDescriptor("simple_module.swf");
+			var moduleGroupSelection:String = StringUtil.trim(moduleGroupComboBox.value as String);
+			if (moduleGroupSelection == "null") {
+				moduleGroupSelection = null;
+			}
+			
+			moduleDescriptor.moduleGroup = moduleGroupSelection;
 			sendNotification(FabricationRoutingDemoShellConstants.ADD_MODULE, moduleDescriptor);
 		}
 		

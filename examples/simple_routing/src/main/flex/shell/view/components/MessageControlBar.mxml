@@ -12,6 +12,11 @@
 			text=" - KB"/>
 			
 	<mx:Button styleName="button" id="addModuleButton" label="Add Module" />
+	<mx:ComboBox id="moduleGroupComboBox" width="60" toolTip="Module Group" editable="true">
+		<mx:dataProvider>
+			<mx:String>null</mx:String>
+		</mx:dataProvider>
+	</mx:ComboBox>
 	<mx:Button styleName="button" id="removeSelectedModuleButton" label="Remove Selected Module" />
 	<mx:Button styleName="button" id="removeAllButton" label="Remove All" />
 	<mx:VRule height="20" alpha="0.5"/>

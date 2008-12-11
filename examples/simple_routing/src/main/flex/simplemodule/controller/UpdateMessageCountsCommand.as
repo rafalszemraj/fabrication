@@ -1,16 +1,16 @@
 package simplemodule.controller {
-	import shell.model.CounterProxy;	
+	import org.puremvc.as3.multicore.interfaces.INotification;
+	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterMessage;
+	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterNotification;
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
+	import org.puremvc.as3.multicore.utilities.fabrication.vo.ModuleAddress;
+	
+	import common.FabricationRoutingDemoConstants;
+	
+	import shell.model.CounterProxy;
 	
 	import simplemodule.SimpleModuleConstants;	
-	
-	import common.FabricationRoutingDemoConstants;	
-	
-	import org.puremvc.as3.multicore.utilities.fabrication.vo.ModuleAddress;	
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterMessage;	
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterNotification;	
-	import org.puremvc.as3.multicore.interfaces.INotification;	
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;	
-	
+
 	/**
 	 * @author Darshan Sawardekar
 	 */

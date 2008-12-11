@@ -9,7 +9,6 @@
 		<![CDATA[
 			import shell.controller.FabricationRoutingDemoShellStartupCommand;
 			
-			trace("**********************************************");
 			override public function getStartupCommand():Class {
 				return FabricationRoutingDemoShellStartupCommand;		
 			} 

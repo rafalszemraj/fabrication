@@ -1,6 +1,9 @@
 package shell.view {
-	import shell.model.ModuleDescriptor;
-	import shell.view.components.ModulesContainer;
+	import flash.display.DisplayObject;
+	
+	import mx.core.Container;
+	import mx.events.ModuleEvent;
+	import mx.modules.ModuleLoader;
 	
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexModuleLoader;
@@ -8,11 +11,10 @@ package shell.view {
 	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterAwareModule;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	
-	import mx.core.Container;
-	import mx.events.ModuleEvent;
-	import mx.modules.ModuleLoader;
+	import shell.model.ModuleDescriptor;
+	import shell.view.components.ModulesContainer;
 	
-	import flash.display.DisplayObject;		
+	import trace;	
 
 	/**
 	 * @author Darshan Sawardekar
@@ -85,7 +87,13 @@ package shell.view {
 			moduleLoader.id = moduleDescriptor.getElementID();
 			moduleLoader.url = moduleDescriptor.url;
 			moduleLoader.router = applicationRouter;
-			moduleLoader.defaultRouteAddress = applicationAddress;
+			
+			if (moduleDescriptor.moduleGroup != null) {
+				moduleLoader.moduleGroup = moduleDescriptor.moduleGroup;
+				moduleLoader.defaultRoute  = moduleDescriptor.moduleGroup;
+			} else {
+				moduleLoader.defaultRouteAddress = applicationAddress;
+			}
 			
 			moduleLoader.addEventListener(ModuleEvent.ERROR, moduleError);
 			moduleLoader.addEventListener(FabricatorEvent.FABRICATION_CREATED, moduleCreated);

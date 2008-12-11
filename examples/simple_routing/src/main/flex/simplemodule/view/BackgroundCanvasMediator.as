@@ -143,7 +143,7 @@ package simplemodule.view {
 		}
 		
 		private function backgroundMouseClickListener(event:MouseEvent):void {
-			routeNotification(FabricationRoutingDemoShellConstants.SELECT_MODULE, fabrication);
+			routeNotification(FabricationRoutingDemoShellConstants.SELECT_MODULE, fabrication, null, "FabricationRoutingDemoShell/*");
 		}
 		
 	}

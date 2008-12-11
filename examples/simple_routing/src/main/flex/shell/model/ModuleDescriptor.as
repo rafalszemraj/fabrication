@@ -7,6 +7,8 @@ package shell.model {
 	public class ModuleDescriptor implements IListElement {
 		
 		public var url:String;
+		public var moduleGroup:String;
+		
 		private var elementID:String;
 		
 		public function ModuleDescriptor(url:String) {

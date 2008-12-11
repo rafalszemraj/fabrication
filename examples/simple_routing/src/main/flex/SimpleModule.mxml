@@ -2,7 +2,8 @@
 <fab:FlexModule 
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*"
-	xmlns:local="simplemodule.view.components.*" width="100" height="100"
+	xmlns:local="simplemodule.view.components.*" width="140" height="140" 
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
 	>
 	
 	<mx:Script>
@@ -22,10 +23,10 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas width="100" height="100">
-		<mx:Image source="assets/texture.jpg" width="100" height="100" scaleContent="true"  />
-		<local:BackgroundCanvas id="backgroundCanvas" width="100" height="100" />
+	<mx:Canvas width="140" height="140" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Image source="assets/texture.jpg" width="140" height="140" scaleContent="true"  />
+		<local:BackgroundCanvas id="backgroundCanvas" width="140" height="140" />
 		<local:MessageCount id="messageCount"  x="5" y="5"/>
-		<local:MessageNavBar id="messageNavBar"  x="7" y="73"/>
+		<local:MessageNavBar id="messageNavBar"  x="7" y="83"/>
 	</mx:Canvas>
 </fab:FlexModule>
