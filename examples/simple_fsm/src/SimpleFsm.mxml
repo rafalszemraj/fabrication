@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fab:FlexApplication
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+	
+	<mx:Script>
+		<![CDATA[
+			import controller.SimpleFsmStartupCommand;
+			
+			override public function getStartupCommand():Class {
+				return SimpleFsmStartupCommand;
+			}			
+			
+		]]>
+	</mx:Script>
+	
+	
+	<mx:Text id="signalText" fontWeight="bold" text="Select Signal"/>	
+	<mx:ButtonBar id="signalButtonBar">
+		<mx:dataProvider>
+			<mx:Array>
+				<mx:String>Red</mx:String>
+				<mx:String>Orange</mx:String>
+				<mx:String>Green</mx:String>
+			</mx:Array>
+		</mx:dataProvider>
+	</mx:ButtonBar>
+	
+	<mx:Canvas id="signalCanvas" width="50" height="50" borderStyle="solid" borderThickness="5" borderColor="#000000">
+		
+	</mx:Canvas>	
+	
+</fab:FlexApplication>
