@@ -15,12 +15,7 @@
  */
  
 package interceptor {
-	import org.puremvc.as3.multicore.patterns.observer.Notification;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.AbstractInterceptor;
-	
-	import com.hexagonstar.util.debug.Debug;
-	
-	import trace;	
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.AbstractInterceptor;	
 
 	/**
 	 * @author Darshan Sawardekar

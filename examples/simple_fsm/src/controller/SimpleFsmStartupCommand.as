@@ -21,7 +21,7 @@ package controller {
 	
 	import interceptor.StateMachineInterceptor;
 	
-	import view.SimpleFsmMediator;		
+	import view.SimpleFsmMediator;	
 
 	/**
 	 * @author Darshan Sawardekar

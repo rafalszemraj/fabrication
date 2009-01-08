@@ -22,9 +22,7 @@ package view {
 	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 	import org.puremvc.as3.multicore.utilities.statemachine.State;
-	import org.puremvc.as3.multicore.utilities.statemachine.StateMachine;
-	
-	import com.hexagonstar.util.debug.Debug;	
+	import org.puremvc.as3.multicore.utilities.statemachine.StateMachine;	
 
 	/**
 	 * @author Darshan Sawardekar
