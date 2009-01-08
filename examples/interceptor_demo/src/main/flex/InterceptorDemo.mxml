@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fab:FlexApplication
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+	
+	<mx:Script>
+		<![CDATA[
+			import controller.InterceptorDemoStartupCommand;
+			
+			override public function getStartupCommand():Class {
+				return 	controller.InterceptorDemoStartupCommand;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Text id="statusText" />
+	<mx:Button id="saveButton" label="Save" />
+	
+</fab:FlexApplication>
