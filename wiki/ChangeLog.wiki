@@ -1,0 +1,45 @@
+#summary ChangeLog
+
+<wiki:toc max_depth="3" />
+
+----
+
+=0.6=
+  * Added support for Notification Interceptors.
+	* Added support for automatic component Reactions.
+	* Added support for multiple undo history stacks within the same application.
+	* Added test-class ant macro for testing a single testcase.
+	* Added launch-air-app and launch-air-swf ant macro for testing an application and swf in AIR.
+
+=0.5.3=
+  * Fixed issue with resolve for components with id and name.
+  * Added config object to IFabrication and concrete implementations.
+  * Removed default startup commands, instead an error is thrown if getStartupCommand is not implemented.
+
+=0.5.2=
+  * Fixed double disposal in FabricationView that was throwing an exception while unloading.
+
+=0.5.1=
+  * Moved ComponentRouteMapper into FlexMediator from the FabricationMediator.
+
+=0.5=
+  * Fixed memory leaks within the framework.
+  * Fixed incorrect component route caching.
+  * Refactored ComponentRouteMapper object to be cached at the facade level instead of globally.
+  * Fixed incorrect notification caching in the FabricationMediator.
+  * Refactored message routing internals to use an explicit TransportNotification instead of the earlier dynamic implementation.
+  * Added FabricationModel to improve garbage collection of proxies.
+  * Added FabricationView to improve garbage collections of mediators(Thanks Jason).
+  * Added HashMap object to implement consistent cache management throughout the framework.
+  * Implemented IDisposable in nearly all classes in the framework.
+  * routeNotification now supports typed notifications with the syntax, routeNotification(new CustomNotification(”foo”))
+  * Fixed invalid auto description regular expression in SimpleUndoableCommand.
+  * FabricationFacade now provides a standard caching api to store objects within the scope of a facade instance.
+  * Added platform specific swcs for flex and air.
+  * Moved the build system into the framework and updated example builds.
+
+=0.4.2=
+  * routeNotification now supports dynamic *to* parameter. Valid values are string routes and IModuleAddress objects.
+
+=0.4.1=
+  * Fixed FlexModule to support direct loading with ModuleManager.

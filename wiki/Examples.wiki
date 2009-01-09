@@ -1,0 +1,68 @@
+#summary List of demo applications
+#labels Featured
+
+<wiki:toc max_depth=="3" />
+
+==Simple Undo==
+Basic usage of Undo-Redo in Fabrication with SimpleUndoableCommand.
+
+[http://fabrication.googlecode.com/svn/examples/simple_undo/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/simple_undo/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/simple_undo SVN]
+
+==Simple Routing==
+Demo of different ways to communicate between modules using routeNotification.
+
+[http://fabrication.googlecode.com/svn/examples/simple_routing/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/simple_routing/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/simple_routing SVN]
+
+==Slacker==
+Implementation of [http://puremvc.org/content/view/92/1/ Slacker] with Fabrication.
+
+[http://fabrication.googlecode.com/svn/examples/slacker/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/slacker/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/slacker SVN]
+
+==Hello Flash using Modules==
+Implementation of [http://puremvc.org/content/view/92/1/ HelloFlash] with Fabrication.
+
+[http://fabrication.googlecode.com/svn/examples/hello_flash_with_module/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/hello_flash_with_module/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/hello_flash_with_module SVN]
+
+==Typing Undo==
+A typing demo application with undo support. Shows how to group commands. Each keystroke is a change command which gets merged based on how fast the text was typed.
+
+[http://fabrication.googlecode.com/svn/examples/typing_undo/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/typing_undo/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/typing_undo SVN]
+
+==Todolist==
+Todo list manager implement with Fabrication. Another showcase of undo-redo. It shows how to support undo/redo of objects.
+
+[http://fabrication.googlecode.com/svn/examples/todolist/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/todolist/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/todolist SVN]
+
+==Simple Finite State Machine==
+A very simple FSM demo using the [http://trac.puremvc.org/Utility_AS3_StateMachine State Machine Utility] with Fabrication. The StateMachine's changed, action and cancel notification are altered enroute using interceptors to remove slashes for use with the respondTo convention.
+
+[http://fabrication.googlecode.com/svn/examples/simple_fsm/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/simple_fsm/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/simple_fsm SVN]
+
+==Reflexive mediator registration with Tab Navigator==
+Basic demo of using reflexive mediator registration with lazy instantiated Tab Navigator children.
+
+[http://fabrication.googlecode.com/svn/examples/resolver_tab_navigator/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/resolver_tab_navigator/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/resolver_tab_navigator SVN]
+
+==Reflexive mediator registration with Flex States==
+Using FlexStates and Reflexive mediator registration.
+
+[http://fabrication.googlecode.com/svn/examples/resolver_add_child/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/resolver_add_child/src/main/flex View Source]
+[http://fabrication.googlecode.com/svn/examples/resolver_add_child SVN]
+
