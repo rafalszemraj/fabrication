@@ -37,14 +37,14 @@ Implementation of [http://trac.puremvc.org/Demo_AS3_Flash_HelloFlash HelloFlash]
 A typing demo application with undo support. Shows how to group commands. Each keystroke is a change command which gets merged based on how fast the text was typed.
 
 [http://fabrication.googlecode.com/svn/examples/typing_undo/bin/index.html Demo]
-[http://code.google.com/p/fabrication/source/browse/examples/#examples/typing_undo/src/main/flex View Source]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/typing_undo/src/main/as3 View Source]
 [http://fabrication.googlecode.com/svn/examples/typing_undo SVN]
 
 ==Todolist==
 Todo list manager implement with Fabrication. Another showcase of undo-redo. It shows how to support undo/redo of objects.
 
 [http://fabrication.googlecode.com/svn/examples/todolist/bin/index.html Demo]
-[http://code.google.com/p/fabrication/source/browse/examples/#examples/todolist/src/main/as3 View Source]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/todolist/src/main/flex View Source]
 [http://fabrication.googlecode.com/svn/examples/todolist SVN]
 
 ==Simple Finite State Machine==
