@@ -3,6 +3,8 @@
 
 <wiki:toc max_depth=="3" />
 
+----
+
 ==Simple Undo==
 Basic usage of Undo-Redo in Fabrication with SimpleUndoableCommand.
 
