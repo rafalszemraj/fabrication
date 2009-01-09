@@ -27,3 +27,9 @@ Fabrication recognizes Undo-Redo as an integral part of rich internet applicatio
 
 =PureMVC enhancements=
 Fabrication shortens some of the typical PureMVC programming syntax. Calls to {{{facade.<registerMediator|registerProxy>}}} etc can be performed directly with just {{{registerMediator, registerProxy}}} etc. Fabrication allows mapping multiple commands with the same notification names resulting in an implicit macro command.
+
+=Interceptors=
+Interceptors allow you to change the normal flow of PureMVC notifications before they reach Mediators and Commands. With interceptors you can modify notification payload en route, drop them based on some criteria, or send different notifications in place of the original notification.
+
+=Reactions=
+Reactions provide a way to declare component event handlers inside Mediators and subscribe to those events in the same handler. By using Reactions you also take away the need to manually remove event listeners. The event listeners are removed automatically once the source Mediator is removed.
