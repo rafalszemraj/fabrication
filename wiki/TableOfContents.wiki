@@ -2,7 +2,7 @@
 
   * [Features Features]
   * [GettingStarted Getting Started]
-	* [ReflexiveNotificationInterests Reflexive Notification Interests]
+  * [ReflexiveNotificationInterests Reflexive Notification Interests]
 	* [UsingModules Using Modules]
 	* [ReflexiveMediatorRegistration Reflexive Mediator Registration]
 	* [Reactions Reactions]
