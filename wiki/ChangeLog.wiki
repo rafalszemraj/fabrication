@@ -1,12 +1,10 @@
 #summary ChangeLog
 
-<wiki:toc max_depth="3" />
-
 ----
 
 =0.6=
   * Added support for Notification Interceptors.
-	* Added support for automatic component Reactions.
+  * Added support for automatic component Reactions.
 	* Added support for multiple undo history stacks within the same application.
 	* Added test-class ant macro for testing a single testcase.
 	* Added launch-air-app and launch-air-swf ant macro for testing an application and swf in AIR.
