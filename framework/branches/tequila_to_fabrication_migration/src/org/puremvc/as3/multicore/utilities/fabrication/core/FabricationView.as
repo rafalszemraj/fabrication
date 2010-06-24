@@ -25,7 +25,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.core {
 	 * FabricationView is the custom view used by fabrication.
 	 * It allows for the disposal of all currently registered mediators
 	 * at once.
-	 * @author Jason MacDonald (Jason.MacDonald@vfmii.com)
+	 * @author Jason MacDonald (Jason.MacDonald&#64;vfmii.com)
 	 */
 	public class FabricationView extends View implements IDisposable {
 

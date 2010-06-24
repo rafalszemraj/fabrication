@@ -34,11 +34,11 @@ package org.puremvc.as3.multicore.utilities.fabrication.interfaces {
 		/**
 		 * The default message route for an application.
 		 * 
-		 * Use <code>Asterisk(*)</code>for sending messages to all modules.
+		 * Use <code>Asterisk(~~)</code> for sending messages to all modules.
 		 * <br></br>
-		 * Use <code>ModuleName/*</code>for sending messages to any instance of a module.
+		 * Use <code>ModuleName/~~</code> for sending messages to any instance of a module.
 		 * <br></br>
-		 * Use <code>ModuleName/InstanceName</code>for sending message to a specific instance
+		 * Use <code>ModuleName/InstanceName</code> for sending message to a specific instance
 		 * of a module.     
 		 */
 		function get defaultRoute():String;

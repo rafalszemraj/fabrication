@@ -136,7 +136,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
 		 * <ul>
 		 * 	<li>Mediator(name:String, viewComponent:Object)</li>
 		 * 	<li>Mediator(viewComponent:Object)</li>
-		 * 	<li>Mediator(name:String, viewComponent:Object, param1:String = null, ...args)
+		 * 	<li>Mediator(name:String, viewComponent:Object, param1:String = null, ...args)</li>
 		 * </ul>
 		 */
 		public function clone():ICloneable {

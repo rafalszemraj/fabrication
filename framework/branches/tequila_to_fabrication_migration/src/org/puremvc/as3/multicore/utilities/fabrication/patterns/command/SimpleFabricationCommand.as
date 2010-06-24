@@ -28,7 +28,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.command {
 
 	/**
 	 * SimpleFabricationCommand is the base class for all fabrication commands.
-	 * It aliases common facade.<methodName> invocations and provides
+	 * It aliases common facade.[methodName] invocations and provides
 	 * easier access to properties often required by a fabrication application.
 	 * 
 	 * @author Darshan Sawardekar
