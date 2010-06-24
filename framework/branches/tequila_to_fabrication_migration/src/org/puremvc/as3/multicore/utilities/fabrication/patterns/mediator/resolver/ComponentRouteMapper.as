@@ -13,22 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver {
 	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.ComponentRoute;
-	
-	import mx.core.ComponentDescriptor;
+
 	import mx.core.Container;
 	import mx.core.UIComponent;
 	import mx.core.UIComponentDescriptor;
-	
-	import flash.utils.Dictionary;	
+    import mx.core.mx_internal;
+
+	import flash.utils.Dictionary;
+
+    import spark.components.Group;
+
+    use namespace mx_internal;
 
 	/**
 	 * ComponentRouteMapper walks the UIComponentDescriptor tree to
 	 * compute the full route to a flex component.
-	 * 
+	 *
 	 * @author Darshan Sawardekar
 	 */
 	public class ComponentRouteMapper implements IDisposable {
@@ -60,25 +63,39 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			var childDescriptor:UIComponentDescriptor;
 			var id:String;
 			var childPath:String = "";
-			 
+            var mxmlContent:Array;
+
 			if (component is Container) {
 				var container:Container = component as Container;
 				childDescriptors = container.childDescriptors;
 				id = component.id != null ? component.id : component.name;
-				
+
 				if (childDescriptors != null) {
 					routes.push.apply(this, calcRoutesFromDescriptors(childDescriptors, path));
 				}
+            }
+
+            if (component is Group) {
+
+
+                var groupBase:Group = component as Group;
+                mxmlContent = groupBase.mx_internal::getMXMLContent();
+                if (mxmlContent && mxmlContent.length) {
+
+                    routes.push..apply(this, calcRoutesFromMXMLContent(mxmlContent, path));
+
+                }
+
 			} else {
 				childDescriptor = component.descriptor;
 				if (childDescriptor != null && childDescriptor.id != null) {
 					id = childDescriptor.id;
 					childPath = path != "" ? path + "." + id : id;
-  
+
 					routes.push(new ComponentRoute(id, childPath));
 				}
 			}
-			
+
 			return routes;
 		}
 
@@ -90,7 +107,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 				return false;
 			}
 		}
-		
+
 		public function getCachedRoutes(component:UIComponent):Array {
 			return cachedRoutes[component];
 		}
@@ -104,10 +121,11 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			var propertiesFactory:Function;
 			var n:int = childDescriptors.length;
 			var childDescriptor:UIComponentDescriptor;
-			var childPath:String;		
+			var childPath:String;
 			var id:String;
-			var nestedChildDescriptors:Array; 
-			
+			var nestedChildDescriptors:Array;
+            var mxmlContent:Array;
+
 			for (var i:int = 0;i < n; i++) {
 				childDescriptor = childDescriptors[i];
 				id = childDescriptor.id;
@@ -117,29 +135,75 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 				} else {
 					childPath = path != "" ? path + "." + i : String(i);
 				}
-				
+
 				if (id != null) {
 					routes.push(new ComponentRoute(id, childPath));
 				}
-				 
+
 				propertiesFactory = childDescriptor.propertiesFactory;
-				
+
 				if (propertiesFactory != null) {
 					nestedChildDescriptors = propertiesFactory().childDescriptors;
 					if (nestedChildDescriptors != null && nestedChildDescriptors.length > 0) {
 						routes.push..apply(this, calcRoutesFromDescriptors(nestedChildDescriptors, childPath));
 					}
+                    else {
+
+                        mxmlContent = childDescriptor.properties['mxmlContent'];
+                        if (mxmlContent && mxmlContent.length) {
+
+                            routes.push..apply(this, calcRoutesFromMXMLContent(mxmlContent, childPath));
+
 				}
+
+
 			}
-			
+                }
+            }
+
 			return routes;
 		}
-		
+
+        private function calcRoutesFromMXMLContent(mxmlContent:Array, path:String = ""):Array
+        {
+
+
+            var routes:Array = [];
+            var n:int = mxmlContent.length;
+            var component:UIComponent;
+            var childPath:String;
+            var id:String;
+
+            for (var i:int = 0; i < n; ++i) {
+
+                component = mxmlContent [ i ] as UIComponent;
+                id = component.id;
+                if (id != null) {
+                    childPath = path != "" ? path + "." + id : id;
+                }
+                else {
+                    childPath = path != "" ? path + "." + i : String(i);
+                }
+
+                if (id != null) {
+                    routes.push(new ComponentRoute(id, childPath));
+                }
+
+
+                routes.push..apply(this, mapComponentRoutes(component, childPath));
+
+
+            }
+
+            return routes;
+
+        }
+
 		/* *
 		private function printRoutes(routes:Array):void {
 			var n:int = routes.length;
 			trace("Mapped Routes = " + n);
-			
+
 			var route:Object;
 			for (var i:int = 0; i < n; i++) {
 				route = routes[i];

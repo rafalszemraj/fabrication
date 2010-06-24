@@ -496,11 +496,18 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 						currentComponent = null;
 					}
 				} else {
-					if (currentComponent.hasOwnProperty(currentID)) {
+
+					// PATCH FOR FLEX4
+
+					/*if (currentComponent.hasOwnProperty(currentID)) {
 						nextComponent = currentComponent[currentID] as UIComponent;
 					} else {
 						nextComponent = currentComponent.getChildByName(currentID) as UIComponent;
-					}
+					}*/
+
+                    nextComponent = findComponentChildByName( currentComponent, currentID );
+
+                    // END - PATCH FOR FLEX4
 					
 					if (nextComponent == null) {
 						nextComponent = findComponentByID(currentComponent, currentID);
@@ -550,6 +557,34 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			
 			return null;
 		}
+
+        // PATCH FOR FLEX4
+        private function findComponentChildByName( currentComponent:UIComponent, name:String ):UIComponent {
+
+            var comp:UIComponent = null;
+            if( currentComponent.hasOwnProperty( name ) )
+                comp = currentComponent[ name ] as UIComponent;
+            else {
+
+                var numChildren:int = currentComponent.numChildren;
+                var child:UIComponent;
+                for( var i:int = 0; i<numChildren; ++i ) {
+
+                    child = currentComponent.getChildAt( i ) as UIComponent;
+                    if( child == null ) continue;
+                    if( child.name == name || child.id == name) {
+
+                        comp = child;
+                        break;
+
+                    }
+
+
+                }
+
+            }
+            return comp;
+        }
 		
 		/**
 		 * Flags a component as resolved and sends an event indicating the same.
