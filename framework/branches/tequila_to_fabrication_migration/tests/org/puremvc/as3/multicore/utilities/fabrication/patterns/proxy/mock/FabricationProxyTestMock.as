@@ -15,12 +15,12 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.*;
-	import com.anywebcam.mock.Mock;
-	
-	import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import com.anywebcam.mock.Mock;
 
-	/**
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.*;
+
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	public class FabricationProxyTestMock extends FabricationProxy implements IMockable {

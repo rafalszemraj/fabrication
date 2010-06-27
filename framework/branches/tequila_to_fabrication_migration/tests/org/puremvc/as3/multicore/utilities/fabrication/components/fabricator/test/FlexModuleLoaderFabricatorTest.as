@@ -15,10 +15,10 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import mx.events.ModuleEvent;
 
     import org.puremvc.as3.multicore.utilities.fabrication.components.FlexModuleLoader;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.events.FabricatorEvent;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.Router;
 

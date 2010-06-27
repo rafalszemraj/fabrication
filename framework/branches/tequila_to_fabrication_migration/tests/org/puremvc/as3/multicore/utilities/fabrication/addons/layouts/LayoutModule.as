@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.puremvc.as3.multicore.utilities.fabrication.addons.helpers.layouts {
+package org.puremvc.as3.multicore.utilities.fabrication.addons.layouts {
     import mx.modules.Module;
 
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;

@@ -20,10 +20,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
     import mx.core.UIComponent;
 
     import org.flexunit.async.Async;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FabricationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.events.ComponentResolverEvent;
     import org.puremvc.as3.multicore.utilities.fabrication.events.MediatorRegistrarEvent;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;

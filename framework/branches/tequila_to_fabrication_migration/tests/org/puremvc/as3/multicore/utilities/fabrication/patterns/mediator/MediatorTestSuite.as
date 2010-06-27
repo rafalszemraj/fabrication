@@ -9,7 +9,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
         public var flexMediatorTest:FlexMediatorTest;
 
         // resolver
-//        public var resolverTestSuite:ResolverTestSuite;
+        public var resolverTestSuite:ResolverTestSuite;
 
     }
 }

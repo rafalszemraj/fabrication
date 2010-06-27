@@ -1,5 +1,4 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.*;
     [Suite]
     [RunWith( "org.flexunit.runners.Suite" )]
     public class UndoableCommandTestSuite {

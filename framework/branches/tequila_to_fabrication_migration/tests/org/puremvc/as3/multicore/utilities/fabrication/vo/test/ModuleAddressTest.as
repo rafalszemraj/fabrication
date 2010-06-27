@@ -15,8 +15,8 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.vo.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.vo.*;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.vo.*;
 
     /**
      * @author Darshan Sawardekar

@@ -17,9 +17,9 @@
 package org.puremvc.as3.multicore.utilities.fabrication.components.mock {
     import com.anywebcam.mock.Mock;
 
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;
 
     /**

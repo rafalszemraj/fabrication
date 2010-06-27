@@ -15,14 +15,14 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.*;
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterMessage;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.*;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.mock.RouterMessageStoreMock;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.RouterNotification;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.TransportNotification;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.RouterMessage;

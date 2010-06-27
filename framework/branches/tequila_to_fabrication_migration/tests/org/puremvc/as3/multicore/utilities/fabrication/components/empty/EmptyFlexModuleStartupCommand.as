@@ -15,10 +15,10 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.components.empty {
-	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;		
+    import org.puremvc.as3.multicore.interfaces.INotification;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
 
-	/**
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	public class EmptyFlexModuleStartupCommand extends SimpleFabricationCommand {

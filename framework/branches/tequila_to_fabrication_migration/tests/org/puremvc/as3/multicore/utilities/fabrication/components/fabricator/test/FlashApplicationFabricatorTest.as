@@ -15,10 +15,10 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import flash.events.Event;
 
     import org.puremvc.as3.multicore.utilities.fabrication.components.FlashApplication;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FlashApplicationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
 

@@ -18,12 +18,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
     import flash.events.Event;
 
     import mx.core.UIComponent;
-    import mx.events.FlexEvent;
     import mx.modules.Module;
 
     import org.flexunit.async.Async;
-    import org.puremvc.as3.multicore.utilities.fabrication.events.ComponentResolverEvent;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.ComponentsDataProvider;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.ModuleAwareTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.events.ComponentResolverEvent;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.*;
@@ -32,6 +32,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
     /**
      * @author Darshan Sawardekar
      */
+    [RunWith("org.flexunit.runners.Parameterized")]
     public class ComponentResolverTest extends ModuleAwareTestCase {
 
         static public var counter:int = 0;
@@ -47,8 +48,17 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         public var resolvedComponents:Array = new Array();
         public var routesMap:HashMap = new HashMap();
 
-        private var moduleUrl:String = "test/modules/NLevelVbox.swf";
 
+        public function ComponentResolverTest(moduleUrl:String)
+        {
+            this.moduleUrl = moduleUrl;
+        }
+
+
+        public static var dataRetriever:ComponentsDataProvider = new ComponentsDataProvider("moduleLayouts.xml");
+
+        [Parameters(loader="dataRetriever")]
+        public static var componentsUrls:Array;
 
         [Before]
         public function setUp():void
@@ -76,7 +86,11 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         public function checkComponentResolverStoresMultimode():void
         {
             var resolver:ComponentResolver = createComponentResolver();
-            assertGetterAndSetter(resolver, "multimode", Boolean, false, true);
+            assertFalse(resolver.getMultimode());
+            resolver.setMultimode(true);
+            assertTrue(resolver.getMultimode());
+            resolver.setMultimode(false);
+            assertFalse(resolver.getMultimode());
         }
 
         [Test]
@@ -219,33 +233,26 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         [Test(async)]
         public function testComponentResolutionInModule():void
         {
-            verifyExpressions(moduleUrl);
+
+            super.loadModule();
+
+
         }
 
-        public function verifyExpressions(url:String):void
+
+        override protected function moduleReadyAsyncHandler(event:Event, passThroughData:Object = null):void
         {
-            loadModule(url,
-                       function(event:FlexEvent, passThroughData:Object = null ):void
-                       {
-                           var module:Module = event.target as Module;
-
-                           assertType(moduleUrl, Module, module);
-                           assertTrue("Routes property not found in " + moduleUrl, module.hasOwnProperty("routes"));
-
-                           var routes:Array = module["routes"];
-                           //trace("verifyExpressions url=" + url);
-                           //printRoutes(routes);
-
-                           assertType(moduleUrl, Array, routes);
-                           assertTrue("Routes array must not be empty in " + moduleUrl, routes.length > 0);
-
-                           validateExpressionsInModule(module, routes);
-                           //removeModule(module);
-                       }
-                    );
+            super.moduleReadyAsyncHandler(event, passThroughData);
+            var module:Module = event.target as Module;
+            assertType(moduleUrl, Module, module);
+            assertTrue("Routes property not found in " + moduleUrl, module.hasOwnProperty("routes"));
+            var routes:Array = module["routes"];
+            assertType(moduleUrl, Array, routes);
+            assertTrue("Routes array must not be empty in " + moduleUrl, routes.length > 0);
+            validateExpressionsInModule(module, routes);
         }
 
-        public function validateExpressionsInModule(module:Module, routes:Array):void
+        private function validateExpressionsInModule(module:Module, routes:Array):void
         {
             this.routes = routes;
 
@@ -263,7 +270,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 
             for (i = 0; i < n; i++) {
                 route = routes[i];
-                id = route.id;
+                id = route.elementName;
                 expr = calcExpressionRoot(route.expr);
                 expectedComponent = route.component;
                 routesMap.put(id, true);
@@ -290,7 +297,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             }
         }
 
-        public function verifyResolvedComponents(event:Event, passThroughData:Object = null ):void
+        private function verifyResolvedComponents(event:Event, passThroughData:Object = null):void
         {
             var expectedResolutions:int = routes.length;
             var actualResolutions:int = resolvedComponents.length;
@@ -326,13 +333,13 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             }
         }
 
-        public function calcExpressionRoot(expr:Expression):Expression
+        private function calcExpressionRoot(expr:Expression):Expression
         {
             var resolver:ComponentResolver = expr.root;
             return resolver.getBaseExpression();
         }
 
-        public function componentResolved(event:ComponentResolverEvent):void
+        private function componentResolved(event:ComponentResolverEvent):void
         {
             //trace("-----------------resolved " + event.component);
 
@@ -341,17 +348,17 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             }
         }
 
-        public function resolutionTimeout(event:Event):void
+        private function resolutionTimeout(event:Event):void
         {
             fail(moduleUrl + " - resolution did not complete within expected interval.");
         }
 
-        public function stubResolutionAsyncHandler(event:Event):void
+        private function stubResolutionAsyncHandler(event:Event):void
         {
 
         }
 
-        public function createComponentResolver(component:UIComponent = null):ComponentResolver
+        private function createComponentResolver(component:UIComponent = null):ComponentResolver
         {
             if (component == null) {
                 component = new UIComponent();
@@ -360,7 +367,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             return new ComponentResolver(component, facade, routeMapper);
         }
 
-        public function printRoutes(routes:Array):void
+        private function printRoutes(routes:Array):void
         {
             var n:int = routes.length;
             trace("Total Routes = " + n);
@@ -368,8 +375,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             var route:Object;
             for (var i:int = 0; i < n; i++) {
                 route = routes[i];
-                trace("\t[" + route.id + " : " + route.path + "]" + (route.component ? " = " + route.component : ""));
+                trace("\t[" + route.elementName + " : " + route.path + "]" + (route.component ? " = " + route.component : ""));
             }
         }
+
+
     }
 }

@@ -15,13 +15,13 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import com.anywebcam.mock.Mock;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.Router;
 
     /**

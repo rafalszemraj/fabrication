@@ -21,9 +21,9 @@ package org.puremvc.as3.multicore.utilities.fabrication.components.mock {
     import flash.events.EventDispatcher;
     import flash.utils.getDefinitionByName;
 
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IModuleAddress;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouter;
 

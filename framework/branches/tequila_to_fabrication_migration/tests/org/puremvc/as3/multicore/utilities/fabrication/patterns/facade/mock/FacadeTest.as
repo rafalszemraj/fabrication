@@ -15,13 +15,14 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.*;
     import mx.core.Application;
     import mx.core.FlexGlobals;
 
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.patterns.facade.Facade;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.mock.DisposableMock;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FlexApplicationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.core.FabricationController;
     import org.puremvc.as3.multicore.utilities.fabrication.core.FabricationModel;
@@ -29,13 +30,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock {
     import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationControllerMock;
     import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationModelMock;
     import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationViewMock;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.mock.FabricationMediatorMock;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.mock.DisposableMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock1;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.*;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.mock.FabricationMediatorMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.FabricationNotification;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.RouterNotification;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.TransportNotification;

@@ -17,25 +17,42 @@
 package org.puremvc.as3.multicore.utilities.fabrication.components.test {
     import flash.events.Event;
 
+    import mx.core.Application;
     import mx.events.FlexEvent;
 
     import org.puremvc.as3.multicore.utilities.fabrication.components.sut.TestFlexApplication;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.sut.TestFlexHaloApplication;
 
     /**
      * @author Darshan Sawardekar
      */
+    [RunWith("org.flexunit.runners.Parameterized")]
     public class FlexApplicationTest extends AbstractApplicationTest {
 
+        private var applicationClass:Class;
+
+        public function FlexApplicationTest( testAppClass:Class )
+        {
+            applicationClass = testAppClass;
+        }
+
+        [Parameters]
+        public static function getApplication():Array {
+
+            return [[ TestFlexHaloApplication ],[ TestFlexApplication ]]
+
+
+        }
 
         override protected function initializeFabrication():void
         {
-            fabrication = new TestFlexApplication();
+            fabrication = new applicationClass();
         }
 
 
         override protected function getReadyEvent():Event
         {
-            return new FlexEvent( FlexEvent.CREATION_COMPLETE );
+            return new FlexEvent(FlexEvent.CREATION_COMPLETE);
         }
 
     }

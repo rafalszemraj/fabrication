@@ -15,10 +15,10 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.events.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.events.*;
     import flash.events.Event;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.events.*;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
 

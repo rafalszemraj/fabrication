@@ -15,13 +15,13 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.*;
-	import com.anywebcam.mock.Mock;
-	
-	import org.puremvc.as3.multicore.interfaces.INotification;
-	import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import com.anywebcam.mock.Mock;
 
-	/**
+    import org.puremvc.as3.multicore.interfaces.INotification;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.*;
+
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	public class FabricationMediatorTestMockWithQualifiedProxyInterests extends FabricationMediator implements IMockable {

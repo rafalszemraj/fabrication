@@ -15,14 +15,14 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.vo.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.vo.*;
     import flash.events.Event;
     import flash.events.EventDispatcher;
     import flash.events.IEventDispatcher;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
-    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.mock.EventDispatcherMock;
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
+    import org.puremvc.as3.multicore.utilities.fabrication.vo.*;
 
     /**
      * @author Darshan Sawardekar

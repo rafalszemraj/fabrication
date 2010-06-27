@@ -18,8 +18,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test {
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
-    import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FabricationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FabricationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IUndoableCommand;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;

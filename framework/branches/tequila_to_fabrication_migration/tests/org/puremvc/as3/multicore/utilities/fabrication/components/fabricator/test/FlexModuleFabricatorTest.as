@@ -15,10 +15,10 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import mx.events.FlexEvent;
 
     import org.puremvc.as3.multicore.utilities.fabrication.components.FlexModule;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FlexModuleMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
 

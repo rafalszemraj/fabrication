@@ -19,15 +19,15 @@ package org.puremvc.as3.multicore.utilities.fabrication.components.mock {
 
     import flash.events.Event;
 
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.components.*;
     import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IModuleAddress;
 
     /**
      * @author Darshan Sawardekar
      */
-    public class FlexApplicationMock extends FlexApplication implements IMockable {
+    public class FlexApplicationMock extends FlexHaloApplication implements IMockable {
 
         public var _mock:Mock;
 
@@ -87,7 +87,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components.mock {
 
         override public function get id():String
         {
-            return mock.id;
+            return mock.elementName;
         }
 
         override public function notifyFabricationCreated():void

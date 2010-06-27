@@ -15,13 +15,13 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.*;
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterCable;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.*;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.RouterCableListener;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.mock.RouterMock;
     import org.puremvc.as3.multicore.utilities.fabrication.vo.ModuleAddress;

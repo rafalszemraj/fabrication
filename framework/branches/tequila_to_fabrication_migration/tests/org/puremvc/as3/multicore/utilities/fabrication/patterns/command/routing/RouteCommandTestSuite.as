@@ -20,7 +20,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.test.RouteMessageCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.test.RouteNotificationCommandTest;
 
-
     /**
      * @author Darshan Sawardekar
      */

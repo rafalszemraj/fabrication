@@ -1,9 +1,9 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.*;
     import com.anywebcam.mock.Mock;
 
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IInterceptor;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.*;
 
     /**
 	 * @author Darshan Sawardekar

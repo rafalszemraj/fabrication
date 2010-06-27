@@ -15,12 +15,12 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.core.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import org.puremvc.as3.multicore.core.View;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
-    import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationControllerMock;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationControllerMock;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.mock.FabricationMediatorMock;
 

@@ -15,24 +15,24 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import com.anywebcam.mock.Mock;
 
     import flash.events.Event;
 
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.components.empty.EmptyFlexModuleStartupCommand;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.ApplicationFabricatorMock;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FabricationMock;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IModuleAddress;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouter;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterAwareModule;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock1;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.Router;
     import org.puremvc.as3.multicore.utilities.fabrication.vo.ModuleAddress;
 

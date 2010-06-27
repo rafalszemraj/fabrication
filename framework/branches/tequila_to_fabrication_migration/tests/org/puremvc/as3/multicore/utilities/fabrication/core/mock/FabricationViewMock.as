@@ -20,8 +20,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.core.mock {
     import org.puremvc.as3.multicore.interfaces.IMediator;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.interfaces.IObserver;
-    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
 
     /**
 	 * @author Darshan Sawardekar

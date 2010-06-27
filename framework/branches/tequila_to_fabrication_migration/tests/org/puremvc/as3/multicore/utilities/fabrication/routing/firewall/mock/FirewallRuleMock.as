@@ -15,13 +15,12 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.routing.firewall.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.routing.firewall.*;
-	import com.anywebcam.mock.Mock;
-	
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFirewallRule;
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterMessage;	
+    import com.anywebcam.mock.Mock;
 
-	/**
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFirewallRule;
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterMessage;
+
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	public class FirewallRuleMock implements IFirewallRule {

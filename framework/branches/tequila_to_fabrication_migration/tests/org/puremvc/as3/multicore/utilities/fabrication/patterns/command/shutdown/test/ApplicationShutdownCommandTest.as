@@ -15,14 +15,14 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.shutdown.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.shutdown.*;
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouter;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterCable;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.routing.ConfigureRouterCommand;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.shutdown.*;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.FabricationNotification;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.mock.RouterCableListenerMock;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.mock.RouterMock;

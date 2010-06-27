@@ -15,7 +15,6 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.core.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import com.anywebcam.mock.Mock;
 
     import flash.utils.getDefinitionByName;
@@ -27,25 +26,26 @@ package org.puremvc.as3.multicore.utilities.fabrication.core.test {
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.interfaces.IObserver;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
-    import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationViewMock;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.mock.FabricationViewMock;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IUndoableCommand;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.SimpleUndoableCommand;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.test.ConfigurableInterceptor;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.mock.InterceptorMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock1;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock2;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock3;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock4;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock5;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.SimpleUndoableCommand;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock1;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock2;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock3;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock4;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock5;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.mock.InterceptorMock;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.test.ConfigurableInterceptor;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.UndoableNotification;
 
     /**

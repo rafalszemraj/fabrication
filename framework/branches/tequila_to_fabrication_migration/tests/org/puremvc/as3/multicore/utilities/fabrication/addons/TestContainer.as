@@ -15,8 +15,9 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.addons {
-	import mx.containers.VBox;
+    import mx.containers.VBox;
     import mx.core.FlexGlobals;
+    import mx.core.UIComponent;
 
     import spark.components.Application;
 
@@ -31,7 +32,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
 			if (instance == null) {
 				instance = new TestContainer();
 				
-				var application:Application = FlexGlobals.topLevelApplication as spark.components.Application;
+				var application:Application = FlexGlobals.topLevelApplication as Application;
 				application.addElement(instance);
 			}
 			
@@ -44,5 +45,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
 			includeInLayout = false;
 			visible = false;
 		}
+
+        public function add( module:UIComponent ):void {
+
+
+            addChild( module );
+
+        }
 	}
 }

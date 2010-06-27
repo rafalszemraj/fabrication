@@ -15,12 +15,11 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.mock {
-	import flash.events.Event;
-	
-	import mx.controls.Button;
-	import mx.core.UIComponent;	
+    import flash.events.Event;
 
-	/**
+    import mx.core.UIComponent;
+
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	public class FabricationMediatorTestMockWithReactions extends FabricationMediatorTestMock {

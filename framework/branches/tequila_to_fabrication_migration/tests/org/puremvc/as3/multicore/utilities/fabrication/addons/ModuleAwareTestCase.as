@@ -15,7 +15,8 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.addons {
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.helpers.*;
+    import flash.events.Event;
+
     import mx.events.FlexEvent;
     import mx.events.ModuleEvent;
     import mx.modules.IModuleInfo;
@@ -29,79 +30,55 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
      */
     public class ModuleAwareTestCase extends BaseTestCase {
 
-        public var modulesInfoCache:Array = new Array();
-        public var moduleDir:String = "";
-        public var moduleReadyAsyncHandler:Function;
-        public var timeoutMS:int = 25000;
+        protected var modulesInfoCache:Array = new Array();
+        protected var timeoutMS:int = 25000;
         public var currentModule:Module;
+        protected var moduleUrl:String;
 
 
-        public function loadModule(url:String, readyHandler:Function):IModuleInfo
+        protected function loadModule():void
         {
-            url = moduleDir + url;
 
-            moduleReadyAsyncHandler = Async.asyncHandler(this, readyHandler, timeoutMS);
-
-            var moduleInfo:IModuleInfo = ModuleManager.getModule(url);
-            moduleInfo.addEventListener(ModuleEvent.READY,
-                                        function(event:ModuleEvent):void
-                                        {
-                                            var moduleInstance:Module = createModule(event.module);
-                                            moduleInstance.addEventListener(FlexEvent.INITIALIZE,
-                                                                            function(event:FlexEvent):void
-                                                                            {
-                                                                                moduleReadyAsyncHandler(event);
-                                                                            }
-                                                    );
-
-                                            addModule(moduleInstance);
-                                        }
-                    );
-
-            moduleInfo.addEventListener(ModuleEvent.ERROR,
-                                        function(event:ModuleEvent):void
-                                        {
-                                            try {
-                                                var moduleErrorAsyncHandler:Function = Async.asyncHandler(this, moduleLoadErrorHandler, timeoutMS);
-                                                moduleErrorAsyncHandler(event);
-                                            }
-                                            finally {
-                                                try {
-                                                    moduleReadyAsyncHandler(event);
-                                                }
-                                                catch (error:Error) {
-                                                    // no-op
-                                                }
-                                            }
-                                        }
-                    );
-
+            var moduleInfo:IModuleInfo = ModuleManager.getModule(moduleUrl);
             modulesInfoCache.push(moduleInfo);
+            Async.handleEvent(this, moduleInfo, ModuleEvent.READY, moduleInitializeAsyncHandler, timeoutMS);
             moduleInfo.load();
 
-            return moduleInfo;
         }
 
-        public function createModule(moduleInfo:IModuleInfo):Module
+        protected function moduleInitializeAsyncHandler(event:ModuleEvent, passThroughData:Object = null):void
+        {
+
+            var moduleInstance:Module = createModule(event.module);
+            assertNotNull(moduleInstance);
+            Async.handleEvent( this, moduleInstance, FlexEvent.INITIALIZE, moduleReadyAsyncHandler );
+//            moduleInstance.addEventListener(FlexEvent.INITIALIZE, moduleReadyAsyncHandler);
+            addModule(moduleInstance);
+        }
+
+        protected function moduleReadyAsyncHandler(event:Event, passThroughData:Object = null):void
+        {
+
+        }
+
+        private function createModule(moduleInfo:IModuleInfo):Module
         {
             var moduleInstance:Module = moduleInfo.factory.create() as Module;
             return moduleInstance;
         }
 
-        public function addModule(module:Module):void
+        private function addModule(module:Module):void
         {
-            TestContainer.getInstance().addChild(module);
+            try {
+
+                TestContainer.getInstance().add(module);
+            }
+            catch(e:Error) {
+
+                TestSparkContainer.getInstance().add( module );
+            }
         }
 
-        public function removeModule(module:Module):void
-        {
-            TestContainer.getInstance().removeChild(module);
-        }
-
-        public function moduleLoadErrorHandler(event:ModuleEvent):void
-        {
-            fail("Unable to load module for url " + event.module.url);
-        }
 
     }
 }

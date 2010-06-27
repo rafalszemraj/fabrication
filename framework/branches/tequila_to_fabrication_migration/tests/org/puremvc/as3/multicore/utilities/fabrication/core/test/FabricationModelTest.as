@@ -15,9 +15,9 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.core.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import org.puremvc.as3.multicore.core.Model;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.FabricationProxy;

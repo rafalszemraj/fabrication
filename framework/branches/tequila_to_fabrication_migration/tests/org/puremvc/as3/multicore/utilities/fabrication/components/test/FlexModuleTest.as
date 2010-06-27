@@ -1,10 +1,10 @@
 package org.puremvc.as3.multicore.utilities.fabrication.components.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.*;
     import flash.events.Event;
 
     import mx.events.FlexEvent;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.TestFlexModule;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.*;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.Router;
 
     public class FlexModuleTest extends AbstractApplicationTest {

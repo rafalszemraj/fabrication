@@ -15,17 +15,17 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.*;
-	import com.anywebcam.mock.Mock;
-	
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
-	
-	import mx.core.UIComponent;
-	
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;	
+    import com.anywebcam.mock.Mock;
 
-	/**
+    import flash.events.Event;
+    import flash.events.IEventDispatcher;
+
+    import mx.core.UIComponent;
+
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.*;
+
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	dynamic public class ComponentResolverMock extends ComponentResolver {

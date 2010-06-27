@@ -15,18 +15,18 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.*;
     import flash.utils.getQualifiedClassName;
 
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IUndoableCommand;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.UndoableMacroCommandTestMock;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.*;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock1;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock2;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock3;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock4;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandMock5;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.UndoableMacroCommandTestMock;
 
     /**
      * @author Darshan Sawardekar

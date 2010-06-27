@@ -17,7 +17,7 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.test {
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.*;
 
-	/**
+    /**
 	 * @author Darshan Sawardekar
 	 */
 	public class ConfigurableInterceptor extends AbstractInterceptor {

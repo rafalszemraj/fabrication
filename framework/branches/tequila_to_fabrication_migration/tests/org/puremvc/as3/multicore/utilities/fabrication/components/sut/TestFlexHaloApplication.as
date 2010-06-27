@@ -1,7 +1,7 @@
 package org.puremvc.as3.multicore.utilities.fabrication.components.sut {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.FlexApplication;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.FlexHaloApplication;
 
-    public class TestFlexApplication extends FlexApplication {
+    public class TestFlexHaloApplication extends FlexHaloApplication {
 
         override public function getStartupCommand():Class
         {

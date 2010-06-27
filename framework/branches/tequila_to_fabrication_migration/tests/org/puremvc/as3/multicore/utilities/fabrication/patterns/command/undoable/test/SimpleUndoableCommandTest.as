@@ -15,12 +15,12 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.*;
     import com.anywebcam.mock.Mock;
 
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test.AbstractFabricationCommandTest;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.*;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock.SimpleUndoableCommandTestMock;
 
     /**

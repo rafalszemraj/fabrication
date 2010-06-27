@@ -15,16 +15,16 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.*;
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.patterns.command.SimpleCommand;
     import org.puremvc.as3.multicore.patterns.mediator.Mediator;
     import org.puremvc.as3.multicore.patterns.proxy.Proxy;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.ICommandProcessor;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.*;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandTestMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.mock.InterceptorMock;
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
     import org.puremvc.as3.multicore.utilities.fabrication.routing.mock.RouterMock;
 
     /**

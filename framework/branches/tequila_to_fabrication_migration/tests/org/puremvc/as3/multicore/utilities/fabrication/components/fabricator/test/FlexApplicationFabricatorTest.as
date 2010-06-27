@@ -15,10 +15,10 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import mx.events.FlexEvent;
 
-    import org.puremvc.as3.multicore.utilities.fabrication.components.FlexApplication;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.FlexHaloApplication;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FlexApplicationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.mock.SimpleFabricationCommandMock;
 
@@ -36,7 +36,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.te
 
         override public function initializeFabricator():void
         {
-            fabricator = new FlexApplicationFabricator(fabrication as FlexApplication);
+            fabricator = new FlexApplicationFabricator(fabrication as FlexHaloApplication);
         }
 
         override public function initializeFabricationMock():void

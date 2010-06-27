@@ -15,12 +15,12 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.routing.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.routing.*;
     import com.anywebcam.mock.Mock;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouterMessage;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
+    import org.puremvc.as3.multicore.utilities.fabrication.routing.*;
 
     /**
 	 * @author Darshan Sawardekar

@@ -13,131 +13,100 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test {
+    import flash.events.Event;
+
+    import mx.modules.Module;
+
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.ComponentsDataProvider;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.ModuleAwareTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.*;
-	import flexunit.framework.Assert;	
-	
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;	
-	
-	import flexunit.framework.ModuleAwareTestCase;
-	import flexunit.framework.TestSuite;
-	
-	import mx.events.FlexEvent;
-	import mx.modules.Module;	
 
-	/**
-	 * @author Darshan Sawardekar
-	 */
-	dynamic public class ComponentRouteMapperTest extends ModuleAwareTestCase {
-		
-		static public function suite():TestSuite {
-			var suite:TestSuite = new TestSuite();
-			var moduleListLoader:ModuleListLoader = ModuleListLoader.getInstance();
-			
-			var modules:Array = moduleListLoader.modules;
-			var n:int = modules.length;
-			var module:String;
-			
-			suite.addTest(new ComponentRouteMapperTest("testComponentRouteMapperHasValidType"));
-			
-			for (var i:int = 0; i < n; i++) {
-				module = modules[i];
-				suite.addTest(create(module));
-			}			
-			
-			return suite;
-		}
-		
-		static public function create(moduleUrl:String):ComponentRouteMapperTest {
-			return new ComponentRouteMapperTest("testComponentRoutesInModule", moduleUrl);
-		}
-		
-		public var moduleUrl:String;
-		
-		public function ComponentRouteMapperTest(method:String, moduleUrl:String = null) {
-			super(method);
-			
-			this.moduleUrl = moduleUrl;
-		}
-		
-		public function testComponentRouteMapperHasValidType():void {
-			var mapper:ComponentRouteMapper = new ComponentRouteMapper();
-			assertType(ComponentRouteMapper, mapper);
-			assertType(IDisposable, mapper);
-		}
-		
-		public function testComponentRoutesInModule():void {
-			verifyRoutes(moduleUrl);
-		}
-		
-		public function verifyRoutes(url:String):void {
-			//trace("verifyRoutes " + url);
-			loadModule(url,
-				function(event:FlexEvent):void {
-					var module:Module = event.target as Module;
-					
-					assertType(moduleUrl, Module, module);
-					assertTrue("Routes property not found in " + moduleUrl, module.hasOwnProperty("routes"));
-					
-					var routes:Array = module["routes"];
-					assertType(moduleUrl, Array, routes);
-					assertTrue("Routes array must not be empty in " + moduleUrl, routes.length > 0);
-					
-					validateRoutesInModule(module, routes);
-					removeModule(module);
-				}
-			);
-		}
-		
-		public function createRouteMapper():ComponentRouteMapper {
-			return new ComponentRouteMapper();
-		}
-		
-		public function validateRoutesInModule(module:Module, expectedRoutes:Array):void {
-			var mapper:ComponentRouteMapper = createRouteMapper();
-			var mappedRoutes:Array = mapper.fetchComponentRoutes(module);
-			var expectedRoutesCount:int = expectedRoutes.length;
-			var mappedRoutesCount:int = mappedRoutes.length;
-			var i:int;
-			var expectedRoute:Object;
-			var mappedRoute:ComponentRoute;
-			
-			assertEquals("Invalid mapped routes count.", expectedRoutesCount, mappedRoutesCount);
-			
-			expectedRoutes.sortOn("id");
-			mappedRoutes.sortOn("id");
-			
-			for (i = 0; i < expectedRoutesCount; i++) {
-				expectedRoute = expectedRoutes[i];
-				mappedRoute = mappedRoutes[i];
-				
-				/* *
-				trace("Matching " + 
-					"expectedRoute(" + expectedRoute.id + ", " + expectedRoute.path + ") vs " +
-					"actualRoute(" + mappedRoute.id + ", " + mappedRoute.path + ")"
-				);
-				/* */
+    /**
+     * @author Darshan Sawardekar
+     */
+    [RunWith("org.flexunit.runners.Parameterized")]
+    dynamic public class ComponentRouteMapperTest extends ModuleAwareTestCase {
 
-				assertEquals(moduleUrl, expectedRoute.id, mappedRoute.id);
-				assertEquals(moduleUrl, expectedRoute.path, mappedRoute.path);
-			}
-			
-			assertTrue(mapper.hasCachedRoutes(module));
-			assertEquals(mappedRoutes, mapper.fetchComponentRoutes(module));
-		}
-		
-		public function printRoutes(routes:Array):void {
-			var n:int = routes.length;
-			trace("Total Routes = " + n);
-			
-			var route:ComponentRoute;
-			for (var i:int = 0; i < n; i++) {
-				route = routes[i];
-				trace("\t[" + route.id + " : " + route.path + "]");
-			}
-		}
-		
 
-	}
+        public function ComponentRouteMapperTest(moduleUrl:String)
+        {
+            this.moduleUrl = moduleUrl;
+        }
+
+        public static var dataRetriever:ComponentsDataProvider = new ComponentsDataProvider("moduleLayouts.xml");
+
+        [Parameters(loader="dataRetriever")]
+        public static var componentsUrls:Array;
+
+        [Test]
+        public function testComponentRouteMapperHasValidType():void
+        {
+            var mapper:ComponentRouteMapper = new ComponentRouteMapper();
+            assertType(ComponentRouteMapper, mapper);
+            assertType(IDisposable, mapper);
+        }
+
+        [Test(async)]
+        public function testComponentRoutesInModule():void
+        {
+            super.loadModule();
+        }
+
+
+        override protected function moduleReadyAsyncHandler(event:Event, passThroughData:Object = null):void
+        {
+            super.moduleReadyAsyncHandler(event, passThroughData);
+            var module:Module = event.target as Module;
+            assertType(moduleUrl, Module, module);
+            assertTrue("Routes property not found in " + moduleUrl, module.hasOwnProperty("routes"));
+            var routes:Array = module["routes"];
+            assertType(moduleUrl, Array, routes);
+            assertTrue("Routes array must not be empty in " + moduleUrl, routes.length > 0);
+            var mapper:ComponentRouteMapper = createRouteMapper();
+            var mappedRoutes:Array = mapper.fetchComponentRoutes(module);
+            var expectedRoutesCount:int = routes.length;
+            var mappedRoutesCount:int = mappedRoutes.length;
+            var i:int;
+            var expectedRoute:Object;
+            var mappedRoute:ComponentRoute;
+            assertEquals("Invalid mapped routes count.", expectedRoutesCount, mappedRoutesCount);
+            routes.sortOn("id");
+            mappedRoutes.sortOn("id");
+            for (i = 0; i < expectedRoutesCount; i++) {
+                expectedRoute = routes[i];
+                mappedRoute = mappedRoutes[i];
+                /* *
+                 trace("Matching " +
+                 "expectedRoute(" + expectedRoute.id + ", " + expectedRoute.path + ") vs " +
+                 "actualRoute(" + mappedRoute.id + ", " + mappedRoute.path + ")"
+                 );
+                 /* */
+                assertEquals(moduleUrl, expectedRoute.id, mappedRoute.id);
+                assertEquals(moduleUrl, expectedRoute.path, mappedRoute.path);
+            }
+            assertTrue(mapper.hasCachedRoutes(module));
+            assertEquals(mappedRoutes, mapper.fetchComponentRoutes(module));
+        }
+
+        private function createRouteMapper():ComponentRouteMapper
+        {
+            return new ComponentRouteMapper();
+        }
+
+        private function printRoutes(routes:Array):void
+        {
+            var n:int = routes.length;
+            trace("Total Routes = " + n);
+
+            var route:ComponentRoute;
+            for (var i:int = 0; i < n; i++) {
+                route = routes[i];
+                trace("\t[" + route.id + " : " + route.path + "]");
+            }
+        }
+
+    }
 }

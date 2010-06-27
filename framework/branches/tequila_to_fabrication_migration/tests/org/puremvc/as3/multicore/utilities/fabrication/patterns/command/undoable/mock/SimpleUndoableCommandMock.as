@@ -15,7 +15,6 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.mock.*;
     import com.anywebcam.mock.Mock;
 
     import flexunit.framework.Assert;
@@ -24,8 +23,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoabl
     import org.puremvc.as3.multicore.interfaces.IMediator;
     import org.puremvc.as3.multicore.interfaces.INotification;
     import org.puremvc.as3.multicore.interfaces.IProxy;
-    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouter;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IUndoableCommand;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.undoable.SimpleUndoableCommand;

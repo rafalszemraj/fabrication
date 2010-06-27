@@ -19,8 +19,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.core.mock {
 
     import org.puremvc.as3.multicore.interfaces.ICommand;
     import org.puremvc.as3.multicore.interfaces.INotification;
-    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.core.*;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IUndoableCommand;
 
     /**

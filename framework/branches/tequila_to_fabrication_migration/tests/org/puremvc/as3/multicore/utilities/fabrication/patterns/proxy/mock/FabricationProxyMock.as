@@ -15,11 +15,11 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.mock {
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.*;
     import com.anywebcam.mock.Mock;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.*;
 
     /**
 	 * @author Darshan Sawardekar

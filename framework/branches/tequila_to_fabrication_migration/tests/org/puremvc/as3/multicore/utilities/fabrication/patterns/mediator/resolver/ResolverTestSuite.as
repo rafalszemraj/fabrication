@@ -1,5 +1,6 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver {
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test.ComponentResolverTest;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test.ComponentRouteMapperTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test.ComponentRouteTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test.ExpressionIteratorTest;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test.ExpressionTest;
@@ -14,7 +15,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         public var componentRouteTest:ComponentRouteTest;
         public var expressionIteratorTest:ExpressionIteratorTest;
         public var componentResolverTest:ComponentResolverTest;
-        
+        public var componentRouteMapperTest:ComponentRouteMapperTest;
+
 
     }
 }

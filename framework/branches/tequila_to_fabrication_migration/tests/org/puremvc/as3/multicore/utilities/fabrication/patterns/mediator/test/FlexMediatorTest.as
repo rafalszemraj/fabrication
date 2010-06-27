@@ -42,14 +42,14 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFlexMediatorHasValidType():void
+        public function flexMediatorHasValidType():void
         {
             assertType(FlexMediator, mediator);
             assertType(ICloneable, mediator);
         }
 
         [Test]
-        public function testFlexMediatorReflectedCloneIsValid():void
+        public function flexMediatorReflectedCloneIsValid():void
         {
             var component:UIComponent = new UIComponent();
 
@@ -69,13 +69,13 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFlexMediatorAllowsChangingMediatorNameAfterInstantiation():void
+        public function flexMediatorAllowsChangingMediatorNameAfterInstantiation():void
         {
             assertGetterAndSetter(flexMediator, "mediatorName", String, null, "MyMediator");
         }
 
         [Test]
-        public function testFlexMediatorSupportsComponentResolution():void
+        public function flexMediatorSupportsComponentResolution():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication);
             flexMediator.initializeNotifier(multitonKey);
@@ -97,14 +97,14 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFlexMediatorHasRouteMapperKey():void
+        public function flexMediatorHasRouteMapperKey():void
         {
             assertNotNull(FlexMediator.routeMapperKey);
             assertType(String, FlexMediator.routeMapperKey);
         }
 
         [Test]
-        public function testFlexMediatorAllowsRegistrationOfFlexMediatorsWithPendingComponentResolutions():void
+        public function flexMediatorAllowsRegistrationOfFlexMediatorsWithPendingComponentResolutions():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication);
             var notificationCache:HashMap = new HashMap();
@@ -137,7 +137,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFlexMediatorResetsOnDisposal():void
+        public function flexMediatorResetsOnDisposal():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication);
             mediator.initializeNotifier(multitonKey);

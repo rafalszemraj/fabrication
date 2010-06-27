@@ -15,11 +15,11 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.events.test {
-    import org.puremvc.as3.multicore.utilities.fabrication.events.*;
     import mx.utils.UIDUtil;
 
     import org.puremvc.as3.multicore.patterns.observer.Notification;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.events.*;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
 
     /**

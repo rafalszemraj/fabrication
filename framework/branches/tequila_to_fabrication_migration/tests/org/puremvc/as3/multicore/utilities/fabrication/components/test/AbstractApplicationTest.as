@@ -18,9 +18,9 @@ package org.puremvc.as3.multicore.utilities.fabrication.components.test {
     import flash.events.Event;
 
     import org.flexunit.async.Async;
+    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
     import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
     import org.puremvc.as3.multicore.utilities.fabrication.events.FabricatorEvent;
-    import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IModuleAddress;

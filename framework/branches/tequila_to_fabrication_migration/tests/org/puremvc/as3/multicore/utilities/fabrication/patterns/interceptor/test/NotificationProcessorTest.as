@@ -1,8 +1,8 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.test {
     import org.flexunit.async.Async;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
-    import org.puremvc.as3.multicore.utilities.fabrication.events.NotificationProcessorEvent;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
+    import org.puremvc.as3.multicore.utilities.fabrication.events.NotificationProcessorEvent;
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.*;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor.mock.InterceptorMock;

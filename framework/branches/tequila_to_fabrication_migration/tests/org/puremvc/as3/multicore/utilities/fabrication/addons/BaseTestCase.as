@@ -4,7 +4,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
     import flash.utils.getQualifiedClassName;
 
     import flexunit.framework.Assert;
-
     import flexunit.framework.AssertionFailedError;
 
     import mx.utils.StringUtil;

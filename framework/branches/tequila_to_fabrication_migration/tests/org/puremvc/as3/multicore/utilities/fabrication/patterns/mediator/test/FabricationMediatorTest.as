@@ -26,10 +26,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
     import org.puremvc.as3.multicore.patterns.mediator.Mediator;
     import org.puremvc.as3.multicore.patterns.observer.Notification;
     import org.puremvc.as3.multicore.patterns.proxy.Proxy;
-    import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FabricationMock;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.BaseTestCase;
-    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.IMockable;
+    import org.puremvc.as3.multicore.utilities.fabrication.components.mock.FabricationMock;
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.mock.FacadeMock;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.*;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.mock.FabricationMediatorTestMock;
@@ -76,7 +76,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorHasValidType():void
+        public function fabricationMediatorHasValidType():void
         {
             assertType(FabricationMediator, mediator);
             assertType(Mediator, mediator);
@@ -84,7 +84,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testSimpleFabricationMediatorAliasMethodsAreValid():void
+        public function simpleFabricationMediatorAliasMethodsAreValid():void
         {
             var router:RouterMock = new RouterMock();
             var proxy0:Proxy = new Proxy("p0");
@@ -133,14 +133,14 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorHasDefaultNotificationHandlerPrefix():void
+        public function fabricationMediatorHasDefaultNotificationHandlerPrefix():void
         {
             assertNotNull(FabricationMediator.DEFAULT_NOTIFICATION_HANDLER_PREFIX);
             assertType(String, FabricationMediator.DEFAULT_NOTIFICATION_HANDLER_PREFIX);
         }
 
         [Test]
-        public function testFabricationMediatorFirstCharacterRegularExpressionIsValid():void
+        public function fabricationMediatorFirstCharacterRegularExpressionIsValid():void
         {
             var re:RegExp = FabricationMediator.firstCharRegExp;
             assertMatch(re, "xyz");
@@ -149,7 +149,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorNotePartRegularExpressionIsValid():void
+        public function fabricationMediatorNotePartRegularExpressionIsValid():void
         {
             var re:RegExp = FabricationMediator.notePartRegExp;
             assertMatch(re, "a/b");
@@ -159,7 +159,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorProxyNameRegularExpressionIsValid():void
+        public function fabricationMediatorProxyNameRegularExpressionIsValid():void
         {
             var re:RegExp = FabricationMediator.proxyNameRegExp;
             assertMatch(re, "respondToMyProxy");
@@ -169,14 +169,14 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorHasNotificationCacheKey():void
+        public function fabricationMediatorHasNotificationCacheKey():void
         {
             assertNotNull(FabricationMediator.notificationCacheKey);
             assertType(String, FabricationMediator.notificationCacheKey);
         }
 
         [Test]
-        public function testFabricationMediatorNotificationReflectionIsValidWithRespondToNoteAndRespondToProxySyntax():void
+        public function fabricationMediatorNotificationReflectionIsValidWithRespondToNoteAndRespondToProxySyntax():void
         {
             var notificationCache:HashMap = new HashMap();
 
@@ -206,7 +206,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorNotificationReflectionIsValidWithOnlyRespondToNoteSyntax():void
+        public function fabricationMediatorNotificationReflectionIsValidWithOnlyRespondToNoteSyntax():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMockWithoutProxyInterests(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -233,7 +233,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorNotificationReflectionIsValidWithOnlyRespondToProxySyntax():void
+        public function fabricationMediatorNotificationReflectionIsValidWithOnlyRespondToProxySyntax():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMockWithOnlyProxyInterests(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -255,7 +255,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorNotificationReflectionIsValidWithoutAnyNotificationInterests():void
+        public function fabricationMediatorNotificationReflectionIsValidWithoutAnyNotificationInterests():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMockWithoutAnyInterests(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -276,7 +276,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorNotificationReflectionIsValidWithQualifiedProxyNotifications():void
+        public function fabricationMediatorNotificationReflectionIsValidWithQualifiedProxyNotifications():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMockWithQualifiedProxyInterests(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -308,7 +308,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorExecutesRespondToProxySyntax():void
+        public function fabricationMediatorExecutesRespondToProxySyntax():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMockWithQualifiedProxyInterests(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -351,7 +351,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorExecutesRespondToNotificationSyntax():void
+        public function fabricationMediatorExecutesRespondToNotificationSyntax():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMock(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -389,7 +389,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorConstantFormatRegExpIsValid():void
+        public function fabricationMediatorConstantFormatRegExpIsValid():void
         {
             var re:RegExp = FabricationMediator.constantRegExp;
             assertMatch(re, "MY_CONSTANT");
@@ -398,17 +398,17 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
             assertNoMatch(re, "dataChange");
         }
 
-        [Ignore]
+        /*[Ignore]
         [Test(description="Ignore this test before introducing favrication namespace")]
         public function testFabricationMediatorDetectsConstantFormatAccurately():void
         {
-//            var mediator:FabricationMediator = new FabricationMediatorTestMock(instanceName);
-//            assertTrue(mediator.isConstantFormat("MY_CONSTANT"));
-//            assertFalse(mediator.isConstantFormat("myConstant"));
-        }
+            var mediator:FabricationMediator = new FabricationMediatorTestMock(instanceName);
+            assertTrue(mediator.isConstantFormat("MY_CONSTANT"));
+            assertFalse(mediator.isConstantFormat("myConstant"));
+        }*/
 
         [Test]
-        public function testFabricationMediatorExecutesRespondToCONSTANT_FORMSyntax():void
+        public function fabricationMediatorExecutesRespondToCONSTANT_FORMSyntax():void
         {
             var mediator:FabricationMediator = new FabricationMediatorTestMock(instanceName);
             var notificationCache:HashMap = new HashMap();
@@ -446,13 +446,13 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorDoesNotHaveRouterKey():void
+        public function fabricationMediatorDoesNotHaveRouterKey():void
         {
             assertFalse((FabricationMediator as Class).hasOwnProperty("routerKey"));
         }
 
         [Test]
-        public function testFabricationProxyCachesNotificationInterests():void
+        public function fabricationProxyCachesNotificationInterests():void
         {
             var notificationCache:HashMap = new HashMap();
             var sampleSize:int = 25;
@@ -492,33 +492,33 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorHasDefaultReactionPrefix():void
+        public function fabricationMediatorHasDefaultReactionPrefix():void
         {
             assertType(String, FabricationMediator.DEFAULT_REACTION_PREFIX);
             assertEquals("reactTo", FabricationMediator.DEFAULT_REACTION_PREFIX);
         }
 
         [Test]
-        public function testFabricationMediatorHasDefaultCapturePrefix():void
+        public function fabricationMediatorHasDefaultCapturePrefix():void
         {
             assertType(String, FabricationMediator.DEFAULT_CAPTURE_PREFIX);
             assertEquals("trap", FabricationMediator.DEFAULT_CAPTURE_PREFIX);
         }
 
         [Test]
-        public function testFabricationMediatorHasLocalDefaultReactionPrefix():void
+        public function fabricationMediatorHasLocalDefaultReactionPrefix():void
         {
             assertEquals(FabricationMediator.DEFAULT_REACTION_PREFIX, new FabricationMediatorTestMockWithReactions().getReactionHandlerPrefix());
         }
 
         [Test]
-        public function testFabricationMediatorHasLocalDefaultCapturePrefix():void
+        public function fabricationMediatorHasLocalDefaultCapturePrefix():void
         {
             assertEquals(FabricationMediator.DEFAULT_CAPTURE_PREFIX, new FabricationMediatorTestMockWithReactions().getCaptureHandlerPrefix());
         }
 
         [Test]
-        public function testFabricationMediatorHasValidReactionsDuringBubblingAndTargetPhase():void
+        public function fabricationMediatorHasValidReactionsDuringBubblingAndTargetPhase():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication).atLeast(1);
 
@@ -546,7 +546,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorCanHaltReactions():void
+        public function fabricationMediatorCanHaltReactions():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication).atLeast(1);
 
@@ -574,7 +574,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorCanResultHaltedReactions():void
+        public function fabricationMediatorCanResultHaltedReactions():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication).atLeast(1);
 
@@ -600,7 +600,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorCanRemoveReactions():void
+        public function fabricationMediatorCanRemoveReactions():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication).atLeast(1);
 
@@ -623,7 +623,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.test {
         }
 
         [Test]
-        public function testFabricationMediatorRemovesReactionsOnDisposal():void
+        public function fabricationMediatorRemovesReactionsOnDisposal():void
         {
             facade.mock.method("getFabrication").withNoArgs.returns(fabrication).atLeast(1);
 
