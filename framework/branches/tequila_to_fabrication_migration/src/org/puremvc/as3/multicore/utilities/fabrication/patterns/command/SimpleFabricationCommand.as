@@ -172,6 +172,15 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.command {
 			return facade.hasMediator(mediatorName);
 		}
 
+        /**
+		 * Alias to fabFacade.notifyObservers
+		 *
+		 * @see org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade#notifyObservers
+		 */
+        public function notifyObservers( notification:INotification ):void {
+            fabFacade.notifyObservers( notification );
+        }
+
 		/**
 		 * Alias to fabFacade.routeNotification
 		 * 
