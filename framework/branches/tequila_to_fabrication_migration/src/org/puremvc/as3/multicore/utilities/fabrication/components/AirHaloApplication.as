@@ -47,7 +47,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
 	 * 
 	 * @author Darshan Sawardekar
 	 */
-	public class AirApplication extends WindowedApplication implements IFabrication {
+	public class AirHaloApplication extends WindowedApplication implements IFabrication {
 		
 		/**
 		 * AIR specific application fabricator.
@@ -62,7 +62,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
 		/**
 		 * Creates a new AirApplication and initializes it fabricator.
 		 */
-		public function AirApplication() {
+		public function AirHaloApplication() {
 			super();
 			
 			initializeFabricator();

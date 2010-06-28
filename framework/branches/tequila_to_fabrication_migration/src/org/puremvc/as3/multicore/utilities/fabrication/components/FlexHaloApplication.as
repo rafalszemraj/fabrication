@@ -47,7 +47,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
 	 * 
 	 * @author Darshan Sawardekar
 	 */
-	public class FlexApplication extends Application implements IFabrication {
+	public class FlexHaloApplication extends Application implements IFabrication {
 		
 		/**
 		 * The flex environment specific fabricator
@@ -62,7 +62,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
 		/**
 		 * Initializes the FlexApplicationFabricator
 		 */
-		public function FlexApplication() {
+		public function FlexHaloApplication() {
 			super();
 			
 			initializeFabricator();

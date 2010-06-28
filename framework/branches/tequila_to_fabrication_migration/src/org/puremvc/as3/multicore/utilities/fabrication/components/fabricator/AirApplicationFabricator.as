@@ -13,44 +13,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator {
-	import org.puremvc.as3.multicore.utilities.fabrication.components.AirApplication;
-	import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.startup.ApplicationStartupCommand;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.FabricationNotification;
-	
-	import mx.events.FlexEvent;	
+    import mx.events.FlexEvent;
 
-	/**
-	 * AirApplicationFabricator creates a concrete fabricator for the 
-	 * AIR environment.
-	 * 
-	 * @author Darshan Sawardekar
-	 */
-	public class AirApplicationFabricator extends ApplicationFabricator {
-		
-		/**
-		 * @see org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabrication
-		 */
-		public function AirApplicationFabricator(_fabrication:AirApplication) {
-			super(_fabrication);
-		}
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.startup.ApplicationStartupCommand;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.FabricationNotification;
 
-		/**
-		 * Provides the AIR environment's ready event name, i.e.:- 
-		 */		
-		override protected function get readyEventName():String {
-			return FlexEvent.CREATION_COMPLETE;
-		}
-		
-		/**
-		 * Registers the ApplicationStartupCommand to configure fabrication for
-		 * an AIR application environment.
-		 */
-		override protected function initializeEnvironment():void {
-			facade.registerCommand(FabricationNotification.STARTUP, ApplicationStartupCommand);
-		}
-		
-	}
+    /**
+     * AirApplicationFabricator creates a concrete fabricator for the
+     * AIR environment.
+     *
+     * @author Darshan Sawardekar
+     */
+    public class AirApplicationFabricator extends ApplicationFabricator {
+
+        /**
+         * @see org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabrication
+         */
+        public function AirApplicationFabricator(_fabrication:IFabrication)
+        {
+            super(_fabrication);
+        }
+
+        /**
+         * Provides the AIR environment's ready event name, i.e.:-
+         */
+        override protected function get readyEventName():String
+        {
+            return FlexEvent.CREATION_COMPLETE;
+        }
+
+        /**
+         * Registers the ApplicationStartupCommand to configure fabrication for
+         * an AIR application environment.
+         */
+        override protected function initializeEnvironment():void
+        {
+            facade.registerCommand(FabricationNotification.STARTUP, ApplicationStartupCommand);
+        }
+
+    }
 }

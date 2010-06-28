@@ -15,9 +15,10 @@
  */
  
 package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator {
-	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexApplication;
+	import org.puremvc.as3.multicore.utilities.fabrication.components.FlexHaloApplication;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
-	import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.startup.ApplicationStartupCommand;
+    import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IFabrication;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.startup.ApplicationStartupCommand;
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.observer.FabricationNotification;
 	
 	import mx.events.FlexEvent;		
@@ -32,7 +33,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components.fabricator {
 		/**
 		 * @see org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabrication
 		 */
-		public function FlexApplicationFabricator(_fabrication:FlexApplication) {
+		public function FlexApplicationFabricator(_fabrication:IFabrication ) {
 			super(_fabrication);
 		}
 
