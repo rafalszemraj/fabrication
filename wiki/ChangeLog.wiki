@@ -1,6 +1,16 @@
 #summary Fabrication change history.
 
 ----
+=0.7=
+ * Added support for Flex4 SDK
+ * Rearranged repository layout
+ * Introduced FlexUnit4 tests
+ * Added AsyncFabricationCommand
+ * Fixed ComponentResolver and reflexive mediator registration problem in spark components
+ * Fixed reflexive registration problems in components with deferred child instantiation ( TabNavigator etc. )
+ * New libraries:
+       * separate distributions for air, flex and pure as3
+       * recompiled using Flex4 SDK and AIR2 SDK official releases
 
 =0.6=
   * Added support for Notification Interceptors.
@@ -30,7 +40,7 @@
   * Added FabricationView to improve garbage collections of mediators(Thanks Jason).
   * Added HashMap object to implement consistent cache management throughout the framework.
   * Implemented IDisposable in nearly all classes in the framework.
-  * routeNotification now supports typed notifications with the syntax, routeNotification(new CustomNotification(”foo”))
+  * routeNotification now supports typed notifications with the syntax, routeNotification(new CustomNotification(ï¿½fooï¿½))
   * Fixed invalid auto description regular expression in SimpleUndoableCommand.
   * FabricationFacade now provides a standard caching api to store objects within the scope of a facade instance.
   * Added platform specific swcs for flex and air.
