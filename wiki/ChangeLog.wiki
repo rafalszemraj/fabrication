@@ -9,6 +9,7 @@
  * Fixed ComponentResolver and reflexive mediator registration problem in spark components
  * Fixed reflexive registration problems in components with deferred child instantiation ( TabNavigator etc. )
  * New libraries:
+       * included pureMVC core, pipes and async command libs into each distribution
        * separate distributions for air, flex and pure as3
        * recompiled using Flex4 SDK and AIR2 SDK official releases
 
