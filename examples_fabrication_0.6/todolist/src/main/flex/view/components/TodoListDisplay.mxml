@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:List 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	itemRenderer="view.components.TodoListItem"
+	variableRowHeight="true">
+	
+	<mx:itemsChangeEffect>
+	  <mx:DefaultListEffect
+	  	fadeOutDuration="100"
+	  	growDuration="100"
+	  	shrinkDuration="100"
+	  	removedElementOffset="0"
+	  	color="#B2E1FF"
+	  />
+	</mx:itemsChangeEffect>    	
+</mx:List>

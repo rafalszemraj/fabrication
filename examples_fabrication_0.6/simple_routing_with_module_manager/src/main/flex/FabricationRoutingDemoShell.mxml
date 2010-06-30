@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fab:FlexApplication 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*"
+	xmlns:sh="shell.view.components.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import shell.controller.FabricationRoutingDemoShellStartupCommand;
+			
+			private var compile_count:int = 0;
+			
+			override public function getStartupCommand():Class {
+				return FabricationRoutingDemoShellStartupCommand;		
+			} 
+			
+		]]>
+	</mx:Script>
+	
+	<sh:MessageControlBar id="messageControlBar" />
+	<sh:ModulesContainer id="modulesContainer" />
+</fab:FlexApplication>

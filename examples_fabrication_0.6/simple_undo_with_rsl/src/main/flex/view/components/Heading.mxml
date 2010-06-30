@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Style>
+
+		@font-face {
+			src : url("../../assets/fff_spacedust.ttf");
+			font-family : spacedust; 
+			font-style : normal;
+		}
+		
+		.headingStyle {
+			font-family : spacedust;
+			font-size : 8;
+			color : #FFFFFF;
+		}
+		
+	</mx:Style>
+	
+	<mx:Text id="headingText" text="I love Fabrication !!!"  styleName="headingStyle">
+		<mx:filters>
+			<mx:DropShadowFilter id="dropshadow" distance="1.5"/>
+		</mx:filters>
+	</mx:Text>
+</mx:VBox>

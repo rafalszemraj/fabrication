@@ -1,0 +1,22 @@
+<Module> 
+  <ModulePrefs title="Todo List" width="450" height="350" scrolling="false"> 
+    <Require feature="flash"/> 
+  </ModulePrefs> 
+  <Content type="html"><![CDATA[ 
+    <div id="todolist"></div> 
+    <script> 
+      // Replace the SWF URL below with your own
+      var swfUrl = "http://fabrication.googlecode.com/svn/examples/todolist/bin/todo_list.swf";
+ 
+      // Update the width/height to the ad size
+      var fWidth = 450;
+      var fHeight = 350;
+ 
+      // Embed Flash into HTML container div
+      _IG_EmbedCachedFlash(swfUrl, "todolist", {
+          width: fWidth,
+          height: fHeight
+        });
+    </script> 
+  ]]></Content> 
+</Module>

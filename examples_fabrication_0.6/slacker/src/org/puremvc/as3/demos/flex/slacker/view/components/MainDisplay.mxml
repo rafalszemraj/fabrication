@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ PureMVC AS3 / Flex Demo - Slacker 
+ Copyright (c) 2008 Clifford Hall <clifford.hall@puremvc.org>
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
+-->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:view="org.puremvc.as3.demos.flex.slacker.view.components.*">
+   
+    <mx:Script>
+        <![CDATA[
+            public static const SPLASH:Number = 0;
+            public static const GALLERY:Number = 1;
+            public static const EDITOR:Number = 2;
+            public static const PROFILE:Number = 3;
+
+            [Bindable] public var currentViewSelector:Number = SPLASH;
+            public var activeView:Object;
+            
+        ]]>
+    </mx:Script>
+   
+    <mx:Binding source="myStack.selectedChild" destination="activeView"/>
+
+    <mx:ViewStack id="myStack" selectedIndex="{currentViewSelector}" 
+    	creationPolicy="auto"  width="100%" height="100%">
+       <view:SplashView id="splashView" />
+       <view:GalleryView id="galleryView" />
+       <view:EditorView id="editorView" />
+       <view:ProfileView id="profileView" />
+    </mx:ViewStack>
+   
+</mx:VBox> 

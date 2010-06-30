@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:TextInput id="inputField" text="" width="100%"/>
+	<mx:Button id="addButton" label="Add" />
+	<mx:Button id="advancedButton" label="Advanced" />
+</mx:HBox>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ApplicationControlBar xmlns:mx="http://www.adobe.com/2006/mxml" dock="true">
+	<mx:Style>
+		
+		.button {
+			disabledColor:#DDDDDD;		
+		}
+		
+	</mx:Style>
+	
+	<mx:Text id="memoryText" fontFamily="Trebuchet MS" fontSize="12" fontWeight="bold"
+			text=" - KB"/>
+			
+	<mx:Button styleName="button" id="addModuleButton" label="Add Module" />
+	<mx:ComboBox id="moduleGroupComboBox" width="60" toolTip="Module Group" editable="true">
+		<mx:dataProvider>
+			<mx:String>null</mx:String>
+		</mx:dataProvider>
+	</mx:ComboBox>
+	<mx:Button styleName="button" id="removeSelectedModuleButton" label="Remove Selected Module" />
+	<mx:Button styleName="button" id="removeAllButton" label="Remove All" />
+	<mx:VRule height="20" alpha="0.5"/>
+	
+	<mx:Button styleName="button" id="messageAllButton" label="Notify All Modules" autoRepeat="true"/>
+	<mx:Button styleName="button" id="messageSelectedModuleButton" label="Notify Selected Module" autoRepeat="true"/>
+	<mx:Text id="selectedModuleText" text="No Selection" />
+	
+	<mx:HBox width="100%" horizontalAlign="right">
+		<mx:Text id="messageCountText" text="Message Count : Sent[10] / Received [2]" /> 
+	</mx:HBox>
+</mx:ApplicationControlBar>

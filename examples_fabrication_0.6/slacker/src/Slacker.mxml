@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ PureMVC AS3 / Flex Demo - Slacker 
+ Copyright (c) 2008 Clifford Hall <clifford.hall@puremvc.org>
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
+-->
+<fab:FlexApplication
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:view="org.puremvc.as3.demos.flex.slacker.view.components.*"
+	layout="vertical" horizontalAlign="center" verticalAlign="middle"
+    backgroundGradientColors="[#325EC0,#FFFFFF]"
+    backgroundColor="#FFFFFF" 
+    themeColor="HaloBlue">
+    
+	<mx:Script>
+		<![CDATA[
+			import org.puremvc.as3.demos.flex.slacker.controller.SlackerStartupCommand;
+			
+            public static const SHOW_GALLERY:String = 'showGallery';
+            public static const SHOW_EDITOR:String = 'showEditor';
+            public static const SHOW_PROFILE:String = 'showProfile';
+            
+            public var compile_count:Number = 1;
+
+            private function sendEvent( action:String ):void
+            {
+            	dispatchEvent(new Event( action, true ));
+            }
+            
+            override public function getStartupCommand():Class {
+            	trace("compile_count = " + compile_count);
+				return SlackerStartupCommand;                        
+            } 
+            
+		]]>
+	</mx:Script>	
+
+	<mx:ApplicationControlBar verticalAlign="middle" backgroundColor="#FFFFFF" dock="true">
+       
+       <mx:Text text="Slacker" fontFamily="Verdana" fontSize="22" fontStyle="normal" color="#0559CC"/>
+       
+       <mx:Label fontWeight="bold" text="PureMVC AS3 Standard Version / Flex Deferred Instantiation Demo"/>
+
+		<mx:HBox width="100%" horizontalAlign="right">
+			<mx:Button label="Gallery"
+				enabled="{mainDisplay.currentViewSelector != MainDisplay.GALLERY}"
+				click="sendEvent(SHOW_GALLERY)"/>
+			  
+			<mx:Button label="Editor"
+				enabled="{mainDisplay.currentViewSelector != MainDisplay.EDITOR}"
+				click="sendEvent(SHOW_EDITOR)"/>
+			
+			<mx:Button label="Profile"
+				enabled="{mainDisplay.currentViewSelector != MainDisplay.PROFILE}"
+				click="sendEvent(SHOW_PROFILE)"/>
+			
+		</mx:HBox>
+           
+	</mx:ApplicationControlBar>
+
+	<view:MainDisplay id="mainDisplay" width="600" height="400" />
+	
+</fab:FlexApplication>

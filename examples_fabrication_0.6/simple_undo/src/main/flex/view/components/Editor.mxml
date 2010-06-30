@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" defaultButton="{submitButton}">
+
+	<mx:Metadata>
+		[Event(name="submit", type="flash.events.Event")]
+	</mx:Metadata>
+
+	<mx:Script>
+		<![CDATA[
+		
+			static public const SUBMIT:String = "submit";
+			
+			private function submitForm():void {
+				if (headingInput.text != "") {
+					dispatchEvent(new Event(SUBMIT, false));
+					headingInput.text = "";
+				} else {
+					headingInput.setFocus();
+				}
+			}
+			
+			public function get input():String {
+				return headingInput.text;
+			}
+			
+		]]>
+	</mx:Script>
+
+	<mx:FormItem direction="horizontal">
+		<mx:TextInput id="headingInput" text="PureMVC Rocks !!!" enter="submitForm();"/>
+		<mx:Button id="submitButton" label="Change Heading" click="submitForm();" />
+	</mx:FormItem>
+</mx:Form>

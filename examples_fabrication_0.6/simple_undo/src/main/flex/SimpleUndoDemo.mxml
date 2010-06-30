@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fab:FlexApplication 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*"
+	xmlns:local="view.components.*" 
+	layout="vertical">
+	
+	<mx:Script>
+		<![CDATA[
+			import controller.SimpleUndoDemoStartupCommand;
+			
+			override public function getStartupCommand():Class {
+				return SimpleUndoDemoStartupCommand;
+			}
+			
+			override public function getClassByName(classpath:String):Class {
+				return getDefinitionByName(classpath) as Class;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style>
+		
+		Button {
+			disabled-color : #666666;
+		}
+		
+	</mx:Style>
+	
+	<local:Heading id="heading" />
+	<mx:HRule width="80%"/>
+	
+	<local:Editor id="editor" />
+	<mx:HRule width="80%"/>
+	
+	<local:UndoNav id="undoNav" />
+	
+</fab:FlexApplication>

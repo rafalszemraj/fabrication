@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fab:FlexApplication
+	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:local="view.components.*"
+	layout="vertical"
+	backgroundColor="#000000">
+	
+	<mx:Script>
+		<![CDATA[
+			import controller.TodoListStartupCommand;
+			
+			override public function getStartupCommand():Class {
+				return TodoListStartupCommand;
+			} 
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style source="assets/skins/vistaremix/vistaremix.css"/>
+	
+	<mx:Style>
+		
+		Button {
+			disabled-color : #666666;
+		}
+		
+		CheckBox {
+			upIcon : Embed("assets/remove_todo_icon.png");
+			overIcon : Embed("assets/remove_todo_icon.png");
+			downIcon : Embed("assets/remove_todo_icon.png");
+			disabledIcon : Embed("assets/remove_todo_icon.png");
+		}
+		
+	</mx:Style>
+	
+	<mx:Panel title="Todo List" width="100%" height="100%">
+		<local:TodoListDisplay id="todoListDisplay" width="100%" height="100%"/>
+		
+		<mx:ControlBar id="navBar" width="100%">
+			<local:TodoInput id="todoInput" width="100%"/>
+			<mx:VRule height="22" />
+			<local:HistoryNav id="historyNav" />
+		</mx:ControlBar>
+		
+	</mx:Panel>
+</fab:FlexApplication>
