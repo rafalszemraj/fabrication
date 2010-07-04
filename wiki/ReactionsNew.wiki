@@ -7,7 +7,7 @@
 
 =Introduction=
 Starting from verion 0.7.1 you can use advanced reaction registration mechanism. From now you can use:
-*reactTo<ComponentName>$<EventName>* syntax ( be aware of dollar sign between component and event name ).
+*reactTo`<ComponentName`>$`<EventName`>* syntax ( be aware of dollar sign between component and event name ).
 
 =Requirements=
 This feature needs Fabrication version 0.7.1 or above.
@@ -62,5 +62,5 @@ public function reactToSubmitButton$Click(event:MouseEvent):void {
 =Implementation Details=
 
   # To use new Registration mechanism *you don't need* to declare public getter to viewComponent child if this child is accessible outside this component. You have to remember about CamelCase naming convention.
-  # You can use capture phase by declaring method as: *trap<ComponentName>$<EventName>* 
+  # You can use capture phase by declaring method as: *trap`<ComponentName`>$`<EventName`>* 
   # All others details are the same as in standard reactions ( removing, constant style event names etc. )
