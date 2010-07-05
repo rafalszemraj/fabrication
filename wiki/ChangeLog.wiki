@@ -1,8 +1,8 @@
 #summary Fabrication change history.
 
 ----
-0.7.1
- * added fabrication namespace ( http://puremvc.org/utilities/fabrication/2010
+=0.7.1=
+ * added fabrication namespace ( http://puremvc.org/utilities/fabrication/2010 )
  * AirApplication/FlexApplication for spark and AirHaloApplication/FlexHaloApplication for halo architecture
  * Introduced FabricationModuleLoader and FabricationAirModuleLoader - simplified way to manage modules using ModuleManager
  * Introduced new Reactions registration approach
