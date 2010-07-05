@@ -12,6 +12,7 @@ This feature needs Fabrication version 0.7.1 or above.
 = Usage Scenarios =
 
 Let say you have your startupCommand like this one:
+
 *MyApplicationStartupCommand.as*
 {{{
 package  controller {
@@ -33,7 +34,8 @@ package  controller {
 }}}
 
 and your application mediator, when you want to get reference to one of registered proxies:
-*MyApplicationMediator*
+
+*MyApplicationMediator.as*
 {{{
 package view {
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
@@ -56,7 +58,8 @@ package view {
 }}}
 == Injection by class ==
 Using new IoC mechanism you can do something like this:
-*MyApplicationMediator*
+
+*MyApplicationMediator.as*
 {{{
 package view {
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
@@ -78,7 +81,8 @@ package view {
 
 == Injection by type ==
 Injecting actors by type ( and it's name ) give you possibility to simple and quick way to switch between instances of same type. For example, we can simply inject instance of some proxy ( IProxy ) named "MyAppProxy1":
-*MyApplicationMediator*
+
+*MyApplicationMediator.as*
 {{{
 package view {
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
