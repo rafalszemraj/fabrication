@@ -6,6 +6,7 @@
   * [UsingModules Using Modules]
   * [ReflexiveMediatorRegistration Reflexive Mediator Registration]
   * [Reactions Reactions]
+  * [ReactionsNewApproach Reactions - New approach]
   * [Interceptors Interceptors]
   * [BuildingFabrication]
   * [Examples]
