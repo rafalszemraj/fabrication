@@ -33,3 +33,6 @@ Interceptors allow you to change the normal flow of PureMVC notifications before
 
 =Reactions=
 Reactions provide a way to declare component event handlers inside Mediators and subscribe to those events in the same handler. By using Reactions you also take away the need to manually remove event listeners. The event listeners are removed automatically once the source Mediator is removed.
+
+=IoC mechanism=
+New Fabrication IoC mechanism provides easy way to retrieve actors instances in classes. Using it gives easy way to switch different instances of same type, makes programmer to type less and provide automatic disposal of injections. 
