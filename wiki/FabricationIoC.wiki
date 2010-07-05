@@ -61,8 +61,8 @@ Using new IoC mechanism you can do something like this:
 package view {
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
 
-       [InjecProxy]
-       public var proxy:MyApplicationProxy1
+       [InjectProxy]
+       public var proxy:MyApplicationProxy;
 
 	public class MyApplicationMediator extends FlexMediator {
 		
@@ -75,3 +75,33 @@ package view {
 	}
 }
 }}}
+
+== injection by type ==
+Injecting actors by type ( and it's name ) give you possibility to simple and quick way to switch between instances of same type. For example, we can simply inject instance of some proxy ( IProxy ) named "MyAppProxy1":
+*MyApplicationMediator*
+{{{
+package view {
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
+
+       [InjectProxy(name="MyAppProxy1"]
+       public var proxy:IProxy;
+
+	public class MyApplicationMediator extends FlexMediator {
+		
+		static public const NAME:String = "MyApplicationMediator";
+		
+		public function MyApplicationMediator(viewComponent:Object) {
+			super(NAME, viewComponent);
+		}
+				
+	}
+}
+}}}
+
+We can change metadata name argument to "MyAppProxy2" to have another instance injected.
+
+= Additional info =
+
+* you can use the same mechanism for mediators injection ( [ InjectMediator ] metatag ).
+* By design, you can inject mediators and proxies into commands and mediators. Proxy can have injected only other proxies.
+* In commands all injected references are disposed when command execution is finished. In mediators all references are disposed on mediator remove. To clean same references in your proxy you have to use Proxy.dispose method.
