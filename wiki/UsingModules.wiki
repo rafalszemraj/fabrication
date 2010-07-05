@@ -28,7 +28,7 @@ Loads the module, my_module.swf using the FlexModuleLoader
 {{{
 var moduleLoader:FlexModuleLoader = new FlexModuleLoader();
 
-moduleLoader.url = "my_module.swf;
+moduleLoader.url = "my_module.swf";
 moduleLoader.loadModule();
 }}}
 
