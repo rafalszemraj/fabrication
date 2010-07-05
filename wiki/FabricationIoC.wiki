@@ -1,13 +1,77 @@
-#summary One-sentence summary of this page.
+#summary IoC mechanism for Fabrication actors.
 
 = Introduction =
 
-Add your content here.
+With version 0.7.1 a brand new mechanism is being introduced - IoC for Fabrication actors. It simplyfies the way you can retrieve mediators/proxies instances within body of your classes.
 
 
-= Details =
+= Requirements =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+This feature needs Fabrication version 0.7.1 or above.
+
+= Usage Scenarios =
+
+Let say you have your startupCommand like this one:
+*MyApplicationStartupCommand.as*
+{{{
+package  controller {
+    import org.puremvc.as3.multicore.interfaces.INotification;
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
+
+    import spark.components.Application;
+
+    public class MyApplicationStartupCommand extends SimpleFabricationCommand {
+
+
+        override public function execute(notification:INotification):void
+        {
+            registerProxy( MyApplicationProxy1( "MyAppProxy1", { someData:"DataFromProxy1 } );
+            registerProxy( MyApplicationProxy2( "MyAppProxy2", { someData:"DataFromProxy2 } );
+        }
+    }
+}
+}}}
+
+and your application mediator, when you want to get reference to one of registered proxies:
+*MyApplicationMediator*
+{{{
+package view {
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
+
+	public class MyApplicationMediator extends FlexMediator {
+		
+		static public const NAME:String = "MyApplicationMediator";
+		
+		public function MyApplicationMediator(viewComponent:Object) {
+			super(NAME, viewComponent);
+		}
+					
+		override public function onRegister():void {
+                        super.onRegister();
+			var myProxy:MyApplicationProxy1 = retrieveProxy( "MyAppProxy1" ) as MyApplicationProxy1;
+		}
+		
+	}
+}
+}}}
+== injection by class ==
+Using new IoC mechanism you can do something like this:
+*MyApplicationMediator*
+{{{
+package view {
+	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
+
+       [InjecProxy]
+       public var proxy:MyApplicationProxy1
+
+	public class MyApplicationMediator extends FlexMediator {
+		
+		static public const NAME:String = "MyApplicationMediator";
+		
+		public function MyApplicationMediator(viewComponent:Object) {
+			super(NAME, viewComponent);
+		}
+				
+	}
+}
+}}}
