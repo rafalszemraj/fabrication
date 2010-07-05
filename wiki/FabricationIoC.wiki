@@ -1,4 +1,5 @@
 #summary IoC mechanism for Fabrication actors.
+#labels Featured
 
 = Introduction =
 
