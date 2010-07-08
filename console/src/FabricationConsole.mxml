@@ -10,14 +10,11 @@
                             width="158"
                             height="32"
                             paddingTop="0" paddingRight="0" paddingLeft="0" paddingBottom="0"
-                            creationCompleteEffect="{Fade}"
                             applicationComplete="initApp()"
-        click="trace('click')"
-        mouseDown="trace('mouseDown')">
+        >
 
     <fx:Style source="style.css"/>
     <fx:Script><![CDATA[
-        import mx.effects.Fade;
 
         import org.puremvc.as3.multicore.utilities.fabrication.console.controller.FabricationConsoleStartupCommand;
         import org.puremvc.as3.multicore.utilities.fabrication.console.model.ConsoleRecieverProxy;
@@ -34,7 +31,7 @@
         [Embed(source="/../assets/tree_assets.swf#minus_icon")]
         private var minusIcon:Class;
 
-        private static const LOGGER_ID:String = "_org.puremvc.as3.multicore.utilities.fabrication";
+        public static const LOGGER_ID:String = "_org.puremvc.as3.multicore.utilities.fabrication";
 
         private var _lc:LocalConnection;
 

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (C) 2010 Rafał Szemraj.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project name="fabrication.console" default="main">
+
+    <!-- load user properties -->
+    <property file="project.properties"/>
+    <import file="${framework.basedir}/etc/ant/build.tools.xml"/>
+
+    <property name="src.dir" value="${basedir}/src"/>
+
+
+    <target name="main">
+        <antcall  target="compile"/>
+        <antcall  target="package"/>
+    </target>
+
+    <target  name='compile'>
+
+        <flex.compile air="true" main.class="${basedir}/src/FabricationConsole.mxml" output.swf="${bin.dir}/FabricationConsole.swf">
+            <args>
+                <arg line="-load-config+=fabrication-console-config.xml"/>
+            </args>
+        </flex.compile>
+
+    </target>
+
+    <target  name="package">
+
+        <copy file="${basedir}/src/FabricationConsole-app.xml" todir="${bin.dir}" overwrite="true"/>
+        <replace file="${bin.dir}/FabricationConsole-app.xml" token="%version.token%" value="${fabricationConsole.version}"/>
+
+        <mkdir dir="${bin.dir}/icons"/>
+        <copy  todir="${bin.dir}/icons">
+            <fileset dir="${basedir}/assets/appIcons">
+                <include  name="*.png"/>
+            </fileset>
+        </copy>
+
+        <exec executable="${flex.home}/bin/adt" failonerror="true">
+            <arg line="-package"/>
+            <arg line="-storetype"/>
+            <arg line="pkcs12"/>
+            <arg line="-keystore"/>
+            <arg line="fabrication_console_cert.p12"/>
+            <arg line="-keypass"/>
+            <arg line="fabrication"/>
+            <arg line="-storepass"/>
+            <arg line="fabrication"/>
+            <arg line="${bin.dir}/FabricationConsole.air"/>
+            <arg line="${bin.dir}/FabricationConsole-app.xml"/>
+
+            <arg line="-C"/>
+            <arg line="${bin.dir}"/>
+            <arg line="FabricationConsole.swf"/>
+            <arg line="icons"/>
+        </exec>
+
+    </target>
+
+
+</project>
