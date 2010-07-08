@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (C) 2010 Rafał Szemraj.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<mx:TextArea xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+             styleSheet="{getStyleSheet()}" fontSize="8"
+             valueCommit="verticalScrollPosition = maxVerticalScrollPosition">
+
+
+    <fx:Script><![CDATA[
+        import org.puremvc.as3.multicore.utilities.fabrication.logging.LogLevel;
+
+        [Bindable]
+        public var outputLogLevel:LogLevel;
+
+        [Bindable]
+        public var maxBufferLength:int = 5;
+
+        private var bufferArray:Array = [];
+
+
+        private var exp:RegExp = /(\[[a-zA-Z0-9_.: ]+\])/g;
+
+        public function clear():void
+        {
+
+            htmlText = "";
+            bufferArray = [];
+            styleSheet = getStyleSheet();
+
+
+        }
+
+        public function logMessage(message:String, logLevel:LogLevel):void
+        {
+            outputLogLevel = outputLogLevel == null ? LogLevel.DEFAULT : outputLogLevel;
+            if (logLevel.getValue() <= outputLogLevel.getValue()) {
+
+                //	                styleSheet = getStyleSheet();
+                if (htmlText != "") htmlText += "\n";
+                message = revealURLs(message);
+                message = showColorString(message);
+                message = getPrefix(logLevel.getName()) + message;
+                message = adoptStyle(message, logLevel.getName());
+                message = message.replace(exp, "<span class='bold'>$1</span>");
+                /*htmlText = "";
+                 bufferArray.push(message);
+                 if (maxBufferLength && bufferArray.length == maxBufferLength) {
+
+
+                 bufferArray.shift();
+
+                 }
+
+                 for each(var line:String in bufferArray) {
+
+                 htmlText += line;
+                 htmlText += "\n";
+
+                 }*/
+                htmlText += message;
+            }
+        }
+
+
+        private function getPrefix(logLevelName:String):String
+        {
+
+            return "<span class='bold'>[ " + logLevelName + " ]</span> "
+
+
+        }
+
+        private function adoptStyle(message:String, logLevelName:String):String
+        {
+
+
+            return "<span class='" + logLevelName.toLowerCase() + "'>" + message + "</span>";
+
+        }
+
+        private function revealURLs(message:String):String
+        {
+
+            var urlExpression:RegExp = /[^"|^>](http:\/\/+[^\t\n\r\,\ ]*)/;
+            var temp:String = message.replace(urlExpression, " <a href='$1'><span class='url'>$1</span></a>");
+            return temp;
+
+        }
+
+        private function showColorString(message:String):String
+        {
+
+            function replaceColorMatch(...args):String
+            {
+
+                return "<font color='#" + String(args[0]).substr(2) + "'>" + args[0] + "</font>";
+
+            }
+
+            var color:RegExp = new RegExp("0x[0-9a-fA-F]{6}");
+            return( message.replace(color, replaceColorMatch) );
+
+        }
+
+        private function getStyleSheet():StyleSheet
+        {
+
+            var ss:StyleSheet = new StyleSheet();
+            ss.setStyle(".info", { color : "#336633", fontFamily: "RittswoodCube_7_8pt_st", fontSize: 8 });
+            ss.setStyle(".debug", { color : "#000000", fontFamily: "RittswoodCube_7_8pt_st", fontSize: 8 });
+            ss.setStyle(".warn", { color : "#FF9900", fontFamily: "RittswoodCube_7_8pt_st", fontSize: 8 });
+            ss.setStyle(".error", { color : "#FF0000", fontFamily: "RittswoodCube_7_8pt_st", fontSize: 8 });
+            ss.setStyle(".fatal", { color : "#990000", fontFamily: "RittswoodCube_7_8pt_st", fontSize: 8 });
+            ss.setStyle(".bold", { fontFamily: "RittswoodCubeBl_7_8pt_st", fontSize: 8 });
+            ss.setStyle(".url", { color: "#0000FF", fontFamily: "RittswoodCube_7_8pt_st", fontSize: 8 });
+            return ss;
+
+        }
+
+
+        ]]></fx:Script>
+
+
+</mx:TextArea>
