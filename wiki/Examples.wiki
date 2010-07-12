@@ -4,7 +4,7 @@
 <wiki:toc max_depth=="3" />
 
 ----
-==[NEW] Different strategies for reactions==
+==*[*NEW*]* Different strategies for reactions==
 Example of couple ways for reaction registration.
 
 [http://fabrication.googlecode.com/svn/examples/reactions_example/bin/index.html Demo]
