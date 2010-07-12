@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2010 Rafał Szemraj.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<fabrication:FlexApplication
+        xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:fabrication="http://puremvc.org/utilities/fabrication/2010"
+        implements="IModuleCreator"
+        >
+
+    <fx:Script>
+		<![CDATA[
+        import org.puremvc.as3.multicore.utilities.fabrication.components.FabricationModuleLoader;
+
+        import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IRouter;
+
+        import shell.controller.FabricationModuleLoaderExampleStartupCommand;
+
+        override public function getStartupCommand():Class
+        {
+            return FabricationModuleLoaderExampleStartupCommand;
+        }
+
+        override public function getClassByName(classpath:String):Class
+        {
+            return getDefinitionByName( classpath ) as Class;
+        }
+
+        override public function get fabricationLoggerEnabled():Boolean
+        {
+            return true;
+        }
+
+        public function createModuleLoader(router:IRouter, moduleAddressOrGroup:*):FabricationModuleLoader
+        {
+
+            return new FabricationModuleLoader(router, moduleAddressOrGroup);
+
+        }
+			
+		]]>
+	</fx:Script>
+
+    <fabrication:layout>
+        <s:VerticalLayout horizontalAlign="center" verticalAlign="middle"
+                          paddingLeft="20" paddingTop="20" paddingRight="20" paddingBottom="20"/>
+    </fabrication:layout>
+    <s:TileGroup id="container" width="100%" height="100%"/>
+    <s:HGroup>
+        <s:Button id="loadButton" label="load module"/>
+        <s:Button id="unloadButton" label="unload module" enabled="false"/>
+    </s:HGroup>
+</fabrication:FlexApplication>
