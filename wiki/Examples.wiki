@@ -4,7 +4,13 @@
 <wiki:toc max_depth=="3" />
 
 ----
+==[NEW] Different strategies for reactions==
+Example of couple ways for reaction registration.
 
+[http://fabrication.googlecode.com/svn/examples/reactions_example/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#examples/reactions_example/src View Source]
+[http://fabrication.googlecode.com/svn/examples/reactions_example SVN]
+----
 ==Simple Undo==
 Basic usage of Undo-Redo in Fabrication with SimpleUndoableCommand.
 
@@ -67,10 +73,3 @@ Using FlexStates and Reflexive mediator registration.
 [http://fabrication.googlecode.com/svn/examples_fabrication_0.6/resolver_add_child/bin/index.html Demo]
 [http://code.google.com/p/fabrication/source/browse/examples_fabrication_0.6/#examples_fabrication_0.6/resolver_add_child/src/main/flex View Source]
 [http://fabrication.googlecode.com/svn/examples_fabrication_0.6/resolver_add_child SVN]
-
-==Different strategies for reactions==
-Example of couple ways for reaction registration.
-
-[http://fabrication.googlecode.com/svn/examples/reactions_example/bin/index.html Demo]
-[http://code.google.com/p/fabrication/source/browse/examples/#examples/reactions_example/src View Source]
-[http://fabrication.googlecode.com/svn/examples/reactions_example SVN]
