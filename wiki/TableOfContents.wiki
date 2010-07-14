@@ -3,7 +3,7 @@
   * [Features Features]
   * [GettingStarted Getting Started]
   * [ReflexiveNotificationInterests Reflexive Notification Interests]
-  * [ReflexiveNotificationNamespaces Reflexive Notification via namespaces]
+  * [ReflexiveNotificationsNamespaces Reflexive Notification via namespaces]
   * [UsingModules Using Modules]
   * [ReflexiveMediatorRegistration Reflexive Mediator Registration]
   * [Reactions Reactions]
