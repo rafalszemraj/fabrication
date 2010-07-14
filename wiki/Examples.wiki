@@ -17,7 +17,7 @@ Example of actros injection mechanism
 [http://fabrication.googlecode.com/svn/examples/ioc_mechanism_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/ioc_mechanism_example View Source]
 [http://fabrication.googlecode.com/svn/examples/ioc_mechanism_example SVN]
 
-==`[`NEW`]` Reflexive notifications via namespaces
+==`[`NEW`]` Reflexive notifications via namespaces==
 How to define mediators interests via namespace notifiactions
 
 [http://fabrication.googlecode.com/svn/examples/namespace_notifications_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/namespace_notifications_example View Source]
