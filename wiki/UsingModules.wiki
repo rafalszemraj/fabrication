@@ -46,7 +46,7 @@ private function moduleReadyListener(event:ModuleEvent):void {
 }
 }}}
 
-==Using Fabrication ModuleLoader and Fabrication AirModuleLoader==
+==Using Fabrication module loader and Fabrication AIR module loader==
 You can use FabricationModuleLoader and FabricationAirModuleLoader to load module in browser or in desktop application. Both classes works similar to ModuleManager instances, but hides less important functionality from programmer. Only thing you need to do is register for ModuleEvent.READY event and retrieve module instance ( as flexModule getter ) in event handler. See example at the end of page.
  
 ==Using plain Loader for Flash==
