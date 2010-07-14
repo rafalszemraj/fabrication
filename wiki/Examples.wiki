@@ -11,12 +11,17 @@ Example of couple ways how to register reactions
 [http://code.google.com/p/fabrication/source/browse/examples/#examples/reactions_example/src View Source]
 [http://fabrication.googlecode.com/svn/examples/reactions_example SVN]
 
-== `[`NEW`]` Ioc mechanism example
+==`[`NEW`]` Ioc mechanism example==
 Example of actros injection mechanism
 
 [http://fabrication.googlecode.com/svn/examples/ioc_mechanism_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/ioc_mechanism_example View Source]
 [http://fabrication.googlecode.com/svn/examples/ioc_mechanism_example SVN]
 
+==`[`NEW`]` Reflexive notifications via namespaces
+How to define mediators interests via namespace notifiactions
+
+[http://fabrication.googlecode.com/svn/examples/namespace_notifications_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/namespace_notifications_example View Source]
+[http://fabrication.googlecode.com/svn/examples/namespace_notifications_example/ SVN] 
 ----
 ==Simple Undo==
 Basic usage of Undo-Redo in Fabrication with SimpleUndoableCommand.
