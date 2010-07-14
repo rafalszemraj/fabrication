@@ -2,9 +2,9 @@
 
 ----
 =0.7.2=
-* fixed injection mechanism in FlashMediator
-* fixed issues in new reactions mechanism
-* introduced reflexive notifications interests via namespaces
+ * fixed injection mechanism in FlashMediator
+ * fixed issues in new reactions mechanism 
+ * introduced reflexive notifications interests via namespaces
 
 =0.7.1=
  * added fabrication namespace ( http://puremvc.org/utilities/fabrication/2010 )
