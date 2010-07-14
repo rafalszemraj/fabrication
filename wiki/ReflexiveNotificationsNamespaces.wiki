@@ -67,11 +67,11 @@ package view {
 }}}
 
 =Additional info=
-  * Pros:
-    # we have typed notification ( as namespaces ) not as strings, so we're doing less errors
-    # using good code editor we can change notification name and all needed references ( wich is hard with respondTo )
-  * Cons:
-    # each notification name must be declared as namespace ( one file per notification )
+  # Pros:
+    * we have typed notification ( as namespaces ) not as strings, so we're doing less errors
+    * using good code editor we can change notification name and all needed references ( wich is hard with respondTo )
+  # Cons:
+    * each notification name must be declared as namespace ( one file per notification )
 
 =Examples=
   # Namespace notification example [http://fabrication.googlecode.com/svn/examples/namespace_notification_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/namespace_notification_example Source]
