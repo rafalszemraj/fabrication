@@ -143,3 +143,5 @@ public function respondToMessageFromModule(note:ModuleNotification):void {
 =Examples=
   # Simple Routing [[http://code.google.com/p/fabrication/source/browse/#svn/examples/simple_routing/src/main/flex Browse]] [[http://fabrication.googlecode.com/svn/examples/simple_routing SVN]]
   # Using Flash based modules [[http://code.google.com/p/fabrication/source/browse/#svn/examples/hello_flash_with_module/src Browse]] [[http://fabrication.googlecode.com/svn/examples/hello_flash_with_module SVN]]
+  # Using FabricationModuleLoader and FabricationAirModuleLoader
+[http://fabrication.googlecode.com/svn/examples/fabrication_module_loader/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/fabrication_module_loader Source]
