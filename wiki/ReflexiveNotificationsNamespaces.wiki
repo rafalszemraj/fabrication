@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 
 = Introduction =
-Reflexive notifications via namespaces is new idea of mediator interests registration. Instead using *reactTo<NoteName>* syntax we can declare *processNotification* method in namespace related to our notification.
+Reflexive notifications via namespaces is new idea of mediator interests registration. Instead using *reactTo`<`NoteName`>`* syntax we can declare *processNotification* method in namespace related to our notification.
 In other words - given notification is processed by mediators by the same method used in related namespace. 
 
 =Requirements=
@@ -11,15 +11,17 @@ This feature requires Fabrication version 0.7.2 or above.
 Instead of define notifications as constants in classes, we use namespace as an notification name declaration:
 
 *notification.as*
+{{{
 package notifications {
 
     public namespace notification = "notification";
 
 }
-
+}}}
 Then, in our mediator we can do the following:
 
 *Mediator.as*
+{{{
 package view {
     import notifications.notification;
 
@@ -62,6 +64,7 @@ package view {
 
     }
 }
+}}}
 
 =Additional info=
   * Pros:
