@@ -74,4 +74,4 @@ package view {
     * each notification name must be declared as namespace ( one file per notification )
 
 =Examples=
-  # Namespace notification example [http://fabrication.googlecode.com/svn/examples/namespace_notification_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/namespace_notification_example Source]
+  # Namespace notifications example [http://fabrication.googlecode.com/svn/examples/namespace_notifications_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/namespace_notifications_example Source]
