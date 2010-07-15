@@ -5,6 +5,7 @@
 
 = Download =
 
+[:http://fabrication.googlecode.com/svn/console/badge/index.html]
 
 = Details =
 
