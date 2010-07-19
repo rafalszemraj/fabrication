@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<project name="fabrication" default="main">
+
+    <!-- load user properties -->
+    <property file="project.properties"/>
+    <property file="user.properties"/>
+    <import file="${basedir}/etc/ant/build.tools.xml"/>
+
+    <property name="src.dir" value="${basedir}/src"/>
+
+
+    <target name="main"
+            description="runs tests, builds libraries, generates docmentation and prepares distribution package">
+
+        <delete dir="${bin.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <mkdir dir="${bin.dir}"/>
+        <ant antfile="build.tests.xml"/>
+        <antcall target="compile.fabrication.library"/>
+        <antcall target="generate.documentation"/>
+        <antcall target="prepare.distribution.package"/>
+        <antcall target="publish.to.blog"/>
+
+    </target>
+
+
+    <target name="compile.fabrication.library" description="compiles fabrication libraries ( air, flex, as3 )">
+        <delete dir="${dist.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+
+
+        <pathconvert pathsep=" " property="all" dirsep=".">
+            <fileset dir="${src.dir}"/>
+            <chainedmapper>
+                <globmapper from="${src.dir}/" to=""/>
+                <globmapper from="*.as" to="*"/>
+            </chainedmapper>
+        </pathconvert>
+
+
+        <pathconvert pathsep=" " property="all_moxie" dirsep=".">
+            <fileset dir="${src.dir}">
+                <exclude name="**/*FlexApplication*.*"/>
+                <exclude name="**/*AirApplication*.*"/>
+            </fileset>
+            <chainedmapper>
+                <globmapper from="${src.dir}/" to=""/>
+                <globmapper from="*.as" to="*"/>
+            </chainedmapper>
+        </pathconvert>
+
+
+        <pathconvert pathsep=" " property="no_air" dirsep=".">
+            <fileset dir="${src.dir}">
+                <exclude name="**/*Air*.*"/>
+            </fileset>
+            <chainedmapper>
+                <globmapper from="${src.dir}/" to=""/>
+                <globmapper from="*.as" to="*"/>
+            </chainedmapper>
+        </pathconvert>
+
+        <pathconvert pathsep=" " property="no_air_moxie" dirsep=".">
+            <fileset dir="${src.dir}">
+                <exclude name="**/*Air*.*"/>
+                <exclude name="**/*FlexApplication*.*"/>
+            </fileset>
+            <chainedmapper>
+                <globmapper from="${src.dir}/" to=""/>
+                <globmapper from="*.as" to="*"/>
+            </chainedmapper>
+        </pathconvert>
+
+        <pathconvert pathsep=" " property="no_air_flex" dirsep=".">
+            <fileset dir="${src.dir}">
+                <exclude name="**/*Air*.*"/>
+                <exclude name="**/*Flex*.*"/>
+                <exclude name="**/*ModuleLoader*.*"/>
+                <exclude name="**/resolver/*.*"/>
+            </fileset>
+            <chainedmapper>
+                <globmapper from="${src.dir}/" to=""/>
+                <globmapper from="*.as" to="*"/>
+            </chainedmapper>
+        </pathconvert>
+
+        <compile.fabrication.library air="true" swc.name="fabrication_air.swc" classes.list="${all}">
+            <namespace>
+                <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-air-manifest.xml"/>
+                <arg line="-include-namespaces ${fabrication.namespace}"/>
+            </namespace>
+        </compile.fabrication.library>
+
+        <compile.fabrication.library air="true" swc.name="fabrication_air_moxie.swc" classes.list="${all_moxie}"
+                                     flex4.supported="false">
+            <namespace>
+                <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-air-moxie-manifest.xml"/>
+                <arg line="-include-namespaces ${fabrication.namespace}"/>
+            </namespace>
+        </compile.fabrication.library>
+
+
+        <compile.fabrication.library air="false" swc.name="fabrication_flex.swc" classes.list="${no_air}"
+                                     flex4.supported="false">
+            <namespace>
+                <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-flex-manifest.xml"/>
+                <arg line="-include-namespaces ${fabrication.namespace}"/>
+            </namespace>
+        </compile.fabrication.library>
+
+        <compile.fabrication.library air="false" swc.name="fabrication_flex_moxie.swc"
+                                     classes.list="${no_air_moxie}">
+            <namespace>
+                <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-flex-moxie-manifest.xml"/>
+                <arg line="-include-namespaces ${fabrication.namespace}"/>
+            </namespace>
+        </compile.fabrication.library>
+
+
+        <compile.fabrication.library air="false" swc.name="fabrication_as3.swc" classes.list="${no_air_flex}"/>
+
+
+    </target>
+
+    <target name="generate.documentation" description="generates full and public API documentation">
+        <delete dir="${doc.dir}"/>
+        <mkdir dir="${doc.dir}"/>
+
+        <antcall target="generate.full.documentation"/>
+        <antcall target="generate.public.documentation"/>
+
+    </target>
+
+    <target name="generate.full.documentation">
+        <mkdir dir="${asdoc.full.dir}"/>
+        <exec executable="${flex.asdoc}" failonerror="true">
+            <arg line="-window-title='${doc.title}'"/>
+            <arg line="-footer='${doc.footer}'"/>
+            <arg line="-doc-sources ${src.dir}"/>
+            <arg line="-source-path=${src.dir}"/>
+            <arg line="-external-library-path ${puremvc.lib}"/>
+            <arg line="-external-library-path ${reflection.lib}"/>
+            <arg line="-external-library-path ${flex.home}/frameworks/libs"/>
+            <arg line="-external-library-path ${flex.home}/frameworks/libs/air"/>
+            <arg line="-output=${asdoc.full.dir}"/>
+            <arg line="-define+=FLEX4::supported,true"/>
+        </exec>
+    </target>
+
+    <target name="generate.public.documentation">
+
+        <mkdir dir="${asdoc.public.dir}"/>
+
+        <copy file="${basedir}/etc/public_api.txt" tofile="${basedir}/public_api.txt" overwrite="yes">
+            <filterchain>
+                <tokenfilter>
+                    <containsregex pattern="^(.*)$" replace="**/\1.as" flags="gi"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        <fileset id="flist" dir="${src.dir}" includesfile="${basedir}/public_api.txt"/>
+        <pathconvert refid="flist" pathsep=" " property="flist.path"/>
+        <echo message="${flist.path}"/>
+        <delete file="${basedir}/public_api.txt"/>
+
+        <exec executable="${flex.asdoc}" failonerror="true">
+            <arg line="-window-title='${doc.title} - public API'"/>
+            <arg line="-footer='${doc.footer}'"/>
+            <arg line="-doc-sources ${flist.path}"/>
+            <arg line="-l=${bin.dir}/fabrication_air.swc"/>
+            <arg line="-external-library-path ${puremvc.lib}"/>
+            <arg line="-external-library-path ${reflection.lib}"/>
+            <arg line="-external-library-path ${flex.home}/frameworks/libs"/>
+            <arg line="-external-library-path ${flex.home}/frameworks/libs/air"/>
+            <arg line="-output=${asdoc.public.dir}"/>
+            <arg line="-define+=FLEX4::supported,true"/>
+        </exec>
+    </target>
+
+    <target name="prepare.distribution.package" description="prepares distribution package">
+
+        <mkdir dir="${dist.dir}"/>
+        <copy file="${bin.dir}/fabrication_air.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-air.swc"
+              overwrite="true"/>
+        <copy file="${bin.dir}/fabrication_air_moxie.swc"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swc"
+              overwrite="true"/>
+        <copy file="${bin.dir}/fabrication_flex.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-flex.swc"
+              overwrite="true"/>
+        <copy file="${bin.dir}/fabrication_flex_moxie.swc"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swc"
+              overwrite="true"/>
+        <copy file="${bin.dir}/fabrication_as3.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-as3.swc"
+              overwrite="true"/>
+
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-src.zip">
+            <fileset dir="${basedir}">
+                <include name="src/**"/>
+                <include name="tests/**"/>
+                <include name="bin/**"/>
+                <include name="libs/**"/>
+                <include name="etc/**"/>
+                <include name="*.xml"/>
+                <include name="COPYING"/>
+                <include name="project.properties"/>
+
+                <exclude name="**/*.swc"/>
+                <exclude name="bin/tests/results/*.*"/>
+                <exclude name="bin/tests/results"/>
+                <exclude name="bin/tests/reports/**/*.*"/>
+                <exclude name="bin/tests/reports/*.*"/>
+                <exclude name="bin/tests/reports"/>
+                <exclude name="bin/tests/swfobject/*.*"/>
+                <exclude name="bin/tests/swfobject"/>
+                <exclude name="bin/tests/index.html"/>
+            </fileset>
+            <fileset dir="${basedir}">
+                <include name="bin/fabrication-${fabrication.version}.swc"/>
+            </fileset>
+        </zip>
+
+        <zip destfile="${dist.dir}/fabrication-api-full.zip">
+            <fileset dir="${asdoc.full.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </zip>
+
+        <zip destfile="${dist.dir}/fabrication-api-public.zip">
+            <fileset dir="${asdoc.public.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </zip>
+
+    </target>
+
+    <target name="publish.to.blog">
+
+        <ftp server="${blog.ftp.server}"
+             userid="${blog.ftp.user}" password="${blog.ftp.password}"
+             action="put"
+             remotedir="${blog.ftp.remotedir}/tests" newer="true">
+            <fileset dir="${bin.dir}/tests">
+                <exclude name="results/**/*.*"/>
+            </fileset>
+        </ftp>
+
+        <ftp server="${blog.ftp.server}"
+             userid="${blog.ftp.user}" password="${blog.ftp.password}"
+             action="put"
+             remotedir="${blog.ftp.remotedir}/api" newer="true">
+            <fileset dir="${doc.dir}">
+                <include name="public/**/*.*"/>
+                <include name="full/**/*.*"/>
+            </fileset>
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-api*.zip"/>
+            </fileset>
+        </ftp>
+
+    </target>
+
+    <target name="google.code.upload">
+
+        <gcupload
+                username="${googlecode.user}"
+                password="${googlecode.pass}"
+                projectname="fabrication"
+                filename="${dist.dir}/fabrication-${fabrication.version}-air.swc"
+                targetfilename="fabrication-${fabrication.version}-air.swc"
+                summary="Fabrication ${fabrication.version} library for AIR"
+                labels="Featured, Type-Package, OpSys-All"/>
+
+        <gcupload
+                username="${googlecode.user}"
+                password="${googlecode.pass}"
+                projectname="fabrication"
+                filename="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swc"
+                targetfilename="fabrication-${fabrication.version}-air-moxie.swc"
+                summary="Fabrication ${fabrication.version} library for AIR ( flex3 only )"
+                labels="Featured, Type-Package, OpSys-All"/>
+
+        <gcupload
+                username="${googlecode.user}"
+                password="${googlecode.pass}"
+                projectname="fabrication"
+                filename="${dist.dir}/fabrication-${fabrication.version}-flex.swc"
+                targetfilename="fabrication-${fabrication.version}-flex.swc"
+                summary="Fabrication ${fabrication.version} library for Flex"
+                labels="Featured, Type-Package, OpSys-All"/>
+
+        <gcupload
+                username="${googlecode.user}"
+                password="${googlecode.pass}"
+                projectname="fabrication"
+                filename="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swc"
+                targetfilename="fabrication-${fabrication.version}-flex-moxie.swc"
+                summary="Fabrication ${fabrication.version} library for Flex ( flex3 only )"
+                labels="Featured, Type-Package, OpSys-All"/>
+
+        <gcupload
+                username="${googlecode.user}"
+                password="${googlecode.pass}"
+                projectname="fabrication"
+                filename="${dist.dir}/fabrication-${fabrication.version}-as3.swc"
+                targetfilename="fabrication-${fabrication.version}-as3.swc"
+                summary="Fabrication ${fabrication.version} library for Flash ( pure as3 )"
+                labels="Featured, Type-Package, OpSys-All"/>
+
+        <gcupload
+                username="${googlecode.user}"
+                password="${googlecode.pass}"
+                projectname="fabrication"
+                filename="${dist.dir}/fabrication-${fabrication.version}-src.zip"
+                targetfilename="fabrication-${fabrication.version}-src.zip"
+                summary="Fabrication ${fabrication.version} Source Zip"
+                labels="Featured, Type-Archive, OpSys-All"/>
+
+
+    </target>
+
+</project>
