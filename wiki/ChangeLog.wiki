@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+=0.7.3=
+* added separate builds for flex3 (moxie) support
+* when injecting proxy if it is not registered framework will try to create & register. This should work fine if
+   proxy constructor has no params or has params wit default values
+
 =0.7.2=
  * fixed injection mechanism in FlashMediator
  * fixed issues in new reactions mechanism 
