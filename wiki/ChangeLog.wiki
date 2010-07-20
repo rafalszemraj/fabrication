@@ -1,6 +1,8 @@
 #summary Fabrication change history.
 
 ----
+=0.7.3.1=
+  * fixed issue with reflection mechanism for modular applications ( http://forums.puremvc.org/index.php?topic=1763.0 )
 =0.7.3=
  * added separate builds for flex3 (moxie) support
  * when injecting proxy if it is not registered framework will try to create & register. This should work fine if   proxy constructor has no params or has params wit default values
