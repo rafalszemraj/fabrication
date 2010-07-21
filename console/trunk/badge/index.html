@@ -1,0 +1,74 @@
+<!--
+  ~ Copyright (C) 2010 Rafał Szemraj.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>FabricationConsole Installer Demo</title>
+	
+	<style  type="text/css">
+		body {
+
+			background-color: #FFFFFF;
+
+		}
+	</style>
+	
+	<!-- SWFObject embed by Geoff Stearns geoff@deconcept.com http://blog.deconcept.com/swfobject/ -->
+	<script type="text/javascript" src="swfobject.js"></script>
+	
+</head>
+<body>
+
+<!-- BEGIN EMBED CODE -->
+	
+	<!-- IMPORTANT: Make sure you also copy the swfobject script tag from the head above -->
+	
+	<div id="flashcontent" style="width:215px; height:180px;">
+		<strong>Please upgrade your Flash Player</strong>
+		This is the content that would be shown if the user does not have Flash Player 6.0.65 or higher installed.
+	</div>
+
+	<script type="text/javascript">
+		// <![CDATA[
+		// version 9.0.115 or greater is required for launching AIR apps.
+		
+			var so = new SWFObject("AIRInstallBadge.swf", "", "215", "180", "9.0.115", "#1B1B1B");
+
+		so.addVariable("airversion", "1.5.3");
+
+		so.addVariable("appname", "FabricationConsole");
+
+		so.addVariable("appurl", "http://code.szemraj.eu/fabrication/console/console/air");
+
+		so.addVariable("image", "http://fabrication.googlecode.com/svn/console/badge/badge.png");
+
+		so.addVariable("appid", "org.puremvc.as3.multicore.utilities.fabrication.console.FabricationConsole");
+
+		so.addVariable("appversion", "0.1");
+
+		so.addVariable("hidehelp", "true");
+
+		so.addVariable("titlecolor", "#3366ff");
+
+		so.write("flashcontent");
+		
+		// ]]>
+	</script>
+
+	</body>
+</html>
