@@ -13,7 +13,7 @@ Console is divided into three parts:
 
   * *Flow* console, where all important and framework-related events are logged ( actors registrations, commands executions, notification sending etc. ). By clicking small icon on the right you can display a few details about given action.
   * *Log* console, where developer can log custo messages ( filtered by levels ) and inspect objects.
-  * *Error* console, where problems notification form framework are displayed.
+  * *Error* console, where problems reports from framework are displayed.
 
 = Flow console =
 
