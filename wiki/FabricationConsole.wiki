@@ -95,4 +95,4 @@ In here any message from fabrication about something wrong just happened is logg
 = Download =
 
 You can download FabricationConsole AIR package from here:
-[http://code.szemraj.eu/fabrication/console/console.air FabricationConsole] 
+[http://code.szemraj.eu/fabrication/console/console.air FabricationConsole]. Application supports autoUpdate functionality.
