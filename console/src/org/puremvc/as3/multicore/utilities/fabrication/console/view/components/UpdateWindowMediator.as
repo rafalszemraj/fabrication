@@ -41,7 +41,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.console.view.components 
         {
             super.onRegister();
 
-            _airUpdater = new AIRRemoteUpdater("http://fabrication.googlecode.com/svn/console/src/update.xml");
+            _airUpdater = new AIRRemoteUpdater("http://fabrication.googlecode.com/svn/console/trunk/src/update.xml");
             _airUpdater.addEventListener(StatusUpdateEvent.UPDATE_STATUS, onUpdateStatus);
             _airUpdater.update();
 
