@@ -1,15 +1,27 @@
-#summary One-sentence summary of this page.
+#summary FabricationConsole - Fabrication AIR debugger utility.
 #labels Deprecated
 
 = Introduction =
 
-= Download =
-
-[:http://fabrication.googlecode.com/svn/console/badge/index.html]
+Fabrication Console is AIR based application for debugging & developer support for fabrication based applications.
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+[http://code.szemraj.eu/fabrication/images/preview/console.jpg]
+
+Console is divided into three parts:
+
+  * *Flow console* where all important and framework-related events are logged ( actors registrations, commands executions, notification sending etc. ). By clicking small icon on the right you can display a few details bout given flow
+action.
+
+= Flow console =
+
+[http://code.szemraj.eu/fabrication/images/preview/flow_console_annotations.jpg]
+
+= Log console =
+
+[http://code.szemraj.eu/fabrication/images/preview/log_console_annotations.jpg]
+
+= Error console =
+
+[http://code.szemraj.eu/fabrication/images/preview/error_console.jpg]
