@@ -27,6 +27,7 @@
     <target name="main">
         <antcall  target="compile"/>
         <antcall  target="package"/>
+        <antcall  target="publish.to.blog"/>
     </target>
 
     <target  name='compile'>
@@ -34,12 +35,9 @@
         <flex.compile air="true" main.class="${basedir}/src/FabricationConsole.mxml" output.swf="${bin.dir}/FabricationConsole.swf">
             <args>
                 <arg line="-load-config+=fabrication-console-config.xml"/>
+                <arg line="-debug=false"/>
             </args>
         </flex.compile>
-
-    </target>
-
-    <target  name="package">
 
         <copy file="${basedir}/src/FabricationConsole-app.xml" todir="${bin.dir}" overwrite="true"/>
         <replace file="${bin.dir}/FabricationConsole-app.xml" token="%version.token%" value="${fabricationConsole.version}"/>
@@ -51,6 +49,16 @@
             </fileset>
         </copy>
 
+    </target>
+
+    <target name="run" depends="compile">
+            <air.run descriptior.xml="${bin.dir}/FabricationConsole-app.xml"/>
+    </target>
+
+    <target  name="package">
+
+
+
         <exec executable="${flex.home}/bin/adt" failonerror="true">
             <arg line="-package"/>
             <arg line="-storetype"/>
@@ -61,7 +69,7 @@
             <arg line="fabrication"/>
             <arg line="-storepass"/>
             <arg line="fabrication"/>
-            <arg line="${bin.dir}/FabricationConsole.air"/>
+            <arg line="${bin.dir}/console.air"/>
             <arg line="${bin.dir}/FabricationConsole-app.xml"/>
 
             <arg line="-C"/>
@@ -70,6 +78,18 @@
             <arg line="icons"/>
         </exec>
 
+    </target>
+
+    <target name="publish.to.blog">
+
+        <ftp server="${blog.ftp.server}"
+             userid="${blog.ftp.user}" password="${blog.ftp.password}"
+             action="put"
+             remotedir="${blog.ftp.remotedir}/console">
+            <fileset dir="${bin.dir}">
+                <include name="console.air"/>
+            </fileset>
+        </ftp>
     </target>
 
 

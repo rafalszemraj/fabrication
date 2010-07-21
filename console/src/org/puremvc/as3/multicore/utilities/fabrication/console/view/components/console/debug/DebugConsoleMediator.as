@@ -28,15 +28,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.console.view.components.
             super(NAME, viewComponent);
         }
 
-
-        public function respondToLOG_FRAMEWORK_MESSAGE( notification:INotification ):void {
-
-            var message:String = "" + notification.getBody().message;
-            var logLevel:LogLevel = notification.getBody().logLevel;
-            debugConsole.debug(message, logLevel);
-
-        }
-
         LOG_FRAMEWORK_MESSAGE function processNotification(notification:INotification):void
         {
 

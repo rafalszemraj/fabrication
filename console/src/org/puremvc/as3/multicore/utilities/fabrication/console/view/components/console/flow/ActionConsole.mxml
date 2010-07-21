@@ -35,7 +35,7 @@
                         <fx:String>{ActionType.MEDIATOR_REGISTERED}</fx:String>
                         <fx:String>{ActionType.NOTIFICATION_SENT}</fx:String>
                         <fx:String>{ActionType.NOTIFICATION_ROUTE}</fx:String>
-                        <fx:String>{ActionType.SERVICE_CALL}</fx:String>
+                        <!--<fx:String>{ActionType.SERVICE_CALL}</fx:String>-->
                     </fx:Array>
                 </mx:dataProvider>
             </mx:ComboBox>
@@ -49,8 +49,8 @@
                      id="flowDataGrid" styleName="pixel" rowHeight="18" sortableColumns="false" draggableColumns="false"
                      resizableColumns="false">
             <mx:columns>
-                <mx:DataGridColumn headerText="#" width="20" dataField="index" minWidth="20"
-                                   itemRenderer="{new ClassFactory( DGItemRenderer )}"/>
+                <!--<mx:DataGridColumn headerText="#" width="25" dataField="index" minWidth="20"-->
+                                   <!--itemRenderer="{new ClassFactory( DGItemRenderer )}"/>-->
                 <mx:DataGridColumn headerText="message" dataField="message"
                                    itemRenderer="{new ClassFactory( HTMLLabel )}"/>
                 <mx:DataGridColumn headerText="info" width="35"

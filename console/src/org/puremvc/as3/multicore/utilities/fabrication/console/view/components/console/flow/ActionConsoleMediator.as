@@ -50,15 +50,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.console.view.components.
             super.onRemove();
         }
 
-
-        public function respondToLOG_ACTION( notification:INotification ):void {
-
-            var action:Action = notification.getBody() as Action;
-            flowConsole.actionsDataProvider.addItem(action);
-
-
-        }
-
         LOG_ACTION function processNotification(notification:INotification):void
         {
             var action:Action = notification.getBody() as Action;

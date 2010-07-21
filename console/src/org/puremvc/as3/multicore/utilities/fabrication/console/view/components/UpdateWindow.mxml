@@ -28,11 +28,11 @@
                   paddingTop="10" paddingRight="40" paddingBottom="10" paddingLeft="40"
                   creationComplete="{mainContainer.height = height = 130 + tf.height}">
                 <mx:Form styleName="pixelBold">
-                    <mx:FormItem label="New version:" paddingBottom="0">
-                        <mx:Label text="{newVersion}" styleName="pixelBold" textAlign="right"/>
-                    </mx:FormItem>
                     <mx:FormItem label="Your version:">
                         <mx:Label text="{currentVersion}" styleName="pixelBold" textAlign="right"/>
+                    </mx:FormItem>
+                    <mx:FormItem label="New version:" paddingBottom="0">
+                        <mx:Label text="{newVersion}" styleName="pixelBold" textAlign="right"/>
                     </mx:FormItem>
                 </mx:Form>
             <mx:HRule shadowColor="0x666666" width="75%"/>

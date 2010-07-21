@@ -30,19 +30,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.console.view.components.
             super(NAME, viewComponent);
         }
 
-
-        public function respondToLOG_MESSAGE( notification:LogMessageNotification ):void {
-
-            debugConsole.logMessage(notification.message, notification.logLevel);
-
-        }
-
-        public function respondToINSPECT_OBJECT( notification:InspectObjectNotification ):void {
-
-           debugConsole.inspectObject(notification.object, notification.objectName); 
-
-        }
-
         LOG_MESSAGE function processNotification(notification:LogMessageNotification):void
         {
             debugConsole.logMessage(notification.message, notification.logLevel);
@@ -66,9 +53,5 @@ package org.puremvc.as3.multicore.utilities.fabrication.console.view.components.
             super.invokeNotificationHandler(name, note);
         }
 
-        //        override protected function invokeNamespaceNotificationHandler(namespace:Namespace, note:INotification):void
-//        {
-//            ( namespace::processNotification ).apply(this, [ note ]);
-//        }
     }
 }
