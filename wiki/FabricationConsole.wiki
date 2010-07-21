@@ -1,5 +1,5 @@
 #summary FabricationConsole - Fabrication AIR debugger utility.
-#labels Deprecated
+#labels Featured
 
 = Introduction =
 
