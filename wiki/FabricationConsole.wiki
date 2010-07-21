@@ -7,7 +7,7 @@ Fabrication Console is AIR based application for debugging & developer support f
 
 = Details =
 
-[http://code.szemraj.eu/fabrication/images/preview/console.jpg]
+[http://code.szemraj.eu/fabrication/console/images/preview/console.jpg]
 
 Console is divided into three parts:
 
@@ -41,7 +41,7 @@ To enable flow console logging from your application you have to override *fabri
 </fabrication:FlexHaloApplication>
 }}}
 
-[http://code.szemraj.eu/fabrication/images/preview/flow_console_annotations.jpg]
+[http://code.szemraj.eu/fabrication/console/images/preview/flow_console_annotations.jpg]
 
   # logged actions list
   # click these icons for more details
@@ -77,7 +77,7 @@ You can use *Log* class static methods for more convenient logging. To do so you
 
 *TIP:* you can write you own channel and add it to any instance of *Logger* class. Remember that your channel has to implement *ILogChannel* interface ( http://code.google.com/p/fabrication/source/browse/framework/trunk/src/org/puremvc/as3/multicore/utilities/fabrication/logging/channel/ILogChannel.as ).
 
-[http://code.szemraj.eu/fabrication/images/preview/log_console_annotations.jpg]
+[http://code.szemraj.eu/fabrication/console/images/preview/log_console_annotations.jpg]
   
   # custom logs window
   # object inspector grid.
@@ -90,4 +90,9 @@ In here any message from fabrication about something wrong just happened is logg
 
 *If you have any idea about more situations that could be prompted in here, let me know*
 
-[http://code.szemraj.eu/fabrication/images/preview/error_console.jpg]
+[http://code.szemraj.eu/fabrication/console/images/preview/error_console.jpg]
+
+= Download =
+
+You can download FabricationConsole AIR package from here:
+[http://code.szemraj.eu/fabrication/console/console.air FabricationConsole] 
