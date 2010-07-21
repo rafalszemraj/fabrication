@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (C) 2009 Rafał Szemraj, ( http://szemraj.eu )
+  ~
+  ~ Tequila, The Ministry Of Ideas Co. Ltd.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<mx:Label xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:fx="http://ns.adobe.com/mxml/2009"
+        >
+
+    <fx:Script><![CDATA[
+        import mx.controls.DataGrid;
+        import mx.events.FlexEvent;
+
+        import org.puremvc.as3.multicore.utilities.fabrication.logging.action.Action;
+
+        private var textSet:Boolean = false;
+
+
+        private var exp:RegExp = /(\[[a-zA-Z0-9_.: ]+\])/g;
+
+        override public function set data(value:Object):void
+        {
+            var newText:String = ( value as Action ).message;
+            newText = parseFlowActionName(newText);
+            if (newText != "" && !textSet) {
+                htmlText = newText;
+                textSet = false;
+            }
+
+            dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+
+
+        }
+
+        private function parseFlowActionName(text:String):String
+        {
+
+            return text.replace(exp, "<font face='RittswoodCubeBl_7_8pt_st'>$1</font>");
+        }
+
+        override public function validateNow():void
+        {
+
+            super.validateNow();
+            if (listData) y = listData.rowIndex * ( listData.owner as DataGrid ).rowHeight - 2;
+
+        }
+
+        ]]></fx:Script>
+
+
+</mx:Label>
