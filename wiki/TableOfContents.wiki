@@ -10,5 +10,6 @@
   * [ReactionsNewApproach Reactions - New approach]
   * [FabricationIoC Fabrication IoC mechanism]
   * [Interceptors Interceptors]
+  * [FabricationConsole FabricationConsole]
   * [BuildingFabrication]
   * [Examples]
