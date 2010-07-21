@@ -19,6 +19,7 @@
         import org.puremvc.as3.multicore.utilities.fabrication.console.controller.FabricationConsoleStartupCommand;
         import org.puremvc.as3.multicore.utilities.fabrication.console.model.ConsoleRecieverProxy;
         import org.puremvc.as3.multicore.utilities.fabrication.console.utils.Icons;
+        import org.puremvc.as3.multicore.utilities.fabrication.logging.action.Action;
 
 
         [Embed(source="/../assets/tree_assets.swf#cubeFont")]
