@@ -6,7 +6,8 @@ package simplemodule.view {
 	
 	import common.FabricationRoutingDemoConstants;
 	
-	import simplemodule.view.components.MessageNavBar;	
+	import simplemodule.view.components.MessageNavBar;	
+
 	/**
 	 * @author Darshan Sawardekar
 	 */
@@ -68,7 +69,7 @@ package simplemodule.view {
 		}
 
 		private function messageInstanceGroupButtonListener(event:FlexEvent):void {
-			routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Module", null, "SimpleModule/#");
+			routeNotification(FabricationRoutingDemoConstants.RECEIVE_MESSAGE, "Message From Module", null, "SimpleModule/*");
 		}
 		
 	}
