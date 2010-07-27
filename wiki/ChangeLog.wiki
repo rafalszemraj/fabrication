@@ -1,6 +1,9 @@
 #summary Fabrication change history.
 
 ----
+=0.7.4.1=
+  * fixed notification action log in console
+  * removed warning when facade sending note with no observers ( because observer can be outside current fabrication, like in loaded module )
 =0.7.4=
   * added logging functionality
   * added support for FabricationConsole (v. 0.1)
