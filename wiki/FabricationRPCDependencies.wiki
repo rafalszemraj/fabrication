@@ -8,9 +8,11 @@ RPC services extension ( fabrication_rpc.swc ) is set of classes wich allows you
 
 RPC services extension requires Fabrication 0.7.5 ( with custom dependencies mechanism )
 
-= Use scenario =
+= Usage scenario =
 
 Let's say that you need to implement simple login service in your application. For testing purposes you do not connect directly to serverside service but you want to use some kind of mockup data in exchange. 
+
+== services providers ==
 
 We will use [http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/services/ServicesProvider.as ServicesProvider] ( mx.rpc.AbstractService container ) to define production and test providers with one defined service - "loginService":
 
@@ -53,3 +55,95 @@ package services {
 }}}
 
 LoginMockService class extends [http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/services/FabricationMockService.as FabricationMockService] class wich allows execution custom defined calls.
+
+== adding providers strategy ==
+
+In application start command we can decide which one of providers we want to use ( using conditional compilation etc. ):
+
+*ApplicationStartupCommand*
+{{{
+package controll {
+    import model.LoginProxy;
+
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
+
+    import org.puremvc.as3.multicore.interfaces.INotification;
+
+    import services.MockServicesProvider;
+
+    import services.ServicesProvider;
+
+    import view.RPCExampleMediator;
+
+    public class ApplicationStartupCommand extends SimpleFabricationCommand {
+
+        override public function execute(notification:INotification):void
+        {
+            super.execute(notification);
+
+            // add mock services dependencies
+            addDependenciesProvider( MockServicesProvider );
+
+            // add production services dependencies
+            //addDependenciesProvider( ServicesProvider );
+
+            registerProxy( new LoginProxy() );
+            registerMediator( new RPCExampleMediator( notification.getBody() as RPCExample ) );
+        }
+    }
+}
+}}}
+
+== remote proxy ==
+
+[http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/patterns/proxy/FabricationRemoteProxy.as FabricationRemoteProxy] with service injection mechanism provides us an easy way to execute remote calls. 
+
+*LoginProxy.as*
+{{{
+package model {
+    import mx.rpc.events.ResultEvent;
+
+    import notifications.LOGINS_READY;
+
+    import org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy.FabricationRemoteProxy;
+
+
+    public class LoginProxy extends FabricationRemoteProxy {
+
+        static public const NAME:String = "LoginProxy";
+
+
+        [InjectService("loginService")]
+        public var loginService:LoginService;
+
+        public function LoginProxy()
+        {
+            super(NAME);
+        }
+
+        public function getLogins():void {
+
+            excuteServiceCall( loginService.getLogins(), onLoginsComplete, onLoginsFault );
+
+        }
+
+        private function onLoginsFault( fault:Object ):void
+        {
+        }
+
+        private function onLoginsComplete( result:Object ):void
+        {
+            sendNotification( LOGINS_READY, ( result as ResultEvent ).result );
+
+        }
+
+
+
+    }
+}
+}}}
+
+As you can see *you don't have to change anything in proxy class to switch to another remote data source*. Because we're always injecting service "loginService" its implementation depends on instance created by added service provider.
+
+=Examples=
+  # RPCExample [http://fabrication.googlecode.com/svn/examples/rpc_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/rpc_example Source]
