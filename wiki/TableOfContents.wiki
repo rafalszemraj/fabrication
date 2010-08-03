@@ -9,6 +9,8 @@
   * [Reactions Reactions]
   * [ReactionsNewApproach Reactions - New approach]
   * [FabricationIoC Fabrication IoC mechanism]
+  * [CustomDependencies Custom IoC mechanism]
+  * [FabricationRPCDependencies Fabrication RPC extension]
   * [Interceptors Interceptors]
   * [FabricationConsole FabricationConsole]
   * [BuildingFabrication]
