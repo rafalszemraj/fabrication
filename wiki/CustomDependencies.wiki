@@ -1,5 +1,5 @@
 #summary Custom dependencies injection in Fabrication.
-#labels Deprecated
+#labels Featured
 
 = Introduction =
 
