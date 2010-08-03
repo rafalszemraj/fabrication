@@ -34,6 +34,10 @@
         <compile.issue issue.dir="${basedir}/dependencies_provider" issue.main.class="DependenciesProviderExample.mxml" debug="true"/>
     </target>
 
+    <target name="rpc_example">
+        <compile.issue issue.dir="${basedir}/rpc_example" issue.main.class="RPCExample.mxml" debug="true"/>
+    </target>
+
     <target name="simple_undo">
         <compile.issue issue.dir="${basedir}/simple_undo" issue.main.class="SimpleUndoDemo.mxml" debug="true"/>
     </target>
@@ -159,6 +163,7 @@
                     <arg line="-debug=@{debug}"/>
                     <!--<arg line="-l+=${basedir}/fabrication_0.7/libs/puremvc"/>-->
                     <arg line="-l+=${framework.basedir}/bin/fabrication_air.swc"/>
+                    <arg line="-l+=${framework.basedir}/bin/fabrication_rpc.swc"/>
                     <arg line="-static-link-runtime-shared-libraries=false"/>
                 </args>
             </flex.compile>
