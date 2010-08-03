@@ -1,4 +1,5 @@
 #summary RPC services injection.
+#labels Featured
 
 = Introduction =
 
