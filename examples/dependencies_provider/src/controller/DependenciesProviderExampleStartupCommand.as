@@ -31,13 +31,15 @@ package controller {
         {
             super.execute(notification);
 
+            // add dependencies provider
             addDependenciesProvider( Dependencies );
+            
             registerCommand( LOGIN, LoginCommand );
 
             registerProxy( new LoginProxy() );
             registerMediator( new ApplicationMediator( notification.getBody() as DependenciesProviderExample ));
 
-            // add dependencies provider
+
 
             
         }
