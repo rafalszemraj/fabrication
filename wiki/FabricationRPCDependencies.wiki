@@ -1,0 +1,20 @@
+#summary RPC services injection.
+
+= Introduction =
+
+RPC services extension ( fabrication_rpc.swc ) is set of classes wich allows you to use custom dependencies mechanism for providing easy and flexible way to define service dependency in remote proxies. Using this solution you can switch between various services dependency providers ( test, production etc. ) without changing anything in your model implementation.
+
+= Requirements =
+
+RPC services extension requires Fabrication 0.7.5 ( with custom dependencies mechanism )
+
+= Use scenario =
+
+Let's say that you need to implement simple login service in your application. For testing purposes you do not connect directly to serverside service but you want to use some kind of mockup data in exchange. 
+
+We will use [ServicesProvider http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/services/ServicesProvider.as] ( mx.rpc.AbstractService container ) 
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
