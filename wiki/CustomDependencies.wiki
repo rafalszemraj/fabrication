@@ -62,3 +62,5 @@ package model {
 }
 }}}
 
+=Examples=
+  # DependenciesProvider mechanism example [http://fabrication.googlecode.com/svn/examples/dependencies_provider/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/dependencies_provider Source]
