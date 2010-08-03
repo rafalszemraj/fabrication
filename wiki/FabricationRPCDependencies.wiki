@@ -7,7 +7,7 @@ RPC services extension ( fabrication_rpc.swc ) is set of classes wich allows you
 
 = Requirements =
 
-RPC services extension requires Fabrication 0.7.5 ( with custom dependencies mechanism )
+RPC services extension requires Fabrication 0.7.5 ( with custom dependencies mechanism ) and access to mx.rpc.* package.
 
 = Usage scenario =
 
