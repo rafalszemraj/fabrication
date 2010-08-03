@@ -3,8 +3,8 @@
 ----
 =0.7.5=
   * fixed issues with FabricationConsole ( errors on inspecting nested displayList components )
-  * added [http://code.google.com/p/fabrication/wiki/CustomDependencies?ts=1280843365&updated=CustomDependencies custom dependencies mechanism]
-  * introduced Fabrication RPC extension based on custom dependencies mechanism
+  * added [http://code.google.com/p/fabrication/wiki/CustomDependencies custom dependencies mechanism]
+  * introduced [http://code.google.com/p/fabrication/wiki/FabricationRPCDependencies Fabrication RPC extension] based on custom dependencies mechanism
 
 =0.7.4.1=
   * fixed notification action log in console
