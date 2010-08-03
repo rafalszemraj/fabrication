@@ -12,9 +12,44 @@ RPC services extension requires Fabrication 0.7.5 ( with custom dependencies mec
 
 Let's say that you need to implement simple login service in your application. For testing purposes you do not connect directly to serverside service but you want to use some kind of mockup data in exchange. 
 
-We will use [ServicesProvider http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/services/ServicesProvider.as] ( mx.rpc.AbstractService container ) 
+We will use [http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/services/ServicesProvider.as ServicesProvider] ( mx.rpc.AbstractService container ) to define production and test providers with one defined service - "loginService":
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+*ProductionServicesProvider.mxml*
+{{{
+<fabrication:ServicesProvider xmlns:fx="http://ns.adobe.com/mxml/2009"
+                                  xmlns:fabrication="http://puremvc.org/utilities/fabrication/2010"
+                                  xmlns:mx="library://ns.adobe.com/flex/mx">
+     <mx:RemoteObject id="loginService"/>
+</fabrication:ServicesProvider>
+}}}
+
+*TestServicesProvider.mxml*
+{{{
+<fabrication:ServicesProvider xmlns:fx="http://ns.adobe.com/mxml/2009"
+                                  xmlns:fabrication="http://puremvc.org/utilities/fabrication/2010"
+                                  xmlns:services="services.*">
+      <services:LoginMockService id="loginService"/>
+</fabrication:ServicesProvider>
+}}}
+
+*LoginMockService.as*
+{{{
+package services {
+    import mx.rpc.AsyncToken;
+
+    import org.puremvc.as3.multicore.utilities.fabrication.services.FabricationMockService;
+
+    public class LoginMockService extends FabricationMockService {
+
+
+        private var logins:Array = [ { login:"eric", pass:"cartman" }, { login:"stan", pass:"marsh" }];
+
+        public function getLogins():AsyncToken
+        {
+            return createMockResult(logins, 2000);
+        }
+    }
+}
+}}}
+
+LoginMockService class extends [http://code.google.com/p/fabrication/source/browse/framework/trunk/src_rpc/org/puremvc/as3/multicore/utilities/fabrication/services/FabricationMockService.as FabricationMockService] class wich allows execution custom defined calls.
