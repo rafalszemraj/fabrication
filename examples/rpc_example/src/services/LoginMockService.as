@@ -19,13 +19,13 @@ package services {
 
     import org.puremvc.as3.multicore.utilities.fabrication.services.FabricationMockService;
 
-    public class LoginService extends FabricationMockService implements ILoginService {
+    public class LoginMockService extends FabricationMockService implements ILoginService {
 
 
         private var logins:Array = [ { login:"eric", pass:"cartman" }, { login:"stan", pass:"marsh" }];
 
 
-        public function LoginService()
+        public function LoginMockService()
         {
         }
 

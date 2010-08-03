@@ -21,6 +21,8 @@ package controll {
 
     import org.puremvc.as3.multicore.interfaces.INotification;
 
+    import services.MockServicesProvider;
+
     import services.ServicesProvider;
 
     import view.RPCExampleMediator;
@@ -31,7 +33,12 @@ package controll {
         {
             super.execute(notification);
 
-            addDependenciesProvider( ServicesProvider );
+            // add mock services dependencies
+            addDependenciesProvider( MockServicesProvider );
+
+            // add production services dependencies
+            //addDependenciesProvider( ServicesProvider );
+
             registerProxy( new LoginProxy() );
             registerMediator( new RPCExampleMediator( notification.getBody() as RPCExample ) );
         }
