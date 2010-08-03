@@ -11,8 +11,8 @@ Custom dependencies are available since Fabrication 0.7.5
 
 = Usage scenario =
 
-To provide custom dependencies injection you have to use dependencies providers ( [IDependencyProvider http://code.google.com/p/fabrication/source/browse/framework/trunk/src/org/puremvc/as3/multicore/utilities/fabrication/injection/provider/IDependenciesProvider.as] ) wich should
-be added to facade. You can define you own implementation or use framework [DependenciesProvider http://code.google.com/p/fabrication/source/browse/framework/trunk/src/org/puremvc/as3/multicore/utilities/fabrication/injection/provider/DependenciesProvider.as] class:
+To provide custom dependencies injection you have to use dependencies providers ( [http://code.google.com/p/fabrication/source/browse/framework/trunk/src/org/puremvc/as3/multicore/utilities/fabrication/injection/provider/IDependenciesProvider.as IDependencyProvider] ) wich should
+be added to facade. You can define you own implementation or use framework [http://code.google.com/p/fabrication/source/browse/framework/trunk/src/org/puremvc/as3/multicore/utilities/fabrication/injection/provider/DependenciesProvider.as DependenciesProvider] class:
 
 *LoginDataProvider.as*
 {{{
