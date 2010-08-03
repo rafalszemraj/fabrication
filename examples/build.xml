@@ -30,6 +30,9 @@
         <antcall target="resolver_tab_navigator_demo"/>
     </target>
 
+    <target name="dependencies_provider">
+        <compile.issue issue.dir="${basedir}/dependencies_provider" issue.main.class="DependenciesProviderExample.mxml" debug="true"/>
+    </target>
 
     <target name="simple_undo">
         <compile.issue issue.dir="${basedir}/simple_undo" issue.main.class="SimpleUndoDemo.mxml" debug="true"/>
