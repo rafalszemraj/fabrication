@@ -55,7 +55,7 @@ package view {
         // here we are sending notification
         public function sendNote():void
        {                     
-          sendNotification9 notification, getMediatorName() );
+          sendNotification( notification, getMediatorName() );
        }
 
         public function get component():TextArea
