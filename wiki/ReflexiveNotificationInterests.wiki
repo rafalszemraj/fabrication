@@ -53,5 +53,5 @@ public function respondToCaptionChanged(note:CaptionNotification):void {
 }}}
 
 =Examples=
-  # Simple Undo - HeadingMediator [http://code.google.com/p/fabrication/source/browse/examples/simple_undo/src/main/flex/view/HeadingMediator.as Browse]] [[http://fabrication.googlecode.com/svn/examples/simple_undo SVN]
+  # Simple Undo - HeadingMediator [http://code.google.com/p/fabrication/source/browse/examples/simple_undo/src/main/flex/view/HeadingMediator.as Browse] [http://fabrication.googlecode.com/svn/examples/simple_undo SVN]
   # Simple Routing - MessageControlBarMediator [http://code.google.com/p/fabrication/source/browse/#svn/examples/resolver_tab_navigator/src/main/flex Browse] [http://fabrication.googlecode.com/svn/examples/simple_routing SVN]
