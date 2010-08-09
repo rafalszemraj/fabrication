@@ -71,4 +71,4 @@ private function closeListener(event:CloseEvent):void {
 
 =Examples=
   # Simple Interceptor [http://code.google.com/p/fabrication/source/browse/examples/interceptor_demo/src Browse] [http://fabrication.googlecode.com/svn/examples/simple_undo SVN]
-  # StateMachine utility with Fabrication [[http://code.google.com/p/fabrication/source/browse/examples/simple_fsm/src/interceptor/StateMachineInterceptor.as Browse]] [[http://fabrication.googlecode.com/svn/examples/simple_fsm SVN]]
+  # StateMachine utility with Fabrication [http://code.google.com/p/fabrication/source/browse/examples/simple_fsm/src/interceptor/StateMachineInterceptor.as Browse] [http://fabrication.googlecode.com/svn/examples/simple_fsm SVN]
