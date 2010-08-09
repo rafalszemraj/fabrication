@@ -93,4 +93,4 @@ removeReaction("reactToSubmitButtonClick");
 
 =Examples=
   # InterceptorDemoMediator [http://code.google.com/p/fabrication/source/browse/examples/interceptor_demo/src/main/flex/view/InterceptorDemoMediator.as Browse] [http://fabrication.googlecode.com/svn/examples/interceptor_demo SVN]
-  # SimpleFsmMediator [http://code.google.com/p/fabrication/source/browse/examples/simple_fsm/src/view/SimpleFsmMediator.as Browse]] [[http://fabrication.googlecode.com/svn/examples/simple_fsm SVN]
+  # SimpleFsmMediator [http://code.google.com/p/fabrication/source/browse/examples/simple_fsm/src/view/SimpleFsmMediator.as Browse] [http://fabrication.googlecode.com/svn/examples/simple_fsm SVN]
