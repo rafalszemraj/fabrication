@@ -16,9 +16,10 @@
   -->
 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0">
-    <version>0.1</version>
+    <version>0.1.1</version>
     <url>http://code.szemraj.eu/fabrication/console/console.air</url>
     <description><![CDATA[
-	- created with Fabrication 0.7.4
+	- created with Fabrication 0.7.5.1
+	- updated message renderer style in Actions panel
  ]]></description>
 </update>
