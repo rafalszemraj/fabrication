@@ -25,7 +25,7 @@ be added to facade. You can define you own implementation or use framework [http
 </fabrication:DependenciesProvider>
 }}}
 
-_
+* Below approach is deprecated *:
 Then, before you can reference loginData array, you have to add provider to facade ( you can do it in command ):
 {{{
 override public function execute(notification:INotification):void
@@ -40,7 +40,18 @@ override public function execute(notification:INotification):void
             
 }
 }}}
-_
+
+* Use this one instead: *
+
+In your application ( module ) override dependencyProviders getter:
+{{{
+
+public function get dependencyProviders():Array 
+{
+       return super.dependencyProviders.concat ( [ LoginDataProvider ] );
+}
+}}}
+
 To use dependency element approach similar strategy as in fabrication actors IoC functionality:
 
 *LoginProxy.as*
