@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+=0.7.5.1=
+  * FabricationFacade.addDependencyProviders method has been removed. Please, use IFabrication.dependencyProviders getter to return array of providers classes or instances.
+  * fixed bug with logging data >40k through LocalConnection ( fabrication logging )
+  * if not specified directly FlexModule.fabricationLoggerEnabled will return inherited value from parent IFabrication object
+
 =0.7.5=
   * fixed issues with FabricationConsole ( errors on inspecting nested displayList components )
   * added [http://code.google.com/p/fabrication/wiki/CustomDependencies custom dependencies mechanism]
