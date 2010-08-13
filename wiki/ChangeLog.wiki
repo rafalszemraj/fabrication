@@ -4,8 +4,7 @@
 =0.7.5.1=
   * FabricationFacade.addDependencyProviders method has been removed. Please, use IFabrication.dependencyProviders getter to return array of providers classes or instances.
   * fixed bug with logging data >40k through LocalConnection ( fabrication logging )
-  * if not specified directly FlexModule.fabricationLoggerEnabled will return inherited value from parent IFabrication 
-object
+  * if not specified directly FlexModule.fabricationLoggerEnabled will return inherited value from parent IFabrication object
   * style update was also made for FabricationConsole ( v. 0.1.1 ).
 
 =0.7.5=
