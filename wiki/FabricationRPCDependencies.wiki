@@ -59,40 +59,50 @@ LoginMockService class extends [http://code.google.com/p/fabrication/source/brow
 
 == adding providers strategy ==
 
-In application start command we can decide which one of providers we want to use ( using conditional compilation etc. ):
+In application class we can decide which one of providers we want to use ( using conditional compilation etc. ):
 
-*ApplicationStartupCommand*
+*Application.mxml*
 {{{
-package controll {
-    import model.LoginProxy;
+<fabrication:FlexApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                             xmlns:s="library://ns.adobe.com/flex/spark"
+                             xmlns:fabrication="http://puremvc.org/utilities/fabrication/2010"
+                             xmlns:mx="library://ns.adobe.com/flex/mx"
 
-    import org.puremvc.as3.multicore.utilities.fabrication.patterns.command.SimpleFabricationCommand;
+        >
+    <fx:Script>
+        <![CDATA[
 
-    import org.puremvc.as3.multicore.interfaces.INotification;
+        import controller.ApplicationStartupCommand;
 
-    import services.MockServicesProvider;
-
-    import services.ServicesProvider;
-
-    import view.RPCExampleMediator;
-
-    public class ApplicationStartupCommand extends SimpleFabricationCommand {
-
-        override public function execute(notification:INotification):void
+        override public function getStartupCommand():Class
         {
-            super.execute(notification);
 
-            // add mock services dependencies
-            addDependenciesProvider( MockServicesProvider );
+            return ApplicationStartupCommand;
 
-            // add production services dependencies
-            //addDependenciesProvider( ServicesProvider );
-
-            registerProxy( new LoginProxy() );
-            registerMediator( new RPCExampleMediator( notification.getBody() as RPCExample ) );
         }
-    }
-}
+
+        override public function getClassByName(path:String):Class
+        {
+            return getDefinitionByName(path) as Class;
+        }
+
+        override public function get fabricationLoggerEnabled():Boolean
+        {
+            return true;
+        }
+
+        override public function get dependencyProviders():Array
+        {
+            return [ ProductionServicesProvider ]
+           // or return [ TestServicesProvider ]
+        }
+        
+        
+
+        
+		]]>
+	</fx:Script>
+</fabrication:FlexApplication>
 }}}
 
 == remote proxy ==
