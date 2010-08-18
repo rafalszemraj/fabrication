@@ -107,7 +107,7 @@ We can change metadata name argument to "MyAppProxy2" to have another instance i
 
 = Additional info =
 
-  * you can use the same mechanism for mediators injection ( [ InjectMediator ] metatag ).
+  * you can use the same mechanism for mediators injection ( `[` InjectMediator `]` metatag ).
   * By design, you can inject mediators and proxies into commands and mediators. Proxy can have injected only other proxies.
   * In commands all injected references are disposed when command execution is finished. In mediators all references are disposed on mediator remove. To clean same references in your proxy you have to use Proxy.dispose method.
 
