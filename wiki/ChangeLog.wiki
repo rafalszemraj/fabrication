@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+=0.7.5.2=
+  * added FabricationMediator.hasReaction method
+  * if developer overwrite FabricationMediator.listNotificationInterests method an warning in console will be raised about failing auto resolving notifications.
+  * if FabricationMediator.onRegister method will be overwritten without call to super.onRegister() method, warning will be raised in console.
+  * registrations of internal framework actors ( like FabricationDependencyPRoxy ) are no longer shown in console actions panel.
 =0.7.5.1=
   * FabricationFacade.addDependencyProviders method has been removed. Please, use IFabrication.dependencyProviders getter to return array of providers classes or instances.
   * fixed bug with logging data >40k through LocalConnection ( fabrication logging )
