@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fab:FlexApplication 
+<fab:FlexHaloApplication
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.components.*"
 	layout="vertical">
 	
 	<mx:Script>
 		<![CDATA[ 
-			import controller.TabNavigatorDemoStartupCommand;
-			
-			override public function getStartupCommand():Class {
-				return TabNavigatorDemoStartupCommand;
-			}
+        import controller.TabNavigatorDemoStartupCommand;
+
+        override public function getStartupCommand():Class
+        {
+            return TabNavigatorDemoStartupCommand;
+        }
+
+        override public function get fabricationLoggerEnabled():Boolean
+        {
+            return true;
+        }
+
+
 			
 		]]>
 	</mx:Script>
@@ -52,4 +60,4 @@
 
     </mx:Panel>
 	
-</fab:FlexApplication>
+</fab:FlexHaloApplication>

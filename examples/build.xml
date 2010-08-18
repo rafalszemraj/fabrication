@@ -27,7 +27,7 @@
     <target name="main">
         <antcall target="simple_undo"/>
         <antcall target="interceptor_demo"/>
-        <antcall target="resolver_tab_navigator_demo"/>
+        <antcall target="resolver_tab_navigator"/>
     </target>
 
     <target name="dependencies_provider">
@@ -46,8 +46,13 @@
         <compile.issue issue.dir="${basedir}/interceptor_demo" issue.main.class="InterceptorDemo.mxml"/>
     </target>
 
-    <target name="resolver_tab_navigator_demo">
-        <compile.issue issue.dir="${basedir}/resolver_tab_navigator_demo" issue.main.class="TabNavigatorDemo.mxml"/>
+    <target name="resolver_tab_navigator">
+        <compile.issue issue.dir="${basedir}/resolver_tab_navigator" issue.main.class="TabNavigatorDemo.mxml" src.dir="src/main/flex"/>
+    </target>
+
+    <target name="resolver_add_child">
+        <compile.issue issue.dir="${basedir}/resolver_add_child" issue.main.class="AddChildDemo.mxml" src.dir="src/main/flex" debug="true" moxie="_moxie"/>
+        <flex.run swf.file="${basedir}/resolver_add_child/bin/index.swf"/>
     </target>
 
     <target name="hello_flash_with_module_demo">
@@ -152,18 +157,22 @@
         <attribute name="issue.main.class"/>
         <attribute name="air" default="false"/>
         <attribute name="debug" default="false"/>
+        <attribute name="src.dir" default="src"/>
+        <attribute name="moxie" default=""/>
 
         <sequential>
             <mkdir dir="@{issue.dir}/bin"/>
-            <flex.compile air="@{air}" main.class="@{issue.dir}/src/@{issue.main.class}"
+            <flex.compile air="@{air}" main.class="@{issue.dir}/@{src.dir}/@{issue.main.class}"
                           output.swf="@{issue.dir}/bin/index.swf">
                 <args>
-                    <arg line="-sp+=@{issue.dir}/src"/>
+                    <arg line="-sp+=@{issue.dir}/@{src.dir}"/>
                     <!--<arg line="-sp+=${basedir}/fabrication_0.7/src"/>-->
                     <arg line="-debug=@{debug}"/>
                     <!--<arg line="-l+=${basedir}/fabrication_0.7/libs/puremvc"/>-->
-                    <arg line="-l+=${framework.basedir}/bin/fabrication_air.swc"/>
-                    <arg line="-l+=${framework.basedir}/bin/fabrication_rpc.swc"/>
+                    <arg line="-l+=${framework.basedir}/bin/fabrication_air@{moxie}.swc"/>
+                    <!--<arg line="-l+=${basedir}/fabrication-0.6-flex.swc"/>-->
+                    <!--<arg line="-l+=${framework.basedir}/libs/puremvc"/>-->
+                    <!--<arg line="-l+=${framework.basedir}/bin/fabrication_rpc.swc"/>-->
                     <arg line="-static-link-runtime-shared-libraries=false"/>
                 </args>
             </flex.compile>
