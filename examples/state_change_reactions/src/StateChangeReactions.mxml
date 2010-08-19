@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2010 Rafał Szemraj.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<fabrication:FlexApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                             xmlns:s="library://ns.adobe.com/flex/spark"
+                             xmlns:fabrication="http://puremvc.org/utilities/fabrication/2010"
+                             xmlns:mx="library://ns.adobe.com/flex/mx"
+
+        >
+    <fx:Script>
+        <![CDATA[
+
+        import controller.StateChangeReactionsStartupCommand;
+
+        override public function getStartupCommand():Class {
+
+            return StateChangeReactionsStartupCommand;
+
+        }
+
+        override public function getClassByName(path:String):Class {
+            return getDefinitionByName(path) as Class;
+        }
+        
+        override public function get fabricationLoggerEnabled():Boolean
+        {
+            return true;
+        }
+
+        
+		]]>
+	</fx:Script>
+
+    <fx:Declarations>
+        <s:Power id="easer"/>
+    </fx:Declarations>
+
+    <fabrication:states>
+        <s:State name="signin"/>
+        <s:State name="register"/>
+    </fabrication:states>
+
+    <s:VGroup id="mainGroup" horizontalCenter="0" verticalCenter="0">
+
+        <mx:Label text="Sign in:" fontWeight="bold" paddingLeft="12" fontSize="14" id="loginLabel" width="100%"/>
+
+        <mx:Form id="loginForm" width="100%" paddingTop="3" paddingBottom="3">
+            <mx:FormItem label="First name:" includeIn="register" id="firstNameItem" alpha="0.0">
+                <s:TextInput id="firstName" width="220"/>
+            </mx:FormItem>
+            <mx:FormItem label="Last name:" includeIn="register" id="lastNameItem" alpha="0.0">
+                <s:TextInput id="lastName" width="220"/>
+            </mx:FormItem>
+            <mx:FormItem label="Email:" id="emailItem">
+                <s:TextInput id="email" width="220"/>
+            </mx:FormItem>
+            <mx:FormItem label="Password:" id="passwordItem">
+                <s:TextInput id="password" displayAsPassword="true" width="220"/>
+            </mx:FormItem>
+            <mx:FormItem label="Confirm:" includeIn="register" id="confirmItem" alpha="0.0">
+                <s:TextInput id="passwordConfirmation" displayAsPassword="true" width="220"/>
+            </mx:FormItem>
+        </mx:Form>
+
+        <s:Group>
+            <s:layout>
+                <s:HorizontalLayout paddingLeft="100"/>
+            </s:layout>
+            <s:Button label="Sign in" label.register="Register" id="loginButton"
+                enabled="true"/>
+
+            <mx:LinkButton label="Need to register?" id="doRegistration"
+                 includeIn="signin"/>
+            <mx:LinkButton label="Return to signin" id="returnToSigning"
+                includeIn="register"/>
+        </s:Group>
+
+        <mx:CheckBox id="rememberMe" label="Remember me on this computer" paddingLeft="110"/>
+    </s:VGroup>
+
+    <fabrication:transitions>
+        <s:Transition toState="register">
+            <s:Sequence>
+
+                <s:Fade alphaFrom="0.0" alphaTo="1.0" duration="1000"
+                    targets="{[firstNameItem, lastNameItem, confirmItem]}"/>
+
+            </s:Sequence>
+        </s:Transition>
+     </fabrication:transitions>
+
+
+</fabrication:FlexApplication>

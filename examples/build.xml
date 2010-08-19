@@ -55,6 +55,11 @@
         <flex.run swf.file="${basedir}/resolver_add_child/bin/index.swf"/>
     </target>
 
+    <target name="state_change_reactions">
+        <compile.issue issue.dir="${basedir}/state_change_reactions" issue.main.class="StateChangeReactions.mxml" src.dir="src" debug="true" moxie=""/>
+        <flex.run swf.file="${basedir}/state_change_reactions/bin/index.swf"/>
+    </target>
+
     <target name="hello_flash_with_module_demo">
         <compile.issue issue.dir="${basedir}/hello_flash_with_module_demo" issue.main.class="HelloFlash.as"/>
         <flex.compile air="false" main.class="${basedir}/hello_flash_with_module_demo/src/module/NavModule.as"
