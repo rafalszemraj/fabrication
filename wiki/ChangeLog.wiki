@@ -1,6 +1,10 @@
 #summary Fabrication change history.
 
 ----
+=0.7.5.3=
+  * fixed deferred instantation ( FabricationMediator registrations ) for spark components ( NavigatorContent etc. ) ( see [http://fabrication.googlecode.com/svn/examples/resolve_tab_navigator_spark/bin/index.html example], [http://code.google.com/p/fabrication/source/browse/#svn/examples/resolve_tab_navigator_spark svn] )
+  * added auto reactions registrations on viewcomponent state change ( see [http://fabrication.googlecode.com/svn/examples/state_change_reactions/bin/index.html example], [http://code.google.com/p/fabrication/source/browse/#svn/examples/state_change_reactions svn] )
+
 =0.7.5.2=
   * added FabricationMediator.hasReaction method
   * if developer overwrite FabricationMediator.listNotificationInterests method an warning in console will be raised about failing auto resolving notifications.
