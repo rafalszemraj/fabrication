@@ -88,12 +88,12 @@ Injecting actors by type ( and it's name ) give you possibility to simple and qu
 package view {
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
 
-       [InjectProxy(name="MyAppProxy1"]
-       public var proxy:IProxy;
-
-	public class MyApplicationMediator extends FlexMediator {
+       	public class MyApplicationMediator extends FlexMediator {
 		
 		static public const NAME:String = "MyApplicationMediator";
+
+                [InjectProxy(name="MyAppProxy1"]
+                public var proxy:IProxy;
 		
 		public function MyApplicationMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
