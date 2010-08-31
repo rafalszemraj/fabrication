@@ -67,7 +67,7 @@ then, you can log messages using five levels ( wich then can be filtered in Log 
 }}}
 You can use *Log* class static methods for more convenient logging. To do so you have to remember to create global logger instance in first place ( logger instance without _name_ ):
 {{{
-  Log.getLogger().addChannel( FabricationChannel.getInstance() );
+  Log.getLogger().addChannel( FabricationLoggerChannel.getInstance() );
   Log.debug( "debug message" );
   Log.info( "debug message" );
   Log.warn( "debug message" );
