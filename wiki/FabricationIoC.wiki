@@ -65,12 +65,12 @@ Using new IoC mechanism you can do something like this:
 package view {
 	import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;		
 
-       [InjectProxy]
-       public var proxy:MyApplicationProxy;
-
-	public class MyApplicationMediator extends FlexMediator {
-		
+       	public class MyApplicationMediator extends FlexMediator {
+	
 		static public const NAME:String = "MyApplicationMediator";
+
+                [InjectProxy]
+                public var proxy:MyApplicationProxy;
 		
 		public function MyApplicationMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
