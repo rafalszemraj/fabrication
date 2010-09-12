@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+=0.7.5.4=
+  * added FabricationMEdiator.hasReaction method
+  * fixed issues with spark components and reflexive mediators registration
+  * added console warning when adding proxy with the same name as already existed one ( overwriting proxy )
+
 =0.7.5.3=
   * fixed deferred instantation ( FabricationMediator registrations ) for spark components ( NavigatorContent etc. ) ( see [http://fabrication.googlecode.com/svn/examples/resolve_tab_navigator_spark/bin/index.html example], [http://code.google.com/p/fabrication/source/browse/#svn/examples/resolve_tab_navigator_spark svn] )
   * added auto reactions registrations on viewcomponent state change ( see [http://fabrication.googlecode.com/svn/examples/state_change_reactions/bin/index.html example], [http://code.google.com/p/fabrication/source/browse/#svn/examples/state_change_reactions svn] )
