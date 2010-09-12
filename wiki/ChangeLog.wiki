@@ -2,7 +2,7 @@
 
 ----
 =0.7.5.4=
-  * added FabricationMEdiator.hasReaction method
+  * added FabricationMediator.hasReaction method
   * fixed issues with spark components and reflexive mediators registration
   * added console warning when adding proxy with the same name as already existed one ( overwriting proxy )
 
