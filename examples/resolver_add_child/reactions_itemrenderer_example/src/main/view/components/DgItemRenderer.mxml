@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                          xmlns:s="library://ns.adobe.com/flex/spark">
+
+    <s:CheckBox height="25"
+                horizontalCenter="0"
+                change="onChangeCheckBox(event)"
+                click="onClickCheckBox(event)"/>
+    <fx:Script>
+        <![CDATA[
+
+        import main.helpers.PersonVo;
+        import main.helpers.SelectedPersonEvent;
+
+        /***
+         * Create event with bubbles and dispatch it
+         * 
+         * @param Event event
+         */
+        private function onChangeCheckBox(event:Event):void
+        {
+            dispatchEvent(new Event("selectedChanged", true));
+        }
+
+        /***
+         * Create custom event with bubbles and dispatch it
+         * 
+         * @param MouseEvent event
+         */
+        private function onClickCheckBox(event:MouseEvent):void
+        {
+            var personVo:PersonVo = data as PersonVo;
+            var selectedEvent:SelectedPersonEvent = new SelectedPersonEvent(SelectedPersonEvent.SELECTED_PERSON, true, false, personVo);
+
+            dispatchEvent(selectedEvent);
+        }
+      
+        ]]>
+    </fx:Script>
+</s:MXDataGridItemRenderer>
