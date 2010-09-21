@@ -81,7 +81,7 @@ If you whant using reaction for subscribing "Change" event Checkbox control in i
 </s:MXDataGridItemRenderer>
 }}}
 
-  3. Use reaction in registered Mediator for "selectedChange" event.
+  3. Use reaction in registered Mediator for "selectedChanged" event.
 
 *Property for viewComponent in mediator*
 
