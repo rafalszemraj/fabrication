@@ -4,8 +4,15 @@
 <wiki:toc max_depth=="3" />
 
 ----
+==`[`NEW`]` Reactions in itemrenderers==
+Example of reactions in itemrenderers
+
+[http://fabrication.googlecode.com/svn/examples/reactions_itemrenderer_example/bin/index.html Demo]
+[http://code.google.com/p/fabrication/source/browse/examples/#reactions_itemrenderer_example/src View Source]
+[http://fabrication.googlecode.com/svn/examples/reactions_itemrenderer_example SVN]
+
 ==`[`NEW`]` Different strategies for reactions==
-Example of couple ways how to register reactions
+Example of different ways how to register reactions
 
 [http://fabrication.googlecode.com/svn/examples/reactions_example/bin/index.html Demo]
 [http://code.google.com/p/fabrication/source/browse/examples/#examples/reactions_example/src View Source]
