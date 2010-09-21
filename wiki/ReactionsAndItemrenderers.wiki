@@ -1,5 +1,5 @@
 #summary Example how to use reactions and itemrenderers.
-#labels Deprecated,Phase-Implementation
+#labels Featured
 
 
 =Introduction=
