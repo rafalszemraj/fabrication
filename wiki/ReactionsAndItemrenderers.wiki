@@ -102,3 +102,4 @@ public function reactToPersonsList$SelectedChanged(event:Event):void
 }}}
 
 =Examples=
+  # Reactions in itemrenderers: [http://fabrication.googlecode.com/svn/examples/reactions_itemrenderer_example/bin/index.html Demo] [http://code.google.com/p/fabrication/source/browse/#svn/examples/reactions_itemrenderer_example/ Source]
