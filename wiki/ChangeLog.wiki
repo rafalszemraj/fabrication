@@ -1,6 +1,8 @@
 #summary Fabrication change history.
 
 ----
+=0.7.5.5=
+  * fixed bug with parsing objects and circular references ( http://code.google.com/p/fabrication/issues/detail?id=18 )
 =0.7.5.4=
   * added FabricationMediator.hasReaction method
   * fixed issues with spark components and reflexive mediators registration
