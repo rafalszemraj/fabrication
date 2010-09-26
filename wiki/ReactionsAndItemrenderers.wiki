@@ -77,6 +77,7 @@ If you whant using reaction for subscribing "Change" event Checkbox control in i
         {
             dispatchEvent(new Event("selectedChanged", true));
         } 
+       ]]>
     </fx:Script>
 </s:MXDataGridItemRenderer>
 }}}
