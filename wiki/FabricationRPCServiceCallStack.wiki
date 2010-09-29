@@ -75,4 +75,4 @@ package model {
 }
 }}}
 
-In this example we're creating service call stack passing in constructor function wich will be called when are stack calls are completed. Second param tells how many calls we want to be executed at the time. When you create service call you have to pass method as a first argument ( *Remember that this method should return AsyncToken object* ), next params ( callFunction  arguments array, result and fault handlers ) are optional.
+In this example we're creating service call stack passing in constructor function wich will be called when are stack calls are completed. Second param tells how many calls we want to be executed at the time. When you create service call you have to pass method as a first argument ( *Remember that this method should return AsyncToken object* ), next params ( callFunction  arguments array, result and fault handlers ) are optional. You can treat call stack as a single call and add it to another stack!.
