@@ -1,4 +1,5 @@
 #summary Service call stack for chaining requests.
+#labels Featured
 
 = Introduction =
 
