@@ -1,5 +1,4 @@
 #summary Service call stack for chaining requests.
-#labels Deprecated
 
 = Introduction =
 
