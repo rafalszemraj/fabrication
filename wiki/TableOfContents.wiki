@@ -11,6 +11,7 @@
   * [FabricationIoC Fabrication IoC mechanism]
   * [CustomDependencies Custom IoC mechanism]
   * [FabricationRPCDependencies Fabrication RPC extension]
+  * [FabricationRPCServiceCallStack Fabrication RPC call stack]
   * [Interceptors Interceptors]
   * [FabricationConsole FabricationConsole]
   * [BuildingFabrication]
