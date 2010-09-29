@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+= 0.7.6 =
+  * fixed typos in method names ( executeServiceCall ) and javadocs
+  * added FabricationMediator.disposeView method
+  * added ServiceCallStack, [http://code.google.com/p/fabrication/wiki/FabricationRPCServiceCallStack FabricationRPCServiceCallStack]
+
 =0.7.5.5=
   * fixed bug with parsing objects and circular references ( http://code.google.com/p/fabrication/issues/detail?id=18 )
 =0.7.5.4=
