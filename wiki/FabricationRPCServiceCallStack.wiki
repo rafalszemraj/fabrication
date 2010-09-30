@@ -44,10 +44,12 @@ package model {
 
         private function get callStack():ServiceCallStack {
  
-            var callStack:ServiceCallStack = new ServiceCallStack( callStackComplete, 1 );
+            var cStack:ServiceCallStack = new ServiceCallStack( callStackComplete, 1 );
             var callOne:ServiceCall = new ServiceCall( someService.saveUser, [user], onSaveUserComplete );
             var callTwo:ServiceCall = new ServiceCall( someService.getUsers, null, onGetUsersComplete );
-            callStack.start();
+            cStack.addServiceCall( callOne );
+            cStack.addServiceCall( callTwo );
+            return cStack;
                 
         }
 
