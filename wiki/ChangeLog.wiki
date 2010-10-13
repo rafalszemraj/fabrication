@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+= 0.7.6.1 =
+  * ServiceProvider is now dynamic class
+  * added FabricationMediator.disposeReactions protected method
+  * fixed bug, when re-registering reactions does not remove old ones
+
 = 0.7.6 =
   * fixed typos in method names ( executeServiceCall ) and javadocs
   * added FabricationMediator.disposeView method
