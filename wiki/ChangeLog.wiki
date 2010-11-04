@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+= 0.7.6.2=
+  * introduced message filter ( lookup ) for FabricationConsole action window
+  * introduced timestamp column in FabricationConsole action window
+  * FabricationConsole 1.0
+
 = 0.7.6.1 =
   * ServiceProvider is now dynamic class
   * added FabricationMediator.disposeReactions protected method
