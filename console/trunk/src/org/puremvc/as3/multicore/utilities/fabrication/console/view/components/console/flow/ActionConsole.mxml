@@ -20,10 +20,12 @@
                        title="Actions" width="700" height="300" resizable="true"
                        xmlns:base="org.puremvc.as3.multicore.utilities.fabrication.console.view.components.base.*"
                        xmlns:console="org.puremvc.as3.multicore.utilities.fabrication.console.view.components.console.*">
-
+    <fx:Declarations>
+        <mx:DateFormatter id="timeStampFormatter" formatString="J:NN:SS.QQQ"/>
+    </fx:Declarations>
     <s:VGroup width="100%" height="100%" paddingLeft="5" paddingTop="5" paddingRight="5" paddingBottom="5">
-        <s:HGroup>
-            <mx:ComboBox change="eventHandler( event )" id="filter" useHandCursor="true" buttonMode="true" rowCount="9">
+        <s:HGroup width="100%">
+            <mx:ComboBox change="refreshData()" id="filter" useHandCursor="true" buttonMode="true" rowCount="9">
                 <mx:dataProvider>
 
                     <fx:Array>
@@ -31,7 +33,7 @@
                         <fx:String>{ActionType.FABRICATION_START}</fx:String>
                         <fx:String>{ActionType.COMMAND_REGISTERED}</fx:String>
                         <fx:String>{ActionType.INTERCEPTOR_REGISTERED}</fx:String>
-                        <fx:String>{ActionType.PROXY_REGISTERD}</fx:String>
+                        <fx:String>{ActionType.PROXY_REGISTERED}</fx:String>
                         <fx:String>{ActionType.MEDIATOR_REGISTERED}</fx:String>
                         <fx:String>{ActionType.NOTIFICATION_SENT}</fx:String>
                         <fx:String>{ActionType.NOTIFICATION_ROUTE}</fx:String>
@@ -43,14 +45,19 @@
                        id="clear" useHandCursor="true"
                        buttonMode="true" enabled="{actionsDataProvider.length > 0}"/>
             <base:MyCheckBox label="always in front" selected="false" id="afSwitch"/>
+            <base:MyCheckBox label="show timestamp" selected="true" id="timestampSwitch"/>
+            <mx:Label text="search:" styleName="bold" paddingTop="1"/>
+            <mx:TextInput width="100%" change="refreshData()" id="lookUp"/>
         </s:HGroup>
         <mx:DataGrid dataProvider="{actionsDataProvider}" headerStyleName="pixelBold" width="100%"
                      height="100%"
                      id="flowDataGrid" styleName="pixel" rowHeight="18" sortableColumns="false" draggableColumns="false"
                      resizableColumns="false">
             <mx:columns>
-                <!--<mx:DataGridColumn headerText="#" width="25" dataField="index" minWidth="20"-->
-                                   <!--itemRenderer="{new ClassFactory( DGItemRenderer )}"/>-->
+                <mx:DataGridColumn headerText="timestamp" width="85" minWidth="20"
+                                   labelFunction="timeStampLabelFunction"
+                                   itemRenderer="{new ClassFactory( DGItemRenderer )}"
+                                   visible="{timestampSwitch.selected}"/>
                 <mx:DataGridColumn headerText="message" dataField="message"
                                    itemRenderer="{new ClassFactory( HTMLLabel )}"/>
                 <mx:DataGridColumn headerText="info" width="35"
@@ -63,32 +70,54 @@
 
     <fx:Script><![CDATA[
         import mx.collections.ArrayCollection;
+        import mx.collections.Sort;
+        import mx.collections.SortField;
         import mx.controls.CheckBox;
 
-        import org.puremvc.as3.multicore.utilities.fabrication.logging.action.ActionType;
         import org.puremvc.as3.multicore.utilities.fabrication.console.view.components.base.HTMLLabel;
         import org.puremvc.as3.multicore.utilities.fabrication.console.view.components.base.ImageLinkRenderer;
         import org.puremvc.as3.multicore.utilities.fabrication.console.view.components.base.inspectdatagrid.itemrenderers.DGItemRenderer;
         import org.puremvc.as3.multicore.utilities.fabrication.logging.action.Action;
+        import org.puremvc.as3.multicore.utilities.fabrication.logging.action.ActionType;
 
         [Bindable]
         public var actionsDataProvider:ArrayCollection = new ArrayCollection();
 
 
-        private function eventHandler(event:Event):void
+        private function refreshData():void
         {
-
             var ac:ArrayCollection = actionsDataProvider;
             ac.filterFunction = filterContent;
+            var sort:Sort = new Sort();
+            sort.fields = [ new SortField('timestamp') ];
+            ac.sort = sort;
             ac.refresh();
 
         }
 
+        public function addAction(action:Action):void
+        {
+            actionsDataProvider.addItem(action);
+            refreshData();
+        }
+
         private function filterContent(item:Action):Boolean
         {
+            var acceptItem:Boolean = true;
+            acceptItem &&= ( item.type == "" + filter.selectedItem ) || filter.selectedIndex == 0;
+            if( lookUp.text.length )
+                acceptItem &&= item.message.toLowerCase().indexOf( lookUp.text.toLowerCase() ) > -1;
 
+            return acceptItem;
 
-            return ( item.type == "" + filter.selectedItem ) || filter.selectedIndex == 0;
+        }
+
+        private function timeStampLabelFunction(item:Object, column:DataGridColumn):String
+        {
+
+            var date:Date = new Date();
+            date.time = ( item as Action ).timestamp;
+            return  timeStampFormatter.format(date);
 
         }
 
@@ -96,7 +125,5 @@
         {
             return afSwitch;
         }
-
-
         ]]></fx:Script>
 </console:ConsoleWindow>
