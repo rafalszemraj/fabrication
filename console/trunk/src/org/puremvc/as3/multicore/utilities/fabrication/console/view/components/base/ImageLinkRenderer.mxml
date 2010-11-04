@@ -57,7 +57,7 @@
 
                 case ActionType.FABRICATION_START : iconClass = Icons.redInfoIconSmall; break;
                 case ActionType.MEDIATOR_REGISTERED : iconClass = Icons.blueInfoIconSmall; break;
-                case ActionType.PROXY_REGISTERD : iconClass = Icons.yellowInfoIconSmall; break;
+                case ActionType.PROXY_REGISTERED : iconClass = Icons.yellowInfoIconSmall; break;
                 case ActionType.NOTIFICATION_SENT : iconClass = Icons.greenInfoIconSmall; break;
                 case ActionType.NOTIFICATION_ROUTE : iconClass = Icons.seledineInfoIconSmall; break;
                 case ActionType.SERVICE_CALL : iconClass = Icons.redInfoIconSmall; break;

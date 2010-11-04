@@ -139,6 +139,28 @@ mx|TextArea .url {
 
 }
 
+mx|TextInput {
+
+    font-family: "RittswoodCube_7_8pt_st";
+    font-size: 8;
+    font-weight: normal;
+    font-anti-alias-type: normal;
+    font-grid-fit-type: subpixel;
+    focusAlpha:0;
+    paddingBottom: 4;
+
+}
+
+mx|Label.bold {
+
+    font-family: "RittswoodCubeBl_7_8pt_st";
+    font-size: 8;
+    font-weight: normal;
+    font-anti-alias-type: normal;
+    font-grid-fit-type: subpixel;
+
+}
+
 
 
 

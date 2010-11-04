@@ -53,7 +53,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.console.view.components.
         LOG_ACTION function processNotification(notification:INotification):void
         {
             var action:Action = notification.getBody() as Action;
-            flowConsole.actionsDataProvider.addItem(action);
+            flowConsole.addAction(action);
         }
 
         override public function set active(value:Boolean):void
