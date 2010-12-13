@@ -35,7 +35,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy {
 
         public function FabricationRemoteProxy(name:String = null, data:Object = null)
         {
-            super(name);
+            super(name, data );
         }
 
         /**
@@ -45,9 +45,11 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy {
          * @param faultHandler fault handler [ optional ]. If not provided defaultFaultHandler
          * will be used ( if defined )
          */
-        public function executeServiceCall(call:AsyncToken, resultHandler:Function, faultHandler:Function = null):void
+        public function executeServiceCall(call:AsyncToken, resultHandler:Function,
+                                           faultHandler:Function = null):AsyncToken
         {
             call.addResponder(new CallResponder( resultHandler, faultHandler || defaultFaultHandler ));
+            return call;
         }
 
         public function executeServiceCallStack( serviceCallStack:ServiceCallStack ):void {
