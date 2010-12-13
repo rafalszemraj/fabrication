@@ -42,9 +42,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.command {
 		 */   
         protected function commandComplete():void {
 
-            if( onComplete != null)
                 onComplete();
-
         }
 
     }
