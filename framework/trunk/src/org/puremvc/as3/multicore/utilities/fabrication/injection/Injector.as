@@ -144,10 +144,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
          * Function handler invoked when there is no element present with given name
          * @param fieldName name of element
          */
-        protected function onNoPatternElementAvaiable(fieldName:String):void
+        protected function onNoPatternElementAvaiable(fieldName:String, elementName:String ):void
         {
-
-            facade.logger.error("Cannot resolve injection element [ " + fieldName + " ] at [ " + getQualifiedClassName(context) + " ]");
+            if( elementName == null || elementName == "null")
+                facade.logger.error("Injection element name NOT specified for [ " + fieldName + " ] at [ " + getQualifiedClassName(context) + " ]");
+            else
+                facade.logger.error("Cannot resolve injection element [ " + fieldName + " ] at [ " + getQualifiedClassName(context) + " ]");
         }
 
         /**
@@ -184,7 +186,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
             // retrieve element name
             var elementName:String = getElementName(injectionField);
             if (elementName && !elementExist(elementName)) {
-                onNoPatternElementAvaiable(injectionField.fieldName);
+                onNoPatternElementAvaiable(injectionField.fieldName, elementName );
                 return null;
             }
             if (!elementName && injectionField.elementTypeIsInterface) {
@@ -199,7 +201,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
             if (patternElement && patternElement is elementClass)
                 context[ injectionField.fieldName ] = patternElement;
             else
-                onNoPatternElementAvaiable(elementName);
+                onNoPatternElementAvaiable(injectionField.fieldName, elementName );
             return injectionField.fieldName;
         }
 
