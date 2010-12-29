@@ -1,6 +1,10 @@
 #summary Fabrication change history.
 
 ----
+= 0.7.6.4 =
+  * fixed issue #30 ServicesProvider default property is now array of IEventDispatcher instances instead of AbstractService
+  * fixed issue #32 with missing injection mechanism in AbstractInterceptor
+
 = 0.7.6.3 =
   * fix for FabricationRemoteProxy ( data parameter was not passed through to super constructor )
   * FabricationRemoteProxy.executeServiceCall now returns AsyncToken instance.
