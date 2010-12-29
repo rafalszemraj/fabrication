@@ -65,7 +65,9 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.interceptor {
 		 * Abstract implementation of intercept to complete the interface.
 		 */
 		public function intercept():void {
-			
+
+            performInjections();
+
 		}
 
 		/**
