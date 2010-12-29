@@ -15,6 +15,8 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.injection {
+    import flash.events.IEventDispatcher;
+
     import mx.rpc.AbstractService;
 
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
@@ -39,7 +41,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
         override protected function getPatternElementForInjection(elementName:String, elementClass:Class):Object
         {
 
-            var service:AbstractService = super.getPatternElementForInjection( elementName, elementClass ) as AbstractService;
+            var service:IEventDispatcher = super.getPatternElementForInjection( elementName, elementClass ) as IEventDispatcher;
             if (service is FabricationMockService) {
                 ( service as FabricationMockService).performInjections(facade);
             }

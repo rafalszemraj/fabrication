@@ -15,6 +15,8 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.services {
+    import flash.events.IEventDispatcher;
+
     import mx.rpc.AbstractService;
 
     import org.puremvc.as3.multicore.utilities.fabrication.injection.provider.IDependencyProvider;
@@ -25,7 +27,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.services {
         private var _services:Array = [];
 
 
-        public function addService(service:AbstractService, serviceName:String):void
+        public function addService(service:IEventDispatcher, serviceName:String):void
         {
 
             if (!hasOwnProperty(serviceName)) {
@@ -65,7 +67,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.services {
         }
 
 
-        [ArrayElementType("mx.rpc.AbstractService")]
+        [ArrayElementType("flash.events.IEventDispatcher")]
         /**
          * Sets array of services
          */
