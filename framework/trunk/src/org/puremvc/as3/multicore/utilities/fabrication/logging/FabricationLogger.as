@@ -326,7 +326,13 @@ package org.puremvc.as3.multicore.utilities.fabrication.logging {
             }
 
             var ba:ByteArray = new ByteArray();
-            ba.writeObject(output);
+            try {
+                ba.writeObject(output);
+            }
+            catch( e:Error ) {
+
+                error( e.message );
+            }
             return ba.length > 40000 ? "object size exceeds 40K" : output;
 
 
