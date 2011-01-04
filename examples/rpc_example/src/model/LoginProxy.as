@@ -39,7 +39,7 @@ package model {
 
         public function getLogins():void {
 
-            excuteServiceCall( loginService.getLogins(), onLoginsComplete, onLoginsFault );
+            executeServiceCall( loginService.getLogins(), onLoginsComplete, onLoginsFault );
 
         }
 
