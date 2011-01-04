@@ -16,7 +16,7 @@
   -->
 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0">
-    <version>1.(0.8)</version>
+    <version>1.1</version>
     <url>http://code.szemraj.eu/fabrication/console/console.air</url>
     <description><![CDATA[
 - created with Fabrication 0.8 ( fixed reflections )<br>
