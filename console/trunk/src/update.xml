@@ -19,8 +19,6 @@
     <version>1.0</version>
     <url>http://code.szemraj.eu/fabrication/console/console.air</url>
     <description><![CDATA[
-- created with Fabrication 0.7.6.2<br>
-- added timestamp field
-- added lookup functionality for actions list
+- created with Fabrication 0.8 ( fixed reflections )<br>
  ]]></description>
 </update>
