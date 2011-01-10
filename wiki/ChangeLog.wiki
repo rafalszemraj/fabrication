@@ -2,7 +2,7 @@
 
 ----
 = 0.8.1 =
-   * fixed bug [http://code.google.com/p/fabrication/issues/detail?id=34]
+   * fixed bug issue #34
    * added swf file to each package to use it as RSL.
 
 = 0.8 =
