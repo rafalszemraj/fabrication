@@ -31,7 +31,12 @@
 	<!-- adt compiler -->
 	<condition property="air.adt" value="${flex.dir}/bin/adt.exe" else="${flex.dir}/bin/adt">
 		<os family="windows" />
-	</condition>	
+	</condition>
+
+    <!-- adt compiler -->
+	<condition property="flex.optimizer" value="${flex.dir}/bin/optimizer.exe" else="${flex.dir}/bin/optimizer">
+		<os family="windows" />
+	</condition>
 	
 	<!-- additional options to pass to the compilers -->
    <property name="flex.mxmlc.options" value="" />
