@@ -43,6 +43,9 @@
                else="${flex.home}/runtimes/player/10/mac/Flash\ Player.app">
         <os family="windows"/>
     </condition>
+    <condition property="flex.optimizer" value="${flex.home}/bin/optimizer.exe" else="${flex.home}/bin/optimizer">
+		<os family="windows" />
+	</condition>
 
 
     <!-- ================================================================================================================================
@@ -176,11 +179,32 @@
                 <arg line="-include-classes @{classes.list}"/>
                 <arg line="-load-config fabrication-config.xml"/>
                 <namespace/>
-                <arg line="-output ${bin.dir}/@{swc.name}"/>
+                <arg line="-output ${bin.dir}/@{swc.name}.swc"/>
                 <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
                 <arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>
 
             </exec>
+
+            <unzip src="${bin.dir}/@{swc.name}.swc" dest="${bin.dir}/rsl/@{swc.name}"/>
+
+            <!--<exec executable="${compiler}" failonerror="true" failifexecutionfails="true">-->
+
+                <!--<arg line="+flex.home=${flex.home}"/>-->
+                <!--<arg line="-include-classes @{classes.list}"/>-->
+                <!--<arg line="-load-config fabrication-config.xml"/>-->
+                <!--<namespace/>-->
+                <!--<arg line="-output ${bin.dir}/rsl/@{swc.name}"/>-->
+                <!--<arg line="-directory=true"/>-->
+                <!--<arg line="-define+=FLEX4::supported,@{flex4.supported}"/>-->
+
+            <!--</exec>-->
+
+            <!--<exec executable="${flex.optimizer}" failonerror="true" failifexecutionfails="true">-->
+                <!--<arg line="-keep-as3-metadata Inject InjectProxy InjectMediator InjectService"/>-->
+                <!--<arg line="-input ${bin.dir}/rsl/@{swc.name}/library.swf"/>-->
+                <!--<arg line="-output ${bin.dir}/rsl/@{swc.name}/library.swf"/>-->
+            <!--</exec>-->
+
         </sequential>
     </macrodef>
 

@@ -29,6 +29,8 @@
         <delete dir="${dist.dir}"/>
         <mkdir dir="${dist.dir}"/>
 
+        <mkdir dir="${bin.dir}/rsl"/>
+
 
         <pathconvert pathsep=" " property="all" dirsep=".">
             <fileset dir="${src.dir}"/>
@@ -85,14 +87,14 @@
             </chainedmapper>
         </pathconvert>
 
-        <compile.fabrication.library air="true" swc.name="fabrication_air.swc" classes.list="${all}">
+        <compile.fabrication.library air="true" swc.name="fabrication_air" classes.list="${all}">
             <namespace>
                 <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-air-manifest.xml"/>
                 <arg line="-include-namespaces ${fabrication.namespace}"/>
             </namespace>
         </compile.fabrication.library>
 
-        <compile.fabrication.library air="true" swc.name="fabrication_air_moxie.swc" classes.list="${all_moxie}"
+        <compile.fabrication.library air="true" swc.name="fabrication_air_moxie" classes.list="${all_moxie}"
                                      flex4.supported="false">
             <namespace>
                 <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-air-moxie-manifest.xml"/>
@@ -101,7 +103,7 @@
         </compile.fabrication.library>
 
 
-        <compile.fabrication.library air="false" swc.name="fabrication_flex.swc" classes.list="${no_air}">
+        <compile.fabrication.library air="false" swc.name="fabrication_flex" classes.list="${no_air}">
 
             <namespace>
                 <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-flex-manifest.xml"/>
@@ -109,7 +111,7 @@
             </namespace>
         </compile.fabrication.library>
 
-        <compile.fabrication.library air="false" swc.name="fabrication_flex_moxie.swc"
+        <compile.fabrication.library air="false" swc.name="fabrication_flex_moxie"
                                      classes.list="${no_air_moxie}" flex4.supported="false">
             <namespace>
                 <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-flex-moxie-manifest.xml"/>
@@ -118,7 +120,7 @@
         </compile.fabrication.library>
 
 
-        <compile.fabrication.library air="false" swc.name="fabrication_as3.swc" classes.list="${no_air_flex}"/>
+        <compile.fabrication.library air="false" swc.name="fabrication_as3" classes.list="${no_air_flex}"/>
 
         <!-- add-ons -->
 
@@ -148,6 +150,14 @@
             <arg line="-link-report=${bin.dir}/fabrication_rpc.swc.xml"/>
 
         </exec>
+
+        <unzip src="${bin.dir}/fabrication_rpc.swc" dest="${bin.dir}/rsl/fabrication_rpc"/>
+
+        <!--<exec executable="${flex.optimizer}" failonerror="true" failifexecutionfails="true">-->
+            <!--<arg line="-keep-as3-metadata Inject InjectProxy InjectMediator InjectService"/>-->
+            <!--<arg line="-input ${bin.dir}/rsl/fabrication_rpc/library.swf"/>-->
+            <!--<arg line="-output ${bin.dir}/rsl/fabrication_rpc/library.swf"/>-->
+        <!--</exec>-->
 
 
     </target>
@@ -225,27 +235,87 @@
     <target name="prepare.distribution.package" description="prepares distribution package">
 
         <mkdir dir="${dist.dir}"/>
+
         <copy file="${bin.dir}/fabrication_air.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-air.swc"
               overwrite="true"/>
+        <copy file="${bin.dir}/rsl/fabrication_air/library.swf"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-air.swf"
+              overwrite="true"/>
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-air.zip">
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-${fabrication.version}-air.swc"/>
+                <include name="fabrication-${fabrication.version}-air.swf"/>
+            </fileset>
+        </zip>
+
         <copy file="${bin.dir}/fabrication_air_moxie.swc"
               tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swc"
               overwrite="true"/>
+        <copy file="${bin.dir}/rsl/fabrication_air_moxie/library.swf"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swf"
+              overwrite="true"/>
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.zip">
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-${fabrication.version}-air-moxie.swc"/>
+                <include name="fabrication-${fabrication.version}-air-moxie.swf"/>
+            </fileset>
+        </zip>
+
         <copy file="${bin.dir}/fabrication_flex.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-flex.swc"
               overwrite="true"/>
+        <copy file="${bin.dir}/rsl/fabrication_flex/library.swf"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-flex.swf"
+              overwrite="true"/>
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-flex.zip">
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-${fabrication.version}-flex.swc"/>
+                <include name="fabrication-${fabrication.version}-flex.swf"/>
+            </fileset>
+        </zip>
+
         <copy file="${bin.dir}/fabrication_flex_moxie.swc"
               tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swc"
               overwrite="true"/>
+        <copy file="${bin.dir}/rsl/fabrication_flex_moxie/library.swf"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swf"
+              overwrite="true"/>
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.zip">
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-${fabrication.version}-flex-moxie.swc"/>
+                <include name="fabrication-${fabrication.version}-flex-moxie.swf"/>
+            </fileset>
+        </zip>
+
         <copy file="${bin.dir}/fabrication_as3.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-as3.swc"
               overwrite="true"/>
+        <copy file="${bin.dir}/rsl/fabrication_as3/library.swf"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-as3.swf"
+              overwrite="true"/>
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-as3.zip">
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-${fabrication.version}-as3.swc"/>
+                <include name="fabrication-${fabrication.version}-as3.swf"/>
+            </fileset>
+        </zip>
+
         <copy file="${bin.dir}/fabrication_rpc.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-rpc.swc"
               overwrite="true"/>
+        <copy file="${bin.dir}/rsl/fabrication_rpc/library.swf"
+              tofile="${dist.dir}/fabrication-${fabrication.version}-rpc.swf"
+              overwrite="true"/>
+        <zip destfile="${dist.dir}/fabrication-${fabrication.version}-rpc.zip">
+            <fileset dir="${dist.dir}">
+                <include name="fabrication-${fabrication.version}-rpc.swc"/>
+                <include name="fabrication-${fabrication.version}-rpc.swf"/>
+            </fileset>
+        </zip>
+
 
         <zip destfile="${dist.dir}/fabrication-${fabrication.version}-src.zip">
             <fileset dir="${basedir}">
                 <include name="src/**"/>
                 <include name="src_rpc/**"/>
                 <include name="tests/**"/>
-                <include name="bin/**"/>
                 <include name="libs/**"/>
                 <include name="etc/**"/>
                 <include name="*.xml"/>
@@ -311,14 +381,26 @@
 
     </target>
 
+    <target name="xxx">
+        <ftp server="${blog.ftp.server}"
+             userid="${blog.ftp.user}" password="${blog.ftp.password}"
+             action="put"
+             remotedir="${blog.ftp.remotedir}/rsl" newer="true">
+            <fileset dir="${dist.dir}">
+                <include name="**.swf"/>
+            </fileset>
+        </ftp>
+
+    </target>
+
     <target name="google.code.upload">
 
         <gcupload
                 username="${googlecode.user}"
                 password="${googlecode.pass}"
                 projectname="fabrication"
-                filename="${dist.dir}/fabrication-${fabrication.version}-air.swc"
-                targetfilename="fabrication-${fabrication.version}-air.swc"
+                filename="${dist.dir}/fabrication-${fabrication.version}-air.zip"
+                targetfilename="fabrication-${fabrication.version}-air.zip"
                 summary="Fabrication ${fabrication.version} library for AIR"
                 labels="Featured, Type-Package, OpSys-All"/>
 
@@ -326,8 +408,8 @@
                 username="${googlecode.user}"
                 password="${googlecode.pass}"
                 projectname="fabrication"
-                filename="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swc"
-                targetfilename="fabrication-${fabrication.version}-air-moxie.swc"
+                filename="${dist.dir}/fabrication-${fabrication.version}-air-moxie.zip"
+                targetfilename="fabrication-${fabrication.version}-air-moxie.zip"
                 summary="Fabrication ${fabrication.version} library for AIR ( flex3 only )"
                 labels="Featured, Type-Package, OpSys-All"/>
 
@@ -335,8 +417,8 @@
                 username="${googlecode.user}"
                 password="${googlecode.pass}"
                 projectname="fabrication"
-                filename="${dist.dir}/fabrication-${fabrication.version}-flex.swc"
-                targetfilename="fabrication-${fabrication.version}-flex.swc"
+                filename="${dist.dir}/fabrication-${fabrication.version}-flex.zip"
+                targetfilename="fabrication-${fabrication.version}-flex.zip"
                 summary="Fabrication ${fabrication.version} library for Flex"
                 labels="Featured, Type-Package, OpSys-All"/>
 
@@ -344,8 +426,8 @@
                 username="${googlecode.user}"
                 password="${googlecode.pass}"
                 projectname="fabrication"
-                filename="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swc"
-                targetfilename="fabrication-${fabrication.version}-flex-moxie.swc"
+                filename="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.zip"
+                targetfilename="fabrication-${fabrication.version}-flex-moxie.zip"
                 summary="Fabrication ${fabrication.version} library for Flex ( flex3 only )"
                 labels="Featured, Type-Package, OpSys-All"/>
 
@@ -353,8 +435,8 @@
                 username="${googlecode.user}"
                 password="${googlecode.pass}"
                 projectname="fabrication"
-                filename="${dist.dir}/fabrication-${fabrication.version}-as3.swc"
-                targetfilename="fabrication-${fabrication.version}-as3.swc"
+                filename="${dist.dir}/fabrication-${fabrication.version}-as3.zip"
+                targetfilename="fabrication-${fabrication.version}-as3.zip"
                 summary="Fabrication ${fabrication.version} library for Flash ( pure as3 )"
                 labels="Featured, Type-Package, OpSys-All"/>
 
@@ -370,8 +452,8 @@
                 username="${googlecode.user}"
                 password="${googlecode.pass}"
                 projectname="fabrication"
-                filename="${dist.dir}/fabrication-${fabrication.version}-rpc.swc"
-                targetfilename="fabrication-${fabrication.version}-rpc.swc"
+                filename="${dist.dir}/fabrication-${fabrication.version}-rpc.zip"
+                targetfilename="fabrication-${fabrication.version}-rpc.zip"
                 summary="Fabrication ${fabrication.version} RPC extension"
                 labels="Featured, Type-Package, OpSys-All"/>
 
