@@ -1,6 +1,13 @@
 #summary Fabrication change history.
 
 ----
+= 0.8.1 =
+   * fixed bug [http://code.google.com/p/fabrication/issues/detail?id=34]
+   * added swf file to each package to use it as RSL.
+
+= 0.8 =
+  * fixed bug with double mediator/view component instantation. Whole project recompiled using as3commons reflection library v. 1.3.3.1
+
 = 0.7.6.4 =
   * fixed issue #30 ServicesProvider default property is now array of IEventDispatcher instances instead of AbstractService
   * fixed issue #32 with missing injection mechanism in AbstractInterceptor
