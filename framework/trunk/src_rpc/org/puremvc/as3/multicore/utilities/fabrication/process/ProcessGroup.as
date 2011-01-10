@@ -182,7 +182,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.process {
                         g.destroyProcesses(true);
                     }
                     else
-                        p.dispose()();
+                        p.dispose();
                 }
             }
             else
