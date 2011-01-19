@@ -21,9 +21,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.logging {
     import flash.net.LocalConnection;
     import flash.net.registerClassAlias;
     import flash.utils.ByteArray;
+    import flash.utils.describeType;
     import flash.utils.getQualifiedClassName;
-
-    import flash.utils.getTimer;
 
     import org.as3commons.reflect.Type;
     import org.puremvc.as3.multicore.interfaces.IMediator;
@@ -217,7 +216,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.logging {
         }
 
 
-
         /**
          * Logs fabrication framework error
          * @param message error message to log
@@ -246,7 +244,16 @@ package org.puremvc.as3.multicore.utilities.fabrication.logging {
         {
             action.index = ++_flowActionsCounter;
             action.timestamp = new Date().time;
-            _lc.send(LOGGER_ID, "logAction", action);
+            try {
+
+                _lc.send(LOGGER_ID, "logAction", action);
+
+            }
+            catch(e:Error) {
+
+                error(e.getStackTrace());
+
+            }
 
         }
 
@@ -280,61 +287,66 @@ package org.puremvc.as3.multicore.utilities.fabrication.logging {
 
         private function parseObject(input:*):Object
         {
+
+            var output:Object = {};
             if (null == input) return null;
+            else
+            if (input is DisplayObject) {
 
-            var ob:Object;
-            var output:Object = [];
-            if (input is Array) {
-
-                var inputArray:Array = input as Array;
-                var l:uint = inputArray.length;
-                for (var i:int = 0; i < l; ++i) {
-
-                    inputArray[ i ] = parseObject(inputArray[ i ]);
-
-                }
-                output = inputArray;
-
-            }
-
-            else if (input is DisplayObject) {
-
-                ob = {};
                 var inputDisplayObject:DisplayObject = input as DisplayObject;
-                ob["name"] = "" + inputDisplayObject.name;
-                ob["class"] = Type.forInstance(inputDisplayObject).name;
-                output = ob;
+                output["name"] = "" + inputDisplayObject.name;
+                output["class"] = Type.forInstance(inputDisplayObject).name;
 
             }
-
             else {
+                var description:XMLList = describeType(input)..variable;
+                var value:*;
+                for each(var prop:XML in description) {
 
-                for (var elementName:String in input) {
+                    value = input[prop.@name];
+                    if (isSimple(value)) {
 
-                    ob = input[elementName];
-                    if (ob == input)
-                        continue;
-                    for (var elementName2:String in ob) {
+                        if( value is Array ) {
 
-                        if (ob[elementName2] == input)
-                            continue;
+                            var valArray:Array = value as Array;
+                            var arr:Array = [];
+                            for( var i:int = 0; i<valArray.length; ++i )
+                                arr.push( parseObject( valArray[i] ) )
+
+                            output[prop.@name] = arr;
+                        }
+                        else
+                            output[prop.@name] = value;
+
+
                     }
-                    output[elementName] = parseObject(input[elementName])
+                    else
+                        output[prop.@name] = parseObject(value);
 
                 }
-                output = input;
             }
 
-            var ba:ByteArray = new ByteArray();
-            try {
-                ba.writeObject(output);
-            }
-            catch( e:Error ) {
+//            var ba:ByteArray = new ByteArray();
+//            ba.writeObject(output);
+//            return ba.length > 40000 ? "object size exceeds 40K" : output;
+            return output;
 
-                error( e.message );
-            }
-            return ba.length > 40000 ? "object size exceeds 40K" : output;
 
+        }
+
+        private function isSimple(obj:Object):Boolean
+        {
+
+            switch (typeof(obj)) {
+                case "number":
+                case "string":
+                case "boolean":
+                    return true;
+                case "object":
+                    return (obj is Date) || (obj is Array);
+            }
+
+            return false;
 
         }
 
