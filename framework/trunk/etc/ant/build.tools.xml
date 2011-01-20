@@ -173,19 +173,39 @@
                 </else>
             </if>
 
+            <mkdir dir="${bin.dir}/@{swc.name}"/>
+            <mkdir dir="${bin.dir}/@{swc.name}/rsl"/>
+
             <exec executable="${compiler}" failonerror="true" failifexecutionfails="true">
 
                 <arg line="+flex.home=${flex.home}"/>
                 <arg line="-include-classes @{classes.list}"/>
                 <arg line="-load-config fabrication-config.xml"/>
                 <namespace/>
-                <arg line="-output ${bin.dir}/@{swc.name}.swc"/>
+                <arg line="-output ${bin.dir}/@{swc.name}/@{swc.name}.swc"/>
                 <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
-                <arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>
+                <!--<arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>-->
 
             </exec>
 
-            <unzip src="${bin.dir}/@{swc.name}.swc" dest="${bin.dir}/rsl/@{swc.name}"/>
+
+            <exec executable="${compiler}" failonerror="true" failifexecutionfails="true">
+
+                <arg line="+flex.home=${flex.home}"/>
+                <arg line="-include-classes @{classes.list}"/>
+                <arg line="-load-config fabrication-config.xml"/>
+                <namespace/>
+                <arg line="-output ${bin.dir}/@{swc.name}/rsl/@{swc.name}.swc"/>
+                <arg line="-debug=false"/>
+                <arg line="-optimize=true"/>
+                <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
+                <!--<arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>-->
+
+            </exec>
+
+            <unzip src="${bin.dir}/@{swc.name}/rsl/@{swc.name}.swc" dest="${bin.dir}/@{swc.name}/rsl"/>
+            <move file="${bin.dir}/@{swc.name}/rsl/library.swf" tofile="${bin.dir}/@{swc.name}/rsl/@{swc.name}.swf"/>
+            <delete file="${bin.dir}/@{swc.name}/rsl/catalog.xml"/>
 
             <!--<exec executable="${compiler}" failonerror="true" failifexecutionfails="true">-->
 
@@ -206,6 +226,19 @@
             <!--</exec>-->
 
         </sequential>
+    </macrodef>
+
+    <macrodef name="dist">
+        <attribute name="dist.name"/>
+        <attribute name="dist.version"/>
+
+        <sequential>
+            <zip destfile="${dist.dir}/fabrication-@{dist.version}-@{dist.name}.zip">
+                <fileset dir="${bin.dir}/fabrication-@{dist.name}"/>
+            </zip>
+        </sequential>
+
+
     </macrodef>
 
 
