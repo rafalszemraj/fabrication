@@ -36,7 +36,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.services {
      * You can define call duration and result object when creting
      * @author Rafał Szemraj
      */
-    public class FabricationMockService extends AbstractService implements IDisposable {
+    public class FabricationMockService extends AbstractService implements IFabricationService, IDisposable {
 
 
         public var showBusyCursor:Boolean = true;

@@ -17,15 +17,18 @@
 package org.puremvc.as3.multicore.utilities.fabrication.services {
     import flash.events.IEventDispatcher;
 
-    import mx.rpc.AbstractService;
-
     import org.puremvc.as3.multicore.utilities.fabrication.injection.provider.IDependencyProvider;
 
     [DefaultProperty("services")]
-    dynamic public class ServicesProvider implements IDependencyProvider {
+    dynamic public class FabricationServicesProvider implements IDependencyProvider {
 
         private var _services:Array = [];
 
+
+        public function FabricationServicesProvider()
+        {
+            initializeDependencyProvider();
+        }
 
         public function addService(service:IEventDispatcher, serviceName:String):void
         {
@@ -74,6 +77,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.services {
         public function set services(value:Array):void
         {
             _services = value;
+        }
+
+        protected function initializeDependencyProvider():void
+        {
         }
     }
 }

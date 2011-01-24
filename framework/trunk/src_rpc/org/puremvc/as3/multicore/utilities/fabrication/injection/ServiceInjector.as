@@ -17,10 +17,9 @@
 package org.puremvc.as3.multicore.utilities.fabrication.injection {
     import flash.events.IEventDispatcher;
 
-    import mx.rpc.AbstractService;
 
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
-    import org.puremvc.as3.multicore.utilities.fabrication.services.FabricationMockService;
+    import org.puremvc.as3.multicore.utilities.fabrication.services.IFabricationService;
 
     /**
      * DependencyInjector for RPC services
@@ -42,8 +41,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
         {
 
             var service:IEventDispatcher = super.getPatternElementForInjection( elementName, elementClass ) as IEventDispatcher;
-            if (service is FabricationMockService) {
-                ( service as FabricationMockService).performInjections(facade);
+            if (service is IFabricationService ) {
+                ( service as IFabricationService).performInjections(facade);
             }
             return service;
         }
