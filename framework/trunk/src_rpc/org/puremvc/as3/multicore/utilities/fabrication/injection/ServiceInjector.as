@@ -19,7 +19,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
 
 
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
-    import org.puremvc.as3.multicore.utilities.fabrication.services.IFabricationService;
+    import org.puremvc.as3.multicore.utilities.fabrication.services.FabricationService;
 
     /**
      * DependencyInjector for RPC services
@@ -41,8 +41,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection {
         {
 
             var service:IEventDispatcher = super.getPatternElementForInjection( elementName, elementClass ) as IEventDispatcher;
-            if (service is IFabricationService ) {
-                ( service as IFabricationService).performInjections(facade);
+            if (service is FabricationService ) {
+                ( service as FabricationService).performInjections(facade);
             }
             return service;
         }
