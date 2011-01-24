@@ -28,6 +28,13 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection.provider {
         private var _dependencies:Array = [];
         private var _dependenciesDict:Dictionary = new Dictionary( true );
 
+
+        public function DependencyProvider()
+        {
+            initializeDependencyProvider();
+        }
+
+
         /**
          * adds any dependency object for further use
          * @param dependency dependency object
@@ -67,6 +74,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.injection.provider {
                 return this[ name ];
             }
             return null;
+        }
+
+        protected function initializeDependencyProvider():void
+        {
         }
 
         protected function get dependencies():Array
