@@ -1,6 +1,12 @@
 #summary Fabrication change history.
 
 ----
+= 0.8.3 =
+  * cosmetic changes:
+     - ServicesProvider => FabricationServicesProvider
+     - FabricationMockService => FabricationService
+  * FabricationDependencyProvider and FabricationServicesProvider have initializeDependencyProvider()    protected method which is called in constructor. You can use it for ex. to registering class aliases.
+
 = 0.8.2 =
   * fixed bug with error parsing class instances to generic object ( FabricationLogger )
   * each package contains swc file for production and rsl directory ( swc + swf ) for release purposes.
