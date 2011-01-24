@@ -140,7 +140,7 @@
         <exec executable="${flex.compc}" failonerror="true" failifexecutionfails="true">
 
             <arg line="+flex.home=${flex.home}"/>
-            <arg line="-include-classes ${fabrication_rpc} org.puremvc.as3.multicore.utilities.fabrication.services.FabricationMockService"/>
+            <arg line="-include-classes ${fabrication_rpc} org.puremvc.as3.multicore.utilities.fabrication.services.FabricationService"/>
             <arg line="-load-config fabrication-config.xml"/>
             <arg line="-source-path+=${basedir}/src_rpc"/>
             <arg line="-external-library-path+=${bin.dir}/fabrication-air"/>
@@ -155,7 +155,7 @@
         <exec executable="${flex.compc}" failonerror="true" failifexecutionfails="true">
 
             <arg line="+flex.home=${flex.home}"/>
-            <arg line="-include-classes ${fabrication_rpc} org.puremvc.as3.multicore.utilities.fabrication.services.FabricationMockService"/>
+            <arg line="-include-classes ${fabrication_rpc} org.puremvc.as3.multicore.utilities.fabrication.services.FabricationService"/>
             <arg line="-load-config fabrication-config.xml"/>
             <arg line="-source-path+=${basedir}/src_rpc"/>
             <arg line="-external-library-path+=${bin.dir}/fabrication-air"/>
