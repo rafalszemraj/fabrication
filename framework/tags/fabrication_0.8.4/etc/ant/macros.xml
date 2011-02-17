@@ -1,0 +1,1303 @@
+<?xml version="1.0"?>
+<project name="fabrication.common.macros">
+	
+ 	<!-- used internally by macros to create local variables -->
+	<var name="macro.counter" value="0" />
+	
+	<!-- internal local variable name prefix -->
+	<var name="macro.var" value="macro.var" />
+	
+	<!-- increments the macro counter -->
+	<macrodef name="increment-counter">
+		<sequential>
+			<math result="macro.counter" operand1="${macro.counter}" operand2="1" operation="+" datatype="int"/>
+		</sequential>
+	</macrodef>
+	
+	<!-- creates a variable with a counter based unique value -->
+	<macrodef name="var-unique">
+		<attribute name="variable" />
+		<sequential>
+			<var name="@{variable}" unset="yes" />
+			<increment-counter />
+			<var name="@{variable}" value="${macro.var}.${macro.counter}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- var with location property -->
+	<macrodef name="var-loc">
+		<attribute name="name" />
+		<attribute name="location" />
+		<sequential>
+			<property name="@{name}" location="@{location}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- expands the nested property and copies it into a variable  -->
+	<macrodef name="expand-prop">
+		<attribute name="property" />
+		<attribute name="variable" />
+		<attribute name="value" />
+		<sequential>
+			<property name="@{variable}" value="${@{value}}" />
+			<var name="@{property}" value="${@{variable}}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- expands the nested location property and copies it into a variable -->
+	<macrodef name="expand-loc">
+		<attribute name="property" />
+		<attribute name="variable" />
+		<attribute name="location" />
+		<sequential>
+			<property name="@{variable}" location="${@{location}}" />
+			<var name="@{property}" value="${@{variable}}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- dirname task that puts the value into a varible --> 
+	<macrodef name="var-dirname">
+		<attribute name="file" />
+		<attribute name="variable" />
+		
+		<sequential>
+			<increment-counter />
+			<dirname property="${macro.var}.${macro.counter}" file="@{file}" />
+			<expand-loc property="@{variable}" variable="${macro.var}.${macro.counter}" location="${macro.var}.${macro.counter}"/>
+		</sequential>
+	</macrodef>
+	
+	<!-- basename task that puts the value into a variable -->
+	<macrodef name="var-basename">
+		<attribute name="file" />
+		<attribute name="variable" />
+		<attribute name="suffix" default=" "/> 
+		
+		<sequential>
+			<increment-counter />
+			<basename property="${macro.var}.${macro.counter}" file="@{file}" suffix="@{suffix}" />
+			<expand-loc property="@{variable}" variable="${macro.var}.${macro.counter}" location="${macro.var}.${macro.counter}"/>
+		</sequential>
+	</macrodef>	
+	
+	<!-- pathconvert task that puts the value into a variable -->
+	<macrodef name="var-pathconvert">
+		<attribute name="refid" />
+		<attribute name="variable" />
+		<attribute name="pathsep" default="${path.separator}"/>
+		
+		<sequential>
+			<increment-counter />
+			<pathconvert property="${macro.var}.${macro.counter}" refid="@{refid}" pathsep="@{pathsep}"/>
+			<expand-prop property="@{variable}" variable="${macro.var}.${macro.counter}" value="${macro.var}.${macro.counter}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- prepares source and library folders prior to a compile -->
+	<macrodef name="prepare-source-paths">
+		<sequential>
+			<!-- creates the common source and swc directories if not present -->
+			<mkdir dir="${src.common.dir}" />
+			<mkdir dir="${swc.common.dir}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- unsets boolean properties that were specified as false -->
+	<macrodef name="unset-if-false">
+		<attribute name="property" />
+		<sequential>
+			<if>
+				<and>
+					<isset property="@{property}" />
+					<or>
+						<equals arg1="${@{property}}" arg2="no" />
+						<equals arg1="${@{property}}" arg2="false" />
+					</or>
+				</and>
+				<then>
+					<var name="@{property}" unset="yes" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<!-- Compiles a Flex or AS3 application with mxmlc -->
+	<macrodef name="flex-app">
+		<attribute name="mainclass" />
+		<attribute name="output" />
+		
+		<attribute name="width" default="800" />
+		<attribute name="height" default="600" />
+		<attribute name="background-color" default="#869CA7" />
+		
+		<attribute name="options" default="${flex.mxmlc.options}" />
+		<attribute name="config" default="${flex.config}" />
+		<attribute name="debug" default="${debug}" />
+		<attribute name="artifact" default="main" />
+		<attribute name="runtime" default="player" />
+		
+		<sequential>
+			<prepare-source-paths />
+			
+			<var name="artifact.src.dir" unset="yes" />
+			<var name="artifact.src.dir.value" unset="yes" />
+			<var name="artifact.src" unset="yes" />
+			<var name="artifact.src.value" unset="yes" />
+			<var name="artifact.swc" unset="yes" />
+			<var name="artifact.swc.value" unset="yes" />
+			
+			<!-- when using the main artifact the src.main.flash is used else src.test.flash -->
+			<if>
+				<equals arg1="@{artifact}" arg2="main"/>
+				<then>
+					<var name="artifact.src.dir" value="src.main.flash" />
+					<var name="artifact.src" value="src.main.pathlist" />
+					<var name="artifact.swc" value="swc.main.pathlist" />
+				</then>
+				<elseif>
+					<equals arg1="@{artifact}" arg2="test" />
+					<then>
+						<var name="artifact.src.dir" value="src.test.flash" />
+						<var name="artifact.src" value="src.test.pathlist" />
+						<var name="artifact.swc" value="swc.main.pathlist" />
+					</then>
+				</elseif>
+			</if>
+			
+			<expand-prop variable="artifact.src.dir.value" property="artifact.src.dir" value="${artifact.src.dir}" />
+			<expand-prop variable="artifact.src.value" property="artifact.src" value="${artifact.src}" />
+			<expand-prop variable="artifact.swc.value" property="artifact.swc" value="${artifact.swc}" />
+			
+			<!-- globals -->
+			<var name="runtime.swc" unset="yes" />
+			<var name="runtime.swc.value" unset="yes" />
+			
+			<!-- frameworks -->
+			<var name="runtime.library.swc" unset="yes" />
+			<var name="runtime.library.swc.value" unset="yes" />
+			
+			<if>
+				<equals arg1="@{runtime}" arg2="air" />
+				<then>
+					<var name="runtime.swc" value="swc.runtime.air.pathlist" />
+					<var name="runtime.library.swc" value="swc.air.pathlist" />
+				</then>
+				<else>
+					<var name="runtime.swc" value="swc.runtime.pathlist" />
+					<var name="runtime.library.swc" value="swc.flex.pathlist" />
+				</else>
+			</if>
+
+			<expand-prop variable="runtime.swc.value" property="runtime.swc" value="${runtime.swc}" />
+			<expand-prop variable="runtime.library.swc.value" property="runtime.library.swc" value="${runtime.library.swc}" />
+
+			<if>
+				<not>
+					<available file="@{mainclass}" />
+				</not>
+				<then>
+					<var name="mainclass.file" value="${artifact.src.dir.value}/@{mainclass}" />
+				</then>
+				<else>
+					<var name="mainclass.file" value="@{mainclass}" />
+				</else>
+			</if>
+			
+			<var-basename variable="mainclass.filename" file="${mainclass.file}" />
+			<echo level="info">flex-app : ${mainclass.filename}</echo>
+			
+			<!-- compile with the mxmlc in the current flex framework directory -->
+			<exec executable="${flex.mxmlc}" dir="${basedir}" failonerror="true">
+				<arg line="@{options}" />
+				<arg line="-default-size @{width} @{height}" />
+				<arg line="-default-background-color @{background-color}" />
+
+				<!-- flex-config -->
+				<arg value="-load-config=@{config}" />
+				
+				<!-- the runtime swc libraries -->
+				<arg value="-compiler.external-library-path=${runtime.swc.value}" />
+				
+				<!-- the main swc libraries -->
+				<arg value="-compiler.library-path=${artifact.swc.value}" />
+				<arg value="-compiler.library-path=${swc.common.pathlist}" />
+				<arg value="-compiler.library-path=${runtime.library.swc.value}" />
+				
+				<!-- allows the flex compiler to determine the locale specific swc's -->
+				<arg value="-compiler.library-path=${flex.frameworks.dir}/locale/{locale}" />
+				
+				<!-- the main source libraries -->
+				<arg value="-compiler.source-path=${artifact.src.value}" />
+				<arg value="-compiler.source-path=${src.common.pathlist}" />
+				
+				<!-- input and output -->
+				<arg value="-file-specs=${mainclass.file}" />
+				<arg value="-output=@{output}" />
+				
+				<!-- debug options -->
+				<!--
+				<arg value="-dump-config=${basedir}/macro-flex-config.xml" />
+				-->
+				<arg value="-debug=@{debug}" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<!-- preset flex-app set to use the air runtime -->
+	<presetdef name="air-app">
+		<flex-app runtime="air" />
+	</presetdef>
+	
+	<!-- preset flex-app set to use the test artifact -->
+	<!-- Compiles a Flex or AS3 application with mxmlc with the test configuration -->
+	<presetdef name="test-flex-app">
+		<flex-app artifact="test" />
+	</presetdef>
+	
+	<!-- macro to autogenerate the FlexUnit runner for a specified class -->
+	<macrodef name="test-class">
+		<attribute name="file" />
+		<attribute name="output" default="${bin}/test_class.swf"/>
+		<attribute name="launch" default="yes" /> 
+		
+		<sequential>
+			<var name="filepath" unset="yes" />
+			<var name="filename" unset="yes" />
+			<var name="classpath" unset="yes" />
+			<var name="classpath.file" unset="yes" />
+			
+			<property name="filepath" location="${src.test.flash}/@{file}" />
+			<var-basename variable="filename" file="${filepath}" suffix=".as"/>
+			<propertyregex property="classpath.file" input="@{file}" regexp="(/)" replace="." />
+			<propertyregex property="classpath" input="${classpath.file}" regexp="(\.as$)" replace="" />
+			<var name="runner.template" value="${templates.dir}/test/TestRunner_template.mxml" />
+
+			<var name="runner.name" value="${filename}Runner.mxml" />
+			<var name="test-class-runner" value="${src.test.flash}/${runner.name}" />
+			
+			<copy file="${runner.template}" tofile="${test-class-runner}" overwrite="yes">
+				<filterset>
+					<filter token="testclasspath" value="${classpath}"/>
+					<filter token="testclassname" value="${filename}" />
+				</filterset>
+			</copy>
+
+			<property name="test.runner.width" value="950" />
+			<property name="test.runner.height" value="600" />
+			
+			<test-flex-app 
+				mainclass="${runner.name}" output="@{output}"
+				width="${test.runner.width}" height="${test.runner.height}"
+			/>
+			
+			<if>
+				<equals arg1="@{launch}" arg2="yes" />
+				<then>
+					<launch-flex-app file="@{output}" />
+				</then>
+			</if>
+			
+			<delete file="${test-class-runner}" failonerror="no"/>
+		</sequential>
+	</macrodef>
+	
+	<!-- Compiles a flex module with mxmlc -->
+	<macrodef name="flex-module">
+		<attribute name="mainclass" />
+		<attribute name="output" />
+		<attribute name="optimize-for" default="null" />
+		<attribute name="debug" default="${debug}" />
+		<attribute name="options" default=" " />
+			
+		<sequential>
+			<var name="mainclass.file" value="${src.main.flash}/@{mainclass}" />
+			<var-basename variable="mainclass.filename" file="${mainclass.file}" />
+			<echo level="info">flex-module : ${mainclass.filename}</echo>
+			
+			<if>
+				<equals arg1="@{optimize-for}" arg2="null" />
+				<then>
+					<echo level="verbose">without optimization</echo> 
+					<flex-app
+						mainclass="@{mainclass}" 
+						output="@{output}" 
+					/> 
+				</then>
+				<else>
+					<var name="optimize-for-file" value="${src.main.flash}/@{mainclass}" />
+					<var name="optimize-for-linkreport" value="${build.dir}/@{optimize-for}.linkreport" />
+					
+					<if>
+						<not>
+							<available file="${optimize-for-linkreport}" />
+						</not>
+						<then>
+							<echo level="verbose">generating linkreport : ${optimize-for-linkreport}</echo>
+							<touch file="${optimize-for-linkreport}" />
+							
+							<flex-app
+								mainclass="@{optimize-for}" 
+								output="${build.dir}/@{optimize-for}.swf" 
+								options="-link-report=${optimize-for-linkreport} @{options}"
+								debug="@{debug}"
+							/>
+							
+							<flex-app
+								mainclass="@{mainclass}" 
+								output="@{output}" 
+								options="-load-externs=${optimize-for-linkreport} @{options}"
+								debug="@{debug}"
+							/> 
+						</then>
+						<else>
+							<flex-app
+								mainclass="@{mainclass}" 
+								output="@{output}" 
+								options="-load-externs=${optimize-for-linkreport} @{options}"
+								debug="@{debug}"
+							/> 
+						</else>
+					</if>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<!-- Compiles a test flex module with mxmlc -->
+	<macrodef name="test-flex-module">
+		<attribute name="mainclass" />
+		<attribute name="output" />
+		<attribute name="optimize-for" default="null" />
+		<attribute name="debug" default="${debug}" />
+			
+		<sequential>
+			<var name="mainclass.file" value="${src.test.flash}/@{mainclass}" />
+			<var-basename variable="mainclass.filename" file="${mainclass.file}" />
+			<echo level="info">flex-module : ${mainclass.filename}</echo>
+			
+			<if>
+				<equals arg1="@{optimize-for}" arg2="null" />
+				<then>
+					<echo level="verbose">without optimization</echo> 
+					<test-flex-app
+						mainclass="@{mainclass}" 
+						output="@{output}" 
+					/> 
+				</then>
+				<else>
+					<var name="optimize-for-file" value="${src.test.flash}/@{mainclass}" />
+					<var name="optimize-for-linkreport" value="${build.dir}/@{optimize-for}.linkreport" />
+					
+					<if>
+						<not>
+							<available file="${optimize-for-linkreport}" />
+						</not>
+						<then>
+							<echo level="verbose">generating linkreport : ${optimize-for-linkreport}</echo>
+							<touch file="${optimize-for-linkreport}" />
+							
+							<test-flex-app
+								mainclass="@{optimize-for}" 
+								output="${build.dir}/@{optimize-for}.swf" 
+								options="-link-report=${optimize-for-linkreport}"
+								debug="@{debug}"
+							/>
+							
+							<test-flex-app
+								mainclass="@{mainclass}" 
+								output="@{output}" 
+								options="-load-externs=${optimize-for-linkreport}"
+								debug="@{debug}"
+							/> 
+						</then>
+						<else>
+							<test-flex-app
+								mainclass="@{mainclass}" 
+								output="@{output}" 
+								options="-load-externs=${optimize-for-linkreport}"
+								debug="@{debug}"
+							/> 
+						</else>
+					</if>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+	
+	<!-- grabs files from path and returns them in a delimited list -->
+	<macrodef name="path-to-list">
+		<attribute name="dir" />
+		<attribute name="refid" />
+		<attribute name="variable" />
+		<attribute name="separator" />
+		<attribute name="pathsep" />
+		
+		<sequential>
+			<var-dirname variable="temp.dir.name" file="@{dir}"/>
+			<var-basename variable="temp.dir.file" file="@{dir}"/>
+			
+			<!-- convert the list of classes in the path to a delimited list -->
+			<var-pathconvert variable="temp.file.classes.list" refid="@{refid}" pathsep="@{pathsep}" />
+			
+			<!-- escapes the backslash in the paths -->
+			<if>
+				<os family="windows" />
+				<then>
+					<propertyregex property="temp.dir.exp"
+						input="${temp.dir.name}"
+						regexp="(\\)"
+						replace="\\\\\\\\" />
+				</then>
+				<else>
+					<var name="temp.dir.exp" value="${temp.dir.name}" />
+				</else>
+			</if>
+			
+			<!-- strips the directory and parts from the classpath list -->
+			<propertyregex property="@{variable}"
+				input="${temp.file.classes.list}"
+				regexp="${temp.dir.exp}@{separator}${temp.dir.file}@{separator}"
+				replace="" override="yes"/>
+		</sequential>
+	</macrodef>
+	
+	<!-- grabs files from path and returns a filename filepath list -->
+	<macrodef name="fileset-to-namelist">
+		<attribute name="dir" />
+		<attribute name="variable" />
+		<attribute name="separator" />
+		<attribute name="pathsep" />
+		<attribute name="prefix" default="-include-file" />
+		<element name="asset-files" implicit="yes" />
+		
+		<sequential>
+			<var-dirname variable="temp.dir.name" file="@{dir}"/>
+			<var-basename variable="temp.dir.file" file="@{dir}"/>
+			<var name="asset.list.value" value="" />
+			
+			<for param="asset-file">
+				<asset-files />
+					
+				<sequential>
+					<var-basename file="@{asset-file}" variable="asset.filename" />
+					<var-dirname file="@{asset-file}" variable="asset.dirname" />
+					
+					
+					<!-- escapes the backslash in the paths -->
+					<propertyregex property="asset.filepath"
+						input="@{asset-file}"
+						regexp="(\\)"
+						replace="/" override="yes"/>
+					
+					<!-- strips the directory and parts from the classpath list -->
+					<!--
+					<propertyregex property="asset.file.relpath"
+						input="@{asset-file}"
+						regexp="${temp.dir.exp}@{separator}${temp.dir.file}@{separator}"
+						replace="" override="yes"/>-->
+					
+					<!-- convert backslash to forward slash -->
+					<!--
+					<propertyregex property="asset.file.finalpath"
+						input="${temp.asset.exp}"
+						regexp="(\\)"
+						replace="/" override="yes"/>-->
+					
+					<echo>${asset.filepath}</echo>
+					<var name="asset.list.value" value="${asset.list.value} @{prefix} ${asset.filename} ${asset.filepath}" />
+				</sequential>
+			</for>
+			
+			<var name="@{variable}" value="${asset.list.value}" />
+		</sequential>
+	</macrodef>
+	
+	<!-- Compiles a swc component using compc -->
+	<macrodef name="flex-comp">
+		<element name="component-files" implicit="yes" />
+		<attribute name="output" />
+		<attribute name="test" default="no"/>
+		
+		<attribute name="options" default="${flex.mxmlc.options}" />
+		<attribute name="config" default="${flex.config}" />
+		
+		<sequential>
+			<prepare-source-paths />
+			
+			<var name="output.filename" unset="yes" />
+			<var name="temp.file" unset="yes" />
+			<var name="temp.file.name" unset="yes" />
+			<var name="temp.dir.name" unset="yes" />
+			<var name="temp.dir.file" unset="yes" />
+			<var name="temp.file.classes.list" unset="yes" />
+			<var name="temp.file.classes.value" unset="yes" />
+			
+			<var-basename variable="output.filename" file="@{output}" />
+			<echo level="info">flex-comp : ${output.filename}</echo>
+
+			<!--
+			<property name="temp.file" value="comp1" />
+			-->
+			<tempfile property="temp.file" prefix="compc"/>
+			<var-basename variable="temp.file.name" file="${temp.file}" />
+			<var name="temp.dir" value="${build.dir}/${temp.file.name}" />
+			<var name="allfiles.dir" value="${build.dir}/${temp.file.name}_allfiles" />
+			
+			<delete dir="${temp.dir}" failonerror="no"/>
+			<mkdir dir="${temp.dir}" />
+			
+			<delete dir="${allfiles.dir}" failonerror="no" />
+			<mkdir dir="${allfiles.dir}" />
+			
+			<!-- move all files into temporary directory -->
+			<copy todir="${allfiles.dir}">
+				<component-files />
+			</copy>
+			
+			<!-- move classes and flatten using a packagemapper -->
+			<move todir="${temp.dir}">
+				<fileset dir="${allfiles.dir}">
+					<include name="**/*.as" />
+					<include name="**/*.mxml" />
+					<include name="*.as" />
+					<include name="*.mxml" />
+				</fileset>
+				<chainedmapper>
+					<packagemapper from="*" to="*.class" />
+					<filtermapper>
+						<replacestring from=".as.class" to="" />
+						<replacestring from=".mxml.class" to="" />
+					</filtermapper>
+				</chainedmapper>
+			</move>
+			
+			<!-- create temporary pathref with the classes to include -->
+			<path id="temp.file.classes">
+				<fileset dir="${temp.dir}">
+					<include name="*" />
+				</fileset>
+			</path>
+			
+			<!-- create temporary pathref with non classes to include -->
+			<path id="temp.file.assets">
+				<fileset dir="${allfiles.dir}">
+					<include name="**" />
+				</fileset>
+			</path>
+			
+			<!-- platform specific regular expression part separator -->
+			<condition property="regexp.separator" value="\\" else="/">
+				<os family="windows"/>
+			</condition>
+			
+			<path-to-list
+				dir="${temp.dir}"
+				refid="temp.file.classes" 
+				variable="temp.file.classes.value" 
+				separator="${regexp.separator}" 
+				pathsep=" "
+			/>
+			
+			<!-- work done remove the temp directory before the exec -->
+			<delete dir="${temp.dir}" failonerror="no" />
+			
+			<if>
+				<equals arg1="@{test}" arg2="yes" />
+				<then>
+					<var name="compiler.source-path" value="${src.test.pathlist}" />
+				</then>
+				<else>
+					<var name="compiler.source-path" value="${src.main.pathlist}" />
+				</else>
+			</if>
+			
+			<!-- swc generation with compc -->
+			<exec executable="${flex.compc}" dir="${basedir}" failonerror="true">
+				<arg line="@{options}" />
+				
+				<!-- flex-config -->
+				<arg value="-load-config=@{config}" />
+				
+				<!-- the runtime swc libraries -->
+				<arg value="-compiler.external-library-path=${swc.linked.pathlist}" />
+				
+				<!-- the main source libraries -->
+				<arg value="-compiler.source-path=${compiler.source-path}" />
+				<arg value="-compiler.source-path=${src.common.pathlist}" />
+				
+				<!-- classes to include in the swc -->
+				<arg line="-include-classes ${temp.file.classes.value}" /> 
+				
+				<!-- output swc -->
+				<arg value="-output=@{output}" />
+			</exec>
+			
+			<!-- copy remaining files into the swc -->
+			<!-- using a fileset to exclude empty directories -->
+			<!-- TODO : find a better way -->
+			<zip destfile="@{output}" update="true">
+				<fileset dir="${allfiles.dir}">
+					<include name="**/*.jpg" />
+					<include name="**/*.css" />
+					<include name="**/*.png" />
+					<include name="**/*.gif" />
+					<include name="**/*.swf" />
+					<include name="**/*.txt" />
+				</fileset>
+			</zip>
+			
+			<!-- work done remove all files dir -->
+			<delete dir="${allfiles.dir}" failonerror="no"/>
+		</sequential>
+	</macrodef>	
+	
+	<!-- Compiles multiple flex or flash applications from a config file -->
+	<macrodef name="flex-apps">
+		<attribute name="config" default="${modules.config}" />
+		
+		<sequential>
+			<echo level="info">flex-apps : ${modules-config}</echo>
+			
+			<xmltask source="@{config}">
+				<call path="actionScriptProperties/applications/application">
+					<param name="path" path="@path" />
+					<param name="destPath" path="@path" />
+					
+					<actions>
+						<var-basename file="@{path}" variable="mainclass-name" suffix=".mxml" />
+						<var-basename file="${mainclass-name}" variable="mainclass-name" suffix=".as" />
+						
+						<flex-app mainclass="@{path}" output="${bin}/${mainclass-name}.swf"/>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+
+	<!-- Compiles multiple flex modules specified with a config file -->
+	<macrodef name="flex-modules">
+		<attribute name="config" default="${modules.config}" />
+		
+		<sequential>
+			<echo level="info">flex-modules : @{config}</echo>
+			
+			<basename file="@{modules-config}" property="@{modules-config}.filename" suffix=".xml" />
+			<xmltask source="@{config}">
+				<call path="actionScriptProperties/modules/module">
+					<param name="application" path="@application" />
+					<param name="destPath" path="@destPath" />
+					<param name="sourcePath" path="@sourcePath" />
+					<param name="optimize" path="@optimize" />
+					
+					<actions>
+						<propertyregex property="@{sourcePath}.mainclass" input="@{sourcePath}" regexp="src/main/flex/(.*)" replace="\1" />
+						<if>
+							<equals arg1="@{optimize}" arg2="true"/>
+							<then>
+								<propertyregex property="@{application}.mainclass" input="@{application}" regexp="src/main/flex/(.*)" replace="\1" />
+								<flex-module 
+									mainclass="${@{sourcePath}.mainclass}" 
+									output="${bin}/@{destPath}" 
+									optimize-for="${@{application}.mainclass}"/>
+							</then>
+							<else>
+								<flex-module 
+									mainclass="${@{sourcePath}.mainclass}" 
+									output="${bin}/@{destPath}"/>
+							</else>
+						</if>
+					</actions>
+				</call>
+			</xmltask>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="to-snakecase">
+		<attribute name="variable" />
+		<attribute name="input" />
+		<sequential>
+			<var name="snaked1" unset="yes"/>
+			<var name="snaked2" unset="yes"/>
+			<var name="snaked3" unset="yes"/>
+			<var name="bname" unset="yes" />
+			
+			<var-basename variable="bname" file="@{input}" suffix=".mxml"/>
+			<propertyregex property="snaked1" input="${bname}" regexp="([A-Z])" replace="_\1"/>
+			<propertyregex property="snaked2" input="${snaked1}" regexp="^(_)" replace=""/>
+			
+			<stringutil string="${snaked2}" property="snaked3">
+				<lowercase />
+			</stringutil>
+
+			<if>
+				<isset property="snaked2" />
+				<then>
+					<var name="@{variable}" value="${snaked3}" />
+				</then>
+				<else>
+					<var name="@{variable}" value="@{input}" />
+				</else>
+			</if>
+		</sequential>	
+	</macrodef>
+	
+	<!-- Compiles multiple flex modules to the specifed directory converting filenames with
+		 camescase to lower snakecase 
+	-->
+	<macrodef name="test-flex-modules">
+		<attribute name="outputDir" />
+		<attribute name="optimize-for" default="null"/>
+		
+		<element name="modules" implicit="yes" optional="no" />
+		<sequential>
+			<echo level="info">test-flex-modules</echo>
+			<for param="module">
+				<modules />
+				<sequential>
+					<to-snakecase variable="module_name" input="@{module}"/>
+					<var name="module.output.swf" unset="yes" />
+					<property name="module.output.swf" location="@{outputDir}/${module_name}.swf" />
+					 
+					<test-flex-module
+						mainclass="@{module}"
+						output="${module.output.swf}"
+						optimize-for="@{optimize-for}"
+					/>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+	
+	<!-- Generates html docs using asdoc -->
+	<macrodef name="asdoc">
+		<attribute name="destdir" />
+		<attribute name="window-title" />
+		<attribute name="source-swc" default="null" /> 
+		<element name="source-files" implicit="yes" optional="no"/>
+		
+		<sequential>
+			<prepare-source-paths />
+			
+			<echo level="info">generating asdoc : @{window-title}</echo>
+
+			<!--
+			<property name="temp.file" value="comp1" />
+			-->
+			<tempfile property="temp.file" prefix="asdoc"/>
+			<var-basename variable="temp.file.name" file="${temp.file}" />
+			<var name="temp.dir" value="${build.dir}/${temp.file.name}" />
+			
+			<delete dir="${temp.dir}" failonerror="no"/>
+			<mkdir dir="${temp.dir}" />
+			
+			<!-- copy files that needed to be documented to a temp directory -->
+			<copy todir="${temp.dir}">
+				<source-files />
+			</copy>
+			
+			<!-- temporary pathref of the files to document -->
+			<path id="doc.sources.path">
+				<pathelement location="${temp.dir}"/>
+			</path>
+			
+			<!-- converts the files path into a delimited list -->
+			<var-pathconvert variable="doc.sources.path.list" refid="doc.sources.path" pathsep=" "/>
+			
+			<if>
+				<equals arg1="@{source-swc}" arg2="null"/>
+				<then>
+					<var name="compiler.source-swc" value="" />
+				</then>
+				<else>
+					<var name="compiler.source-swc" value="-compiler.external-library-path=@{source-swc}" />
+				</else>
+			</if>
+
+			<!-- doc generation with asdoc -->
+			<exec executable="${flex.asdoc}" dir="${basedir}" failonerror="true">
+				<arg value="-window-title=@{window-title}" />
+				
+				<!-- source files to document -->
+				<arg line="-doc-sources ${doc.sources.path.list}" />
+				
+				<!-- the runtime swc libraries -->
+				<arg value="-compiler.external-library-path=${swc.linked.pathlist}" />
+				
+				<!-- the main source libraries -->
+				<arg value="-compiler.source-path=${temp.dir}" />
+				
+				<!-- the main source path -->
+				<!-- for multiple source paths convert it to a pathlist outside --> 
+				<arg value="-source-path=${temp.dir}" />
+				
+				<!-- optional source paths -->
+				<arg value="${compiler.source-swc}" />
+				
+				<!-- asdoc generation directory -->
+				<arg value="-output=@{destdir}" />
+			</exec>
+			
+			<delete dir="${temp.dir}" />
+			<!--
+			-->
+		</sequential>		
+	</macrodef>
+	
+	<!-- Opens an application swf with the air debug launcher -->
+	<macrodef name="launch-air-app">
+		<attribute name="descriptor" />
+		<attribute name="dir" default="${bin}"/>
+		<attribute name="debug" default="${debug}"/>
+		
+		<sequential>
+			<var name="nodebug" unset="yes" />
+			<var name="pubid" unset="yes" />
+			
+			<if>
+				<equals arg1="${debug}" arg2="true" />
+				<then>
+					<var name="nodebug" value=" " />
+				</then>
+				<else>
+					<var name="nodebug" value="-nodebug" />
+				</else>
+			</if>
+			
+			<uid name="pubid" int="yes" />
+			<property name="descriptor-loc" location="@{descriptor}" /> 
+			
+			<exec executable="${air.adl}" dir="@{dir}" vmlauncher="true" spawn="yes">
+				<arg line="-pubid ${pubid}" />
+				<arg line="${nodebug}" />
+				<arg value="${descriptor-loc}" />
+				<arg value="@{dir}" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<!-- Creates a temporary application descriptor for a swf and launches it -->
+	<macrodef name="launch-air-swf">
+		<attribute name="file" />
+		<attribute name="debug" default="${debug}"/>
+		<attribute name="dir" default="${bin}"/>
+		<attribute name="template" default="${fabrication.dir}/etc/templates/air/descriptor_template.xml" />
+	
+		<sequential>
+			<var-basename file="@{file}" suffix=".swf" variable="app.name" />
+			<echo>launch-air-swf : ${app.name}.swf</echo>
+			
+			<var-dirname file="@{file}" variable="app.dir"/>
+			<var name="descriptor" value="${build.dir}/${app.name}-app.xml" />
+			
+			<copy file="@{template}" tofile="${descriptor}">
+				<filterset>
+					<filter token="application_id" value="${app.name}" />
+					<filter token="application_name" value="${app.name}" />
+					<filter token="application_swf" value="${app.name}.swf" />
+				</filterset>
+			</copy>
+			
+			<launch-air-app descriptor="${descriptor}" dir="${app.dir}"/>
+		</sequential>
+	</macrodef>
+	
+	
+	<!-- Launches the specified swf in the standalone flash player for the current sdk
+		 Currently only works on windows 
+		 TODO : Make platform independent -->
+	<macrodef name="launch-flex-app">
+		<attribute name="file" />
+		
+		<sequential>
+			<var name="file.name" unset="yes" />
+			<var name="file.dir" unset="yes" />
+			
+			<basename file="@{file}" property="file.name"/>
+			<dirname file="@{file}" property="file.dir" />
+			
+			<echo level="info">Launching ${file.name}</echo>
+			
+			<exec executable="${flex.standalone.player}"
+				dir="${file.dir}"
+				failonerror="false"
+				vmlauncher="true"
+				spawn="yes">
+				<arg value="@{file}" />
+				<env key="DISPLAY" value="${environment.display}" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<!-- Removes older fabrication swcs from an example, adds the current swc
+		 to its libs, and recompiles and launches the main app swf 
+		 This is windows specific for the moment, because of lot of ant file calling
+		 ant file type operations. Ant's immutable properties make regular antcalls hard to do. 
+		 could use antfetch but it appears to be broken in ant 1.7		 -->
+	<macrodef name="upgrade-app">
+		<attribute name="app-dir" />
+		<attribute name="revision" default="${fabrication.version}"/>
+		<attribute name="swc" default="${fabrication.flex.swc}" />
+		<attribute name="deps-swc" default="${fabrication.main.dependencies.swc}" />
+		
+		<sequential>
+			<var name="app-libs" value="@{app-dir}/libs" />
+			
+			<if>
+				<and>
+					<or>
+						<not>
+							<available file="@{swc}" />
+						</not>
+					</or>
+					<or>
+						<not>
+							<available file="@{deps-swc}" />
+						</not>
+					</or>
+				</and>
+				<then>
+					<exec executable="cmd" dir="${fabrication.dirname}" spawn="no">
+						<arg line="/c ant swc" />
+					</exec>
+				</then>
+			</if>
+			
+			<delete>
+				<fileset dir="${app-libs}">
+					<include name="fabrication*.swc" />
+				</fileset>
+			</delete>
+			
+			<copy file="@{swc}" todir="${app-libs}" overwrite="yes"/>
+			<copy file="@{deps-swc}" tofile="${app-libs}/common.swc" overwrite="yes" />
+
+			<exec executable="cmd" dir="@{app-dir}" spawn="no">
+				<arg line="/c ant" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<!-- freezes multiple examples specified by a dirset -->
+	<macrodef name="upgrade-apps">
+		<element name="app-dirs" implicit="yes" optional="no" />
+		<sequential>
+			<for param="app-dir">
+				<app-dirs />
+				<sequential>
+					<var-basename file="@{app-dir}" variable="upgrade.appname"/>
+					<var name="upgrade.choice" unset="yes" />
+					<input message="Upgrade ${upgrade.appname}?" validargs="y,n,s,a" addproperty="upgrade.choice" />
+
+					<switch value="${upgrade.choice}">
+						<case value="y">
+							<upgrade-app app-dir="@{app-dir}" />
+						</case>
+						<case value="n">
+							<echo>Skipped ${upgrade.appname}</echo>
+						</case>
+						<case value="s">
+							<echo>Skipped ${upgrade.appname}</echo>
+						</case>
+						<case value="a">
+							<fail message="Build aborted by user" />
+						</case>
+					</switch>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+	
+	<!-- adds a build file to the specified project
+		 also includes swfobject based html templates -->
+	<macrodef name="scaffold-build">
+		<attribute name="project-dir" />
+		<attribute name="project-mainclass" default="${project.mainclass}"/>
+		<attribute name="project-name" default="${project.name}"/>
+		<attribute name="project-output" default="${project.output}"/>
+		<attribute name="project-output-width" default="550" />
+		<attribute name="project-output-height" default="400" />
+		<attribute name="overwrite" default="no" />
+		
+		<sequential>
+			<if>
+				<isset property="project.name"/>
+				<then>
+					<var name="project.name" value="${project.name}" />				
+				</then>
+				<else>
+					<var-basename variable="project.name" file="@{project-dir}" />
+				</else>
+			</if>
+			
+			<if>
+				<isset property="project.output"/>
+				<then>
+					<var name="project.output" value="${project.output}" />				
+				</then>
+				<else>
+					<to-snakecase input="${project.mainclass}" variable="project.output.name"/>
+					<var-basename file="${project.output.name}" suffix=".mxml" variable="project.output.name" />
+					<var-basename file="${project.output.name}" suffix=".as" variable="project.output.name" />
+					<var name="project.output" value="${project.output.name}.swf" />
+				</else>
+			</if>			
+			
+			<var-dirname file="${ant.file.fabrication.common}" variable="fabrication.dir"/>
+			<propertyregex property="fab.build.dir" input="${fabrication.dir}"
+				regexp="(\\)" replace="/" />
+			<propertyregex property="mainclass.ext" input="@{project-mainclass}" 
+				regexp=".*\.(.*)" select="\1" />
+			
+			<if>
+				<equals arg1="${mainclass.ext}" arg2="mxml"/>
+				<then>
+					<var name="project-type" value="flex" />
+				</then>
+				<else>
+					<var name="project-type" value="as" />
+				</else>					
+			</if>
+			
+			<if>
+				<available file="@{project-dir}/src/main"/>
+				<then>
+					<var name="project.src.main.flash" value="" />
+				</then>
+				<else>
+					<var name="project.src.main.flash" value="src" />
+				</else>
+			</if>
+
+			<if>
+				<available file="@{project-dir}/src/test"/>
+				<then>
+					<var name="project.src.test.flash" value="" />
+				</then>
+				<else>
+					<var name="project.src.test.flash" value="test" />
+				</else>
+			</if>			
+			
+			<filterset id="template.filterset">
+				<filter token="project.name" value="${project.name}" />
+				<filter token="project.type" value="${project-type}" />
+				<filter token="project.mainclass" value="@{project-mainclass}" />
+				<filter token="project.output" value="${project.output}" />
+				<filter token="project.output.width" value="@{project-output-width}" />
+				<filter token="project.output.height" value="@{project-output-height}" />
+				<filter token="src.main.flash" value="src.main.flash = ${project.src.main.flash}" />
+				<filter token="src.test.flash" value="src.test.flash = ${project.src.test.flash}" />
+				<filter token="flashplayer.version" value="${flashplayer.version}" />
+			</filterset>
+			
+			<copy todir="@{project-dir}" overwrite="@{overwrite}">
+				<fileset dir="${templates.dir}">
+					<exclude name="html_template.html" />
+					<exclude name="user_template.properties" />
+					<include name="*_template.*" />
+				</fileset>
+				<filterset refid="template.filterset" />
+				<filterset>
+					<!-- default fabrication dir is specified as a relative path -->
+					<filter token="fabrication.dir" value="../../framework/trunk" />
+				</filterset>
+				<regexpmapper id="template.mapper" from="(.*)_template(.*)" to="\1\2" />
+			</copy>
+			
+			<copy file="${templates.dir}/user_template.properties" tofile="@{project-dir}/user.properties">
+				<!-- absolute path to the fabrication build -->
+				<filterset>
+					<filter token="fabrication.dir" value="${fab.build.dir}" />
+				</filterset>
+			</copy>
+			
+			<copy todir="@{project-dir}/bin/swfobject" overwrite="@{overwrite}">
+				<fileset dir="${templates.dir}/swfobject">
+					<include name="*.js" />
+					<include name="*.swf" />
+				</fileset>
+			</copy>
+			
+			<copy file="${templates.dir}/html_template.html" tofile="@{project-dir}/bin/index.html" overwrite="@{overwrite}">
+				<filterset refid="template.filterset" />
+			</copy>
+		</sequential>
+	</macrodef>
+	
+	<!-- combines all swcs provided in a fileset into a single swc -->
+	<!-- TODO : merging of non-library nodes in the catalog xml -->
+	<macrodef name="merge-swcs">
+		<attribute name="output" />
+		<element name="swcs" implicit="yes" />
+		<sequential>
+			<delete file="@{output}" failonerror="no" />
+			<delete file="${build.dir}/catalog.xml" />
+			<var-dirname file="@{output}" variable="merge.dir" />
+			<mkdir dir="${merge.dir}" />
+			
+			<xmltask destbuffer="catalog.libraries">
+				<insert path="/">
+					<![CDATA[
+						<libraries />
+					]]>
+				</insert>
+			</xmltask>
+			
+			<for param="swc">
+				<swcs />
+				<sequential>
+					<!-- Extract the swc into temp directory and prefix names to swfs -->
+					<var-basename file="@{swc}" variable="prefix" suffix=".swc"/>
+					<var-unique variable="unzip.dir.id"/>
+					<var name="unzip.dir" value="${build.dir}/${unzip.dir.id}" />
+					<delete dir="${unzip.dir}" failonerror="no"/>
+					<unzip src="@{swc}" dest="${unzip.dir}" overwrite="yes">
+						<mapper type="regexp" from="(.*\.swf)" to="${prefix}-\1" />
+					</unzip>
+					<var name="catalog.file" value="${unzip.dir}/catalog.xml" />
+					
+					<!-- get rid of the namespace to use simple xpaths -->
+					<var name="swc.namespace" value="xmlns=&quot;http://www.adobe.com/flash/swccatalog/9&quot;" />
+					<replace file="${catalog.file}" token="${swc.namespace}" value="" />
+					
+					<xmltask source="${catalog.file}" destbuffer="catalog.xmlroot">
+						<copy path="/" />
+					</xmltask>
+					
+					<!-- adds prefix to library node in the catalog -->
+					<xmltask sourcebuffer="catalog.xmlroot">
+						<call path="/swc/libraries/library">
+							<param name="path" path="@path" />
+							<actions>
+								<xmltask sourcebuffer="catalog.xmlroot" destbuffer="catalog.xmlroot">
+									<attr path="/swc/libraries/library[@path='@{path}']" attr="path" value="${prefix}-@{path}"/>
+								</xmltask>
+							</actions>
+						</call>
+					</xmltask>
+					
+					<!-- save modified catalog -->
+					<xmltask sourcebuffer="catalog.xmlroot" dest="${catalog.file}" />
+					
+					<!-- put back the namespace -->
+					<replace file="${catalog.file}" token="&lt;swc&gt;" value="&lt;swc ${swc.namespace}&gt;" />
+					
+					<!-- copy current library catalog into temp buffer -->
+					<xmltask sourcebuffer="catalog.xmlroot">
+						<copy path="/swc/libraries/library" buffer="library.buffer"/>
+					</xmltask>
+					
+					<!-- insert library buffer into catalog library buffer -->
+					<xmltask sourcebuffer="catalog.libraries" destbuffer="catalog.libraries">
+						<insert path="/libraries" buffer="library.buffer" />
+					</xmltask>
+					
+					<!-- zip up the swc contents without the catalog -->
+					<zip destfile="@{output}" update="yes">
+						<fileset dir="${unzip.dir}">
+							<exclude name="catalog.xml" /> 
+						</fileset>
+					</zip>
+					
+					<!-- work done delete zip dir -->
+					<delete dir="${unzip.dir}" failonerror="no" />
+				</sequential>
+			</for>
+			
+			<!-- remove old library from catalog and put all library catalogs into it -->
+			<xmltask sourcebuffer="catalog.xmlroot" destbuffer="catalog.merged">
+				<cut path="/swc/libraries" buffer="catalog.libraries.old" />
+				<paste path="/swc" buffer="catalog.libraries" />
+			</xmltask>
+			
+			<!-- save merged catalog to disk -->
+			<xmltask sourcebuffer="catalog.merged" dest="${build.dir}/catalog.xml" />
+			
+			<!-- put merged catalog into merged zip -->
+			<zip destfile="@{output}" update="yes" basedir="${build.dir}" includes="catalog.xml" />
+		</sequential>
+	</macrodef>
+	
+	<!-- macrodef to set correct mimetypes on files in svn -->
+	<macrodef name="set-mimetype">
+		<attribute name="file" />
+		<sequential>
+			<propertyregex property="@{file}.ext" input="@{file}" 
+				regexp=".*\.(.*)" select="\1" />
+
+			<var name="extension" value="${@{file}.ext}" />
+			<var name="mimetype=" value="text/plain" />
+			
+			<switch value="${extension}">
+				<case value="html">
+					<var name="mimetype" value="text/html" />
+				</case>
+				<case value="css">
+					<var name="mimetype" value="text/css" />
+				</case>
+				<case value="js">
+					<var name="mimetype" value="text/javascript" />
+				</case>
+				<case value="xml">
+					<var name="mimetype" value="text/xml" />
+				</case>
+				<case value="png">
+					<var name="mimetype" value="image/png" />
+				</case>
+				<case value="gif">
+					<var name="mimetype" value="image/gif" />
+				</case>
+				<case value="jpg">
+					<var name="mimetype" value="image/jpeg" />
+				</case>
+				<case value="swf">
+					<var name="mimetype" value="application/x-shockwave-flash" />
+				</case>
+				<default>
+					<var name="mimetype" value="application/octet-stream" />
+				</default>
+			</switch>
+			
+			<echo level="debug">@{file} : ${mimetype}</echo>
+			
+			<svn username="${svn.username}" password="${svn.password}">
+				<propset path="@{file}" name="svn:mime-type" value="${mimetype}" />
+			</svn>
+		</sequential>
+	</macrodef>
+	
+	<!-- sets mimetypes on a fileset -->
+	<macrodef name="set-mimetypes">
+		<element name="files" implicit="yes" optional="no" />
+		<sequential>
+			<for param="file">
+				<files />
+				<sequential>
+					<set-mimetype file="@{file}"/>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+	
+	<!-- macrodef to upload a file to googlecode -->
+	<macrodef name="publish-file-to-googlecode">
+		<attribute name="file" />
+		<attribute name="summary" />
+		<attribute name="labels" default="Featured, Type-Package, OpSys-All" />
+		
+		<sequential>
+			<echo level="info">Uploading @{summary}</echo>
+			<var-basename file="@{file}" variable="targetfile" />
+			<gcupload 
+				username="${svn.username}"
+				password="${svn.password}"
+				projectname="fabrication"
+				filename="@{file}"
+				targetfilename="${targetfile}"
+				summary="@{summary}"
+				labels="@{labels}"
+			/>
+		</sequential>
+	</macrodef>
+	
+</project>
