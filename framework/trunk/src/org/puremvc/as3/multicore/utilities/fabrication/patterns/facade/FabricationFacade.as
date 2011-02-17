@@ -113,7 +113,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.facade {
          */
         protected var singletonInstanceMap:HashMap;
 
-        public var logger:FabricationLogger = FabricationLogger.getInstance();
+        public var _logger:FabricationLogger = FabricationLogger.getInstance();
         private var _fabricationLoggerEnabled:Boolean;
 
         /**
@@ -311,7 +311,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.facade {
         {
             var transportNotification:TransportNotification = new TransportNotification(noteName, noteBody, noteType, to);
             sendNotification(RouterNotification.SEND_MESSAGE_VIA_ROUTER, transportNotification);
-            if (logger)
+            if ( _fabricationLoggerEnabled && filter( ""+ noteName ))
                 logger.logRouteNotificationAction(transportNotification);
         }
 
@@ -491,6 +491,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.facade {
 
             return !filtered;
 
+
+        }
+
+        public function get logger():FabricationLogger {
+
+            return _logger ? _logger : _logger = FabricationLogger.getInstance();
 
         }
     }
