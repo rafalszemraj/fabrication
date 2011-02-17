@@ -1,6 +1,11 @@
 #summary Fabrication change history.
 
 ----
+= 0.8.4 =
+  * fixed bug #36
+  * fixed issues with FabricationModuleLoader and FabricationAIRModuleLoader
+  * introduced FabricationRemoteProxy.executeServiceCalls method
+
 = 0.8.3 =
   * cosmetic changes:
      * ServicesProvider => FabricationServicesProvider
