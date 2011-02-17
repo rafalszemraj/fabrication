@@ -37,9 +37,9 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
     public class FabricationAirModuleLoader extends FabricationModuleLoader {
 
 
-        public function FabricationAirModuleLoader( moduleFactory:IFlexModuleFactory, router:IRouter, moduleAddressOrGroup:Object)
+        public function FabricationAirModuleLoader( router:IRouter, moduleAddressOrGroup:Object)
         {
-            super( moduleFactory, router, moduleAddressOrGroup);
+            super( router, moduleAddressOrGroup);
         }
 
         /**
