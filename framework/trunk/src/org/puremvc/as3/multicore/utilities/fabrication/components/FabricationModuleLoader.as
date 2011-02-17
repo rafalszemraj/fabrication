@@ -68,13 +68,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
         private var _moduleInfo:IModuleInfo;
 
         /**
-         * @param router Irouter instance for module
+         * @param router IRouter instance for module
          * @param moduleAddressOrGroup IModuleAddress instance or moduleGroup name ( String )
          */
-        public function FabricationModuleLoader( moduleFactory:IFlexModuleFactory, router:IRouter, moduleAddressOrGroup:Object)
+        public function FabricationModuleLoader( router:IRouter, moduleAddressOrGroup:Object)
         {
             super();
-            this.moduleFactory = moduleFactory;
             this.router = router;
             if (moduleAddressOrGroup is IModuleAddress)
                 this.moduleAddress = moduleAddressOrGroup as IModuleAddress;
@@ -91,11 +90,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
         public function set id(value:String):void
         {
             _id = value;
-        }
-
-        public function set moduleFactory( value:IFlexModuleFactory ):void
-        {
-            _moduleFactory = value;
         }
 
         /**
@@ -117,7 +111,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
         }
 
         /**
-         * ModuleAddres for module
+         * ModuleAddress for module
          * @param value
          */
         public function set moduleAddress(value:IModuleAddress):void
