@@ -18,14 +18,15 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy {
     import mx.rpc.AsyncToken;
 
     import org.puremvc.as3.multicore.utilities.fabrication.injection.ServiceInjector;
+    import org.puremvc.as3.multicore.utilities.fabrication.services.calls.IServiceCall;
     import org.puremvc.as3.multicore.utilities.fabrication.services.calls.ServiceCallStack;
 
     /**
-	 * FabricationRemoteProxy proxy empowered with service injections
+     * FabricationRemoteProxy proxy empowered with service injections
      * and handy methods to perform service calls.
-	 *
-	 * @author Rafał Szemraj
-	 */
+     *
+     * @author Rafał Szemraj
+     */
     public class FabricationRemoteProxy extends FabricationProxy {
 
         /**
@@ -35,7 +36,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy {
 
         public function FabricationRemoteProxy(name:String = null, data:Object = null)
         {
-            super(name, data );
+            super(name, data);
         }
 
         /**
@@ -45,14 +46,34 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.proxy {
          * @param faultHandler fault handler [ optional ]. If not provided defaultFaultHandler
          * will be used ( if defined )
          */
-        public function executeServiceCall(call:AsyncToken, resultHandler:Function,
-                                           faultHandler:Function = null):AsyncToken
+        public function executeServiceCall(call:AsyncToken, resultHandler:Function, faultHandler:Function = null):AsyncToken
         {
-            call.addResponder(new CallResponder( resultHandler, faultHandler || defaultFaultHandler ));
+            call.addResponder(new CallResponder(resultHandler, faultHandler || defaultFaultHandler));
             return call;
         }
 
-        public function executeServiceCallStack( serviceCallStack:ServiceCallStack ):void {
+        /**
+         * Executes series of service calls ( wrapping them as ServiceCallStack )
+         * @param serviceCalls array or services
+         * @param resultHandler handler for completed chained call
+         * @param maximumParallelCalls maximum number of parallel calls [ default 1 ]
+         */
+        public function executeServiceCalls( serviceCalls:Array, resultHandler:Function = null, maximumParallelCalls:int = 1):void
+        {
+
+            var serviceCallStack:ServiceCallStack = new ServiceCallStack( resultHandler, maximumParallelCalls );
+            for each(var serviceCall:IServiceCall in serviceCalls) {
+
+                if (null == serviceCall)
+                    throw new Error('FabricationRemoteProxy.executeServiceCalls can accept only IServiceCall type params.');
+                serviceCallStack.addServiceCall(serviceCall);
+            }
+
+            executeServiceCallStack( serviceCallStack );
+        }
+
+        public function executeServiceCallStack(serviceCallStack:ServiceCallStack):void
+        {
 
             serviceCallStack.start();
         }
@@ -85,7 +106,7 @@ class CallResponder implements IResponder {
     private var faultHandler:Function;
 
 
-    public function CallResponder( resultHandler:Function, faultHandler:Function = null)
+    public function CallResponder(resultHandler:Function, faultHandler:Function = null)
     {
         this.faultHandler = faultHandler;
         this.resultHandler = resultHandler;
