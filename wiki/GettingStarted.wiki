@@ -44,6 +44,11 @@ For the Flex environment the main application code would look like
 			override public function getStartupCommand():Class {
 				return HelloFabricationStartupCommand;
 			}
+                        
+                        override public function getClassByName(path:String):Class  {
+                                return getDefinitionByName(path) as Class;
+                        }
+
 			
 		]]>
 	</mx:Script>
@@ -66,6 +71,10 @@ In Flex module based applications the main application code would look like,
 			override public function getStartupCommand():Class {
 				return HelloFabricationStartupCommand;
 			}
+
+                        override public function getClassByName(path:String):Class  {
+                                return getDefinitionByName(path) as Class;
+                        }
 			
 		]]>
 	</mx:Script>
@@ -86,6 +95,10 @@ package {
 		override public function getStartupCommand():Class {
 			return HelloFabricationStartupCommand;
 		}
+
+                override public function getClassByName(path:String):Class  {
+                         return getDefinitionByName(path) as Class;
+                }
 	}
 }
 }}}
@@ -105,6 +118,10 @@ In AIR based flex applications the main application code would look like,
 			override public function getStartupCommand():Class {
 				return HelloFabricationStartupCommand;
 			}
+
+                       override public function getClassByName(path:String):Class  {
+                                return getDefinitionByName(path) as Class;
+                        }
 			
 		]]>
 	</mx:Script>
