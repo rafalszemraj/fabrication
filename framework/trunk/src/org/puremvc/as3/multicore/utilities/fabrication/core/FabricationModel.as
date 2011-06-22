@@ -13,32 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package org.puremvc.as3.multicore.utilities.fabrication.core {
-	import org.puremvc.as3.multicore.utilities.fabrication.utils.HashMap;	
-	import org.puremvc.as3.multicore.interfaces.IProxy;	
-	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;	
-	import org.puremvc.as3.multicore.core.Model;	
+	import org.puremvc.as3.multicore.utilities.fabrication.utils.HashMap;
+	import org.puremvc.as3.multicore.interfaces.IProxy;
+	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
+	import org.puremvc.as3.multicore.core.Model;
 
 	/**
 	 * FabricationModel is the custom model implementation used internally
 	 * by fabrication.
-	 * 
+	 *
 	 * @author Darshan Sawardekar
 	 */
 	public class FabricationModel extends Model implements IDisposable {
 
 		/**
-		 * Creates and returns the instance of the FabricationModel for the specified 
+		 * Creates and returns the instance of the FabricationModel for the specified
 		 * multiton key.
-		 * 
+		 *
 		 * @param multitonKey The multitonkey whose FabricationModel is to be created.
 		 */
 		static public function getInstance(multitonKey:String):FabricationModel {
 			if (instanceMap[multitonKey] == null) {
 				instanceMap[multitonKey] = new FabricationModel(multitonKey);
 			}
-			
+
 			return instanceMap[multitonKey] as FabricationModel;
 		}
 
@@ -49,12 +49,12 @@ package org.puremvc.as3.multicore.utilities.fabrication.core {
 
 		/**
 		 * Creates the FabricationModel instance.
-		 * 
+		 *
 		 * @param multitonKey The multitonkey for this FabricationModel
 		 */
 		public function FabricationModel(multitonKey:String) {
 			super(multitonKey);
-			
+
 			proxyHashMap = new HashMap();
 		}
 
@@ -85,19 +85,23 @@ package org.puremvc.as3.multicore.utilities.fabrication.core {
 		 * @see org.puremvc.as3.multicore.interfaces.IModel#removeProxy()
 		 */
 		override public function removeProxy(proxyName:String):IProxy {
-			var proxy:IProxy = proxyHashMap.remove(proxyName) as IProxy;
-			proxy.onRemove();
-			
-			return proxy;
+
+            if( hasProxy( proxyName ) ) {
+			    var proxy:IProxy = proxyHashMap.remove(proxyName) as IProxy;
+			    proxy.onRemove();
+    			return proxy;
+            }
+            else return null;
+
 		}
-		
+
 		/**
          * @inheritDoc
          */
 		public function dispose():void {
 			proxyHashMap.dispose();
 			proxyHashMap = null;
-			
+
 			removeModel(multitonKey);
 		}
 	}
