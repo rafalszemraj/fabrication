@@ -19,6 +19,7 @@
 
     <!-- load user properties -->
     <property file="project.properties"/>
+    <property file="user.properties"/>
     <import file="${framework.basedir}/etc/ant/build.tools.xml"/>
 
     <property name="src.dir" value="${basedir}/src"/>
