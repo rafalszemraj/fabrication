@@ -83,7 +83,7 @@
                       output.swf="${basedir}/fabrication_module_loader_example/bin/simple_module.swf">
             <args>
                 <arg line="-sp+=${basedir}/fabrication_module_loader_example/src"/>
-                <arg line="-l+=${framework.basedir}/bin/fabrication_air.swc"/>
+                <arg line="-l+=${framework.basedir}/bin/fabrication-air/fabrication-air.swc"/>
                 <arg line="-debug=true"/>
             </args>
         </flex.compile>
@@ -93,7 +93,7 @@
                         air="true">
             <args>
                 <arg line="-sp+=${basedir}/fabrication_module_loader_example/src"/>
-                <arg line="-l+=${framework.basedir}/bin/fabrication_air.swc"/>
+                <arg line="-l+=${framework.basedir}/bin/fabrication-air/fabrication-air.swc"/>
                 <arg line="-debug=true"/>
             </args>
         </flex.compile>
@@ -174,7 +174,7 @@
                     <!--<arg line="-sp+=${basedir}/fabrication_0.7/src"/>-->
                     <arg line="-debug=@{debug}"/>
                     <!--<arg line="-l+=${basedir}/fabrication_0.7/libs/puremvc"/>-->
-                    <arg line="-l+=${framework.basedir}/bin/fabrication_air@{moxie}.swc"/>
+                    <arg line="-l+=${framework.basedir}/bin/fabrication-air/fabrication-air.swc"/>
                     <!--<arg line="-l+=${basedir}/fabrication-0.6-flex.swc"/>-->
                     <!--<arg line="-l+=${framework.basedir}/libs/puremvc"/>-->
                     <!--<arg line="-l+=${framework.basedir}/bin/fabrication_rpc.swc"/>-->
