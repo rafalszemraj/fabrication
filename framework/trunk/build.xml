@@ -168,13 +168,14 @@
 
         </exec>
         <unzip src="${bin.dir}/fabrication-rpc/rsl/fabrication-rpc.swc" dest="${bin.dir}/fabrication-rpc/rsl"/>
-        <move file="${bin.dir}/fabrication-rpc/rsl/library.swf" tofile="${bin.dir}/fabrication-rpc/rsl/fabrication-rpc.swf"/>
+        <move file="${bin.dir}/fabrication-rpc/rsl/library.swf"
+              tofile="${bin.dir}/fabrication-rpc/rsl/fabrication-rpc.swf"/>
         <delete file="${bin.dir}/fabrication-rpc/rsl/catalog.xml"/>
 
         <!--<exec executable="${flex.optimizer}" failonerror="true" failifexecutionfails="true">-->
-            <!--<arg line="-keep-as3-metadata Inject InjectProxy InjectMediator InjectService"/>-->
-            <!--<arg line="-input ${bin.dir}/rsl/fabrication_rpc/library.swf"/>-->
-            <!--<arg line="-output ${bin.dir}/rsl/fabrication_rpc/library.swf"/>-->
+        <!--<arg line="-keep-as3-metadata Inject InjectProxy InjectMediator InjectService"/>-->
+        <!--<arg line="-input ${bin.dir}/rsl/fabrication_rpc/library.swf"/>-->
+        <!--<arg line="-output ${bin.dir}/rsl/fabrication_rpc/library.swf"/>-->
         <!--</exec>-->
 
 
@@ -261,77 +262,77 @@
         <dist dist.name="as3" dist.version="${fabrication.version}"/>
         <dist dist.name="rpc" dist.version="${fabrication.version}"/>
         <!--<copy file="${bin.dir}/fabrication_air.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-air.swc"-->
-              <!--overwrite="true"/>-->
+        <!--overwrite="true"/>-->
         <!--<copy file="${bin.dir}/rsl/fabrication_air/library.swf"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-air.swf"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-air.swf"-->
+        <!--overwrite="true"/>-->
         <!--<zip destfile="${dist.dir}/fabrication-${fabrication.version}-air.zip">-->
-            <!--<fileset dir="${dist.dir}">-->
-                <!--<include name="fabrication-${fabrication.version}-air.swc"/>-->
-                <!--<include name="fabrication-${fabrication.version}-air.swf"/>-->
-            <!--</fileset>-->
+        <!--<fileset dir="${dist.dir}">-->
+        <!--<include name="fabrication-${fabrication.version}-air.swc"/>-->
+        <!--<include name="fabrication-${fabrication.version}-air.swf"/>-->
+        <!--</fileset>-->
         <!--</zip>-->
 
         <!--<copy file="${bin.dir}/fabrication_air_moxie.swc"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swc"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swc"-->
+        <!--overwrite="true"/>-->
         <!--<copy file="${bin.dir}/rsl/fabrication_air_moxie/library.swf"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swf"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.swf"-->
+        <!--overwrite="true"/>-->
         <!--<zip destfile="${dist.dir}/fabrication-${fabrication.version}-air-moxie.zip">-->
-            <!--<fileset dir="${dist.dir}">-->
-                <!--<include name="fabrication-${fabrication.version}-air-moxie.swc"/>-->
-                <!--<include name="fabrication-${fabrication.version}-air-moxie.swf"/>-->
-            <!--</fileset>-->
+        <!--<fileset dir="${dist.dir}">-->
+        <!--<include name="fabrication-${fabrication.version}-air-moxie.swc"/>-->
+        <!--<include name="fabrication-${fabrication.version}-air-moxie.swf"/>-->
+        <!--</fileset>-->
         <!--</zip>-->
 
         <!--<copy file="${bin.dir}/fabrication_flex.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-flex.swc"-->
-              <!--overwrite="true"/>-->
+        <!--overwrite="true"/>-->
         <!--<copy file="${bin.dir}/rsl/fabrication_flex/library.swf"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-flex.swf"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-flex.swf"-->
+        <!--overwrite="true"/>-->
         <!--<zip destfile="${dist.dir}/fabrication-${fabrication.version}-flex.zip">-->
-            <!--<fileset dir="${dist.dir}">-->
-                <!--<include name="fabrication-${fabrication.version}-flex.swc"/>-->
-                <!--<include name="fabrication-${fabrication.version}-flex.swf"/>-->
-            <!--</fileset>-->
+        <!--<fileset dir="${dist.dir}">-->
+        <!--<include name="fabrication-${fabrication.version}-flex.swc"/>-->
+        <!--<include name="fabrication-${fabrication.version}-flex.swf"/>-->
+        <!--</fileset>-->
         <!--</zip>-->
 
         <!--<copy file="${bin.dir}/fabrication_flex_moxie.swc"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swc"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swc"-->
+        <!--overwrite="true"/>-->
         <!--<copy file="${bin.dir}/rsl/fabrication_flex_moxie/library.swf"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swf"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.swf"-->
+        <!--overwrite="true"/>-->
         <!--<zip destfile="${dist.dir}/fabrication-${fabrication.version}-flex-moxie.zip">-->
-            <!--<fileset dir="${dist.dir}">-->
-                <!--<include name="fabrication-${fabrication.version}-flex-moxie.swc"/>-->
-                <!--<include name="fabrication-${fabrication.version}-flex-moxie.swf"/>-->
-            <!--</fileset>-->
+        <!--<fileset dir="${dist.dir}">-->
+        <!--<include name="fabrication-${fabrication.version}-flex-moxie.swc"/>-->
+        <!--<include name="fabrication-${fabrication.version}-flex-moxie.swf"/>-->
+        <!--</fileset>-->
         <!--</zip>-->
 
         <!--<copy file="${bin.dir}/fabrication_as3.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-as3.swc"-->
-              <!--overwrite="true"/>-->
+        <!--overwrite="true"/>-->
         <!--<copy file="${bin.dir}/rsl/fabrication_as3/library.swf"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-as3.swf"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-as3.swf"-->
+        <!--overwrite="true"/>-->
         <!--<zip destfile="${dist.dir}/fabrication-${fabrication.version}-as3.zip">-->
-            <!--<fileset dir="${dist.dir}">-->
-                <!--<include name="fabrication-${fabrication.version}-as3.swc"/>-->
-                <!--<include name="fabrication-${fabrication.version}-as3.swf"/>-->
-            <!--</fileset>-->
+        <!--<fileset dir="${dist.dir}">-->
+        <!--<include name="fabrication-${fabrication.version}-as3.swc"/>-->
+        <!--<include name="fabrication-${fabrication.version}-as3.swf"/>-->
+        <!--</fileset>-->
         <!--</zip>-->
 
         <!--<copy file="${bin.dir}/fabrication_rpc.swc" tofile="${dist.dir}/fabrication-${fabrication.version}-rpc.swc"-->
-              <!--overwrite="true"/>-->
+        <!--overwrite="true"/>-->
         <!--<copy file="${bin.dir}/rsl/fabrication_rpc/library.swf"-->
-              <!--tofile="${dist.dir}/fabrication-${fabrication.version}-rpc.swf"-->
-              <!--overwrite="true"/>-->
+        <!--tofile="${dist.dir}/fabrication-${fabrication.version}-rpc.swf"-->
+        <!--overwrite="true"/>-->
         <!--<zip destfile="${dist.dir}/fabrication-${fabrication.version}-rpc.zip">-->
-            <!--<fileset dir="${dist.dir}">-->
-                <!--<include name="fabrication-${fabrication.version}-rpc.swc"/>-->
-                <!--<include name="fabrication-${fabrication.version}-rpc.swf"/>-->
-            <!--</fileset>-->
+        <!--<fileset dir="${dist.dir}">-->
+        <!--<include name="fabrication-${fabrication.version}-rpc.swc"/>-->
+        <!--<include name="fabrication-${fabrication.version}-rpc.swf"/>-->
+        <!--</fileset>-->
         <!--</zip>-->
 
 
@@ -473,26 +474,26 @@
     </target>
 
     <target name="sent.to.ministry" description="publish to ministry rsl">
-         <ftp server="theministryofideas.biz"
+        <ftp server="theministryofideas.biz"
              userid="themoiprod" password="TheMoI.2o1o"
              action="put"
              remotedir="subdomains/rsl/httpdocs/fabrication" newer="true" verbose="true">
             <fileset dir="${bin.dir}/fabrication-air/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-air-moxie/rsl">
+            <fileset dir="${bin.dir}/fabrication-air-moxie/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-flex/rsl">
+            <fileset dir="${bin.dir}/fabrication-flex/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-flex-moxie/rsl">
+            <fileset dir="${bin.dir}/fabrication-flex-moxie/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-as3/rsl">
+            <fileset dir="${bin.dir}/fabrication-as3/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-rpc/rsl">
+            <fileset dir="${bin.dir}/fabrication-rpc/rsl">
                 <include name="*.swf"/>
             </fileset>
         </ftp>
@@ -508,22 +509,36 @@
             <fileset dir="${bin.dir}/fabrication-air/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-air-moxie/rsl">
+            <fileset dir="${bin.dir}/fabrication-air-moxie/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-flex/rsl">
+            <fileset dir="${bin.dir}/fabrication-flex/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-flex-moxie/rsl">
+            <fileset dir="${bin.dir}/fabrication-flex-moxie/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-as3/rsl">
+            <fileset dir="${bin.dir}/fabrication-as3/rsl">
                 <include name="*.swf"/>
             </fileset>
-             <fileset dir="${bin.dir}/fabrication-rpc/rsl">
+            <fileset dir="${bin.dir}/fabrication-rpc/rsl">
                 <include name="*.swf"/>
             </fileset>
         </ftp>
     </target>
 
+    <target name="copy.to.local">
+        <delete dir="${local.fabrication}"/>
+        <copy todir="${local.fabrication}" overwrite="true">
+            <fileset dir="${bin.dir}">
+                <exclude name="tests/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${local.fabrication}/src" overwrite="true">
+            <fileset dir="${src.dir}"/>
+        </copy>
+        <copy todir="${local.fabrication}/src_rpc" overwrite="true">
+            <fileset dir="${basedir}/src_rpc"/>
+        </copy>
+</target>
 </project>
