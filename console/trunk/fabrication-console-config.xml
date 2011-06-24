@@ -63,7 +63,7 @@
 
         <include-libraries>
             <library>libs</library>
-            <library>../framework/bin/fabrication_air.swc</library>
+            <library>../framework/bin/fabrication-air/fabrication-air.swc</library>
         </include-libraries>
 
 
