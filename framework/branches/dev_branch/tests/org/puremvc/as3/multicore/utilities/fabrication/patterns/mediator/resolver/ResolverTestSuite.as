@@ -14,6 +14,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         public var mediatorRegistrarTest:MediatorRegistrarTest;
         public var componentRouteTest:ComponentRouteTest;
         public var expressionIteratorTest:ExpressionIteratorTest;
+        //TODO: Problem with parametrized tests
         public var componentResolverTest:ComponentResolverTest;
         public var componentRouteMapperTest:ComponentRouteMapperTest;
 

@@ -24,11 +24,11 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 
 	import flash.utils.Dictionary;
 
-    FLEX4::supported {
+  //  FLEX4::supported {
         import spark.components.Group;
         import mx.core.mx_internal;
         use namespace mx_internal;
-    }
+   // }
 
 
 
@@ -70,7 +70,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             var mxmlContent:Array;
 
 
-            FLEX4::supported {
+            //FLEX4::supported {
                 if (component is Group) {
 
 
@@ -85,7 +85,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
                     return routes;
 
                 }
-            }
+           // }
 
 			if (component is Container) {
 				var container:Container = component as Container;

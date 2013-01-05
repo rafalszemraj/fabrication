@@ -3,8 +3,7 @@
                xmlns:s="library://ns.adobe.com/flex/spark"
                xmlns:flexUIRunner="org.flexunit.flexui.*"
                width="1000" height="650" creationComplete="creationComplete()"
-               xmlns:components="org.puremvc.as3.multicore.utilities.fabrication.components.*"
-        >
+               xmlns:components="org.puremvc.as3.multicore.utilities.fabrication.components.*">
     <fx:Script><![CDATA[
         import org.flexunit.listeners.CIListener;
         import org.flexunit.runner.FlexUnitCore;
