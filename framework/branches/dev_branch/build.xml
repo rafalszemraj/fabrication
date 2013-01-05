@@ -16,11 +16,11 @@
         <delete dir="${bin.dir}"/>
         <delete dir="${dist.dir}"/>
         <mkdir dir="${bin.dir}"/>
-        <ant antfile="build.tests.xml"/>
+       <!-- <ant antfile="build.tests.xml"/>                           -->
         <antcall target="compile.fabrication.library"/>
-        <antcall target="generate.documentation"/>
+     <!--   <antcall target="generate.documentation"/>       -->
         <antcall target="prepare.distribution.package"/>
-        <antcall target="publish.to.blog"/>
+      <!--  <antcall target="publish.to.blog"/>             -->
 
     </target>
 

@@ -39,8 +39,8 @@
     <condition property="flex.asdoc" value="${flex.home}/bin/asdoc.exe" else="${flex.home}/bin/asdoc">
         <os family="windows"/>
     </condition>
-    <condition property="flex.standalone.player" value="${flex.home}/runtimes/player/10/win/FlashPlayer.exe"
-               else="${flex.home}/runtimes/player/10/mac/Flash\ Player.app">
+    <condition property="flex.standalone.player" value="${flex.home}/runtimes/player/11.1/win/FlashPlayerDebugger.exe"
+               else="${flex.home}/runtimes/player/11.1/mac/Flash\ Player.app">
         <os family="windows"/>
     </condition>
     <condition property="flex.optimizer" value="${flex.home}/bin/optimizer.exe" else="${flex.home}/bin/optimizer">

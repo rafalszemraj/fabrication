@@ -36,10 +36,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
     import org.puremvc.as3.multicore.utilities.fabrication.utils.CloneUtils;
     import org.puremvc.as3.multicore.utilities.fabrication.vo.Reaction;
 
-    FLEX4::supported {
+    //FLEX4::supported {
         import mx.core.IVisualElement;
         import mx.core.IVisualElementContainer;
-    }
+   // }
 
 
     use namespace fabrication_internal;
@@ -310,7 +310,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
 
                 }
 
-                FLEX4::supported {
+                //FLEX4::supported {
 
                     var parent:DisplayObjectContainer = viewComponent.parent;
                     if (parent) {
@@ -322,7 +322,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
                     }
 
 
-                }
+        //        }
 
                 if (viewDisplayObject.parent) {
 

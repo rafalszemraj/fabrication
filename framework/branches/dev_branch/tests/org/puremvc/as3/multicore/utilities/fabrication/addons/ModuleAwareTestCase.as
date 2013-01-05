@@ -38,12 +38,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
 
         protected function loadModule():void
         {
-
             var moduleInfo:IModuleInfo = ModuleManager.getModule(moduleUrl);
             modulesInfoCache.push(moduleInfo);
             Async.handleEvent(this, moduleInfo, ModuleEvent.READY, moduleInitializeAsyncHandler, timeoutMS);
             moduleInfo.load();
-
         }
 
         protected function moduleInitializeAsyncHandler(event:ModuleEvent, passThroughData:Object = null):void

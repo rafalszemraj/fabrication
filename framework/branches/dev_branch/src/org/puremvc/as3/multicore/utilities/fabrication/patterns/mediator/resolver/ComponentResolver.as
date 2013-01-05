@@ -32,9 +32,9 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 
-    FLEX4::supported {
+    //FLEX4::supported {
     import spark.events.ElementExistenceEvent;
-    }
+   // }
 
     /**
 	 * Dispatched when a component was resolved from an expression.
@@ -83,7 +83,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 		 */
 		static private var removeEventName:String = ChildExistenceChangedEvent.CHILD_REMOVE;
 
-        FLEX4::supported {
+        //FLEX4::supported {
 
 		 /**
 		 * Event indicating that the component has been created.
@@ -97,7 +97,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 		 */
 		static private var removeSparkEventName:String = ElementExistenceEvent.ELEMENT_REMOVE;
 
-        }
+     //   }
 
 
 
@@ -154,10 +154,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			baseComponent.addEventListener(createEventName, handleCreateEvent, true);
 			baseComponent.addEventListener(removeEventName, handleRemoveEvent, true);
 
-            FLEX4::supported {
+            //FLEX4::supported {
             baseComponent.addEventListener( createSparkEventName, handleSparkCreateEvent, true);
 			baseComponent.addEventListener( removeSparkEventName, handleSparkRemoveEvent, true);
-            }
+          //  }
 
 		}
 
@@ -176,10 +176,10 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			baseComponent.removeEventListener(createEventName, handleCreateEvent, true);
 			baseComponent.removeEventListener(removeEventName, handleRemoveEvent, true);
 
-            FLEX4::supported {
+            //FLEX4::supported {
             baseComponent.removeEventListener( createSparkEventName, handleSparkCreateEvent, true);
 			baseComponent.removeEventListener( removeSparkEventName, handleSparkRemoveEvent, true);
-            }
+        //    }
 
 			baseComponent = null;
 
@@ -366,7 +366,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			}
 		}
 
-        FLEX4::supported{
+       // FLEX4::supported{
         /**
 		 * Matches the source component created against the current expression.
 		 * @private
@@ -377,7 +377,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 				runExpression(relatedObject);
 			}
 		}
-        }
+     //   }
 
 		/**
 		 * Runs the source component against the current expression.
@@ -406,7 +406,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			}
 		}
 
-        FLEX4::supported{
+        //FLEX4::supported{
         /**
 		 * If the source component was resolved earlier, it is marked as
 		 * unresolved here.
@@ -418,7 +418,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 				clearResolved(component);
 			}
 		}
-        }
+   //     }
 
 		/**
 		 * Executes the expression against the source component specified.
