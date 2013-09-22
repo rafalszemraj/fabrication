@@ -6,9 +6,10 @@
 	
 	<mx:Script>
 		<![CDATA[
-			
-			override public function getStartupCommand():Class {
-				return EmptyFlexModuleStartupCommand;		
+        import org.puremvc.as3.multicore.utilities.fabrication.addons.module.EmptyFlexModuleStartupCommand;
+
+        override public function getStartupCommand():Class {
+				return EmptyFlexModuleStartupCommand;
 			}
 			
 		]]>

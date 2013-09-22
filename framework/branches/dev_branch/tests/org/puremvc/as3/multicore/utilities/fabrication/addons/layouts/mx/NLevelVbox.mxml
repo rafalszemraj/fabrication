@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fab:LayoutModule
-	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.addons.layouts.*"
-	xmlns:mx="http://www.adobe.com/2006/mxml">
+<fab:LayoutModuleMx
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.addons.layouts.*">
 	<mx:Script>
 		<![CDATA[
 
@@ -58,4 +58,4 @@
 			</mx:HBox>
 		</mx:HBox>
 	</mx:HBox>
-</fab:LayoutModule>
+</fab:LayoutModuleMx>

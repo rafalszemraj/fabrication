@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
+package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator
+{
+
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
     import flash.utils.describeType;
@@ -34,12 +36,11 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.Expression;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.MediatorRegistrar;
     import org.puremvc.as3.multicore.utilities.fabrication.utils.CloneUtils;
-    import org.puremvc.as3.multicore.utilities.fabrication.vo.Reaction;
 
-    //FLEX4::supported {
+    FLEX4::supported {
         import mx.core.IVisualElement;
         import mx.core.IVisualElementContainer;
-   // }
+    }
 
 
     use namespace fabrication_internal;
@@ -52,7 +53,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
      *
      * @author Darshan Sawardekar, Rafał Szemraj
      */
-    public class FlexMediator extends FabricationMediator implements ICloneable {
+    public class FlexMediator extends FabricationMediator implements ICloneable
+    {
 
         /**
          * Default name of this mediator
@@ -310,7 +312,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
 
                 }
 
-                //FLEX4::supported {
+                FLEX4::supported {
 
                     var parent:DisplayObjectContainer = viewComponent.parent;
                     if (parent) {
@@ -322,7 +324,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator {
                     }
 
 
-        //        }
+                }
 
                 if (viewDisplayObject.parent) {
 

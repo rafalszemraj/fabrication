@@ -17,9 +17,15 @@
 package org.puremvc.as3.multicore.utilities.fabrication.components {
     import flash.system.ApplicationDomain;
     import flash.utils.getDefinitionByName;
-	
-	import mx.modules.ModuleLoader;
-	
+
+    FLEX4::supported {
+        import spark.modules.ModuleLoader;
+    }
+
+    FLEX::mxsupported {
+        import mx.modules.ModuleLoader;
+    }
+
 	import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.FlexModuleLoaderFabricator;
 	import org.puremvc.as3.multicore.utilities.fabrication.events.FabricatorEvent;

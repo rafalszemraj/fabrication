@@ -16,11 +16,16 @@
 
 package org.puremvc.as3.multicore.utilities.fabrication.addons {
     import flash.events.Event;
+    import flash.events.IEventDispatcher;
+
+    import mx.core.IVisualElement;
+
+    import mx.core.UIComponent;
 
     import mx.events.FlexEvent;
     import mx.events.ModuleEvent;
+    import mx.modules.IModule;
     import mx.modules.IModuleInfo;
-    import mx.modules.Module;
     import mx.modules.ModuleManager;
 
     import org.flexunit.async.Async;
@@ -31,8 +36,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
     public class ModuleAwareTestCase extends BaseTestCase {
 
         protected var modulesInfoCache:Array = new Array();
-        protected var timeoutMS:int = 25000;
-        public var currentModule:Module;
+        protected var timeoutMS:int = 30000;
+        public var currentModule:IModule;
         protected var moduleUrl:String;
 
 
@@ -47,10 +52,9 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
         protected function moduleInitializeAsyncHandler(event:ModuleEvent, passThroughData:Object = null):void
         {
 
-            var moduleInstance:Module = createModule(event.module);
+            var moduleInstance:IModule = createModule(event.module);
             assertNotNull(moduleInstance);
-            Async.handleEvent( this, moduleInstance, FlexEvent.INITIALIZE, moduleReadyAsyncHandler );
-//            moduleInstance.addEventListener(FlexEvent.INITIALIZE, moduleReadyAsyncHandler);
+            Async.handleEvent( this, moduleInstance as IEventDispatcher, FlexEvent.INITIALIZE, moduleReadyAsyncHandler );
             addModule(moduleInstance);
         }
 
@@ -59,24 +63,29 @@ package org.puremvc.as3.multicore.utilities.fabrication.addons {
 
         }
 
-        private function createModule(moduleInfo:IModuleInfo):Module
+        private function createModule(moduleInfo:IModuleInfo):IModule
         {
-            var moduleInstance:Module = moduleInfo.factory.create() as Module;
-            return moduleInstance;
+            var moduleInstance:Object = moduleInfo.factory.create();
+            return moduleInstance as IModule;
         }
 
-        private function addModule(module:Module):void
+        private function addModule(module:IModule):void
         {
             try {
 
-                TestContainer.getInstance().add(module);
+                if (module is IVisualElement)
+                {
+                    TestSparkContainer.getInstance().add( module as UIComponent);
+                }
+                else
+                {
+                    TestContainer.getInstance().add(module as UIComponent);
+                }
             }
             catch(e:Error) {
 
-                TestSparkContainer.getInstance().add( module );
+                TestSparkContainer.getInstance().add( module as UIComponent);
             }
         }
-
-
     }
 }

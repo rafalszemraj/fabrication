@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fab:LayoutModule
+<fab:LayoutModuleMx
 	xmlns:fab="org.puremvc.as3.multicore.utilities.fabrication.addons.layouts.*"
 	xmlns:mx="http://www.adobe.com/2006/mxml">
 	<mx:Script>
@@ -20,4 +20,4 @@
 	<mx:Button id="harry" label="harry" />
 	<mx:Button id="ron" label="ron" />
 	<mx:Button id="hermione" label="hermione" />
-</fab:LayoutModule>
+</fab:LayoutModuleMx>

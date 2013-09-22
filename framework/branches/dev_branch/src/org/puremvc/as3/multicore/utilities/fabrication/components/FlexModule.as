@@ -15,11 +15,16 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.components {
-    import flash.display.DisplayObject;
+
     import flash.utils.getDefinitionByName;
 
-    import mx.core.UIComponent;
-    import mx.modules.Module;
+    FLEX4::supported {
+        import spark.modules.Module;
+    }
+
+    FLEX::mxsupported {
+        import mx.modules.Module;
+    }
 
 	import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.ApplicationFabricator;
 	import org.puremvc.as3.multicore.utilities.fabrication.components.fabricator.FlexModuleFabricator;
