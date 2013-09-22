@@ -17,7 +17,9 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.test {
     import flash.events.Event;
 
-    import mx.modules.Module;
+    import mx.core.UIComponent;
+
+    import mx.modules.IModule;
 
     import org.puremvc.as3.multicore.utilities.fabrication.addons.ComponentsDataProvider;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.ModuleAwareTestCase;
@@ -59,14 +61,14 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         override protected function moduleReadyAsyncHandler(event:Event, passThroughData:Object = null):void
         {
             super.moduleReadyAsyncHandler(event, passThroughData);
-            var module:Module = event.target as Module;
-            assertType(moduleUrl, Module, module);
+            var module:Object = event.target as IModule;
+            assertType(moduleUrl, IModule, module);
             assertTrue("Routes property not found in " + moduleUrl, module.hasOwnProperty("routes"));
             var routes:Array = module["routes"];
             assertType(moduleUrl, Array, routes);
             assertTrue("Routes array must not be empty in " + moduleUrl, routes.length > 0);
             var mapper:ComponentRouteMapper = createRouteMapper();
-            var mappedRoutes:Array = mapper.fetchComponentRoutes(module);
+            var mappedRoutes:Array = mapper.fetchComponentRoutes(module as UIComponent);
             var expectedRoutesCount:int = routes.length;
             var mappedRoutesCount:int = mappedRoutes.length;
             var i:int;
@@ -87,8 +89,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
                 assertEquals(moduleUrl, expectedRoute.id, mappedRoute.id);
                 assertEquals(moduleUrl, expectedRoute.path, mappedRoute.path);
             }
-            assertTrue(mapper.hasCachedRoutes(module));
-            assertEquals(mappedRoutes, mapper.fetchComponentRoutes(module));
+            assertTrue(mapper.hasCachedRoutes(module as UIComponent));
+            assertEquals(mappedRoutes, mapper.fetchComponentRoutes(module as UIComponent));
         }
 
         private function createRouteMapper():ComponentRouteMapper

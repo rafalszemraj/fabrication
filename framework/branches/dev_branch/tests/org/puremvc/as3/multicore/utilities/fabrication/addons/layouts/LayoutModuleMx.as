@@ -15,19 +15,17 @@
  */
 
 package org.puremvc.as3.multicore.utilities.fabrication.addons.layouts {
-
+    import mx.modules.Module;
 
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver.*;
 
-    import spark.modules.Module;
-
-/**
+    /**
      * @author Darshan Sawardekar
      */
-    public class LayoutModule extends Module {
+    public class LayoutModuleMx extends Module {
 
-        public function LayoutModule()
+        public function LayoutModuleMx()
         {
             super();
         }

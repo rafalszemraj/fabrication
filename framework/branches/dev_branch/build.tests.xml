@@ -22,8 +22,10 @@
     <property file="project.properties"/>
     <import file="${basedir}/etc/ant/build.tools.xml"/>
 
-    <property name="test.module.layouts.src.dir"
-              value="${basedir}/tests/org/puremvc/as3/multicore/utilities/fabrication/addons/layouts"/>
+    <property name="test.module.layouts.src.dir.mx"
+              value="${basedir}/tests/org/puremvc/as3/multicore/utilities/fabrication/addons/layouts/mx"/>
+    <property name="test.module.layouts.src.dir.spark"
+              value="${basedir}/tests/org/puremvc/as3/multicore/utilities/fabrication/addons/layouts/spark"/>
     <property name="src.dir" value="${basedir}/src"/>
     <property name="tests.src.dir" value="${basedir}/tests"/>
     <property name="tests.bin.dir" value="${bin.dir}/tests"/>
@@ -53,6 +55,7 @@
                 <arg line="-keep-as3-metadata+=InjectProxy"/>
                 <arg line="-keep-as3-metadata+=InjectMediator"/>
                 <arg line="-define+=FLEX4::supported,true"/>
+                <arg line="-define+=FLEX::mxsupported,false"/>
             </args>
         </flex.compile>
 
@@ -71,6 +74,7 @@
                 <arg line="-l+=${mockas3.lib}"/>
                 <arg line="-l+=${reflection.lib}"/>
                 <arg line="-define+=FLEX4::supported,true"/>
+                <arg line="-define+=FLEX::mxsupported,false"/>
             </args>
         </flex.compile>
 
@@ -79,8 +83,13 @@
               message="&lt;?xml version='1.0' encoding='UTF-8' standalone='no'?&gt;"/>
         <echo file="${tests.bin.dir}/moduleLayouts.xml" append="true"
               message="&lt;modules&gt;"/>
-        <foreach target="compile.test.layoutModule" param="module.src.path">
-            <fileset dir="${test.module.layouts.src.dir}">
+        <foreach target="compile.test.layoutModuleSpark" param="module.src.path">
+            <fileset dir="${test.module.layouts.src.dir.spark}">
+                <include name="**/*.mxml"/>
+            </fileset>
+        </foreach>
+       <foreach target="compile.test.layoutModuleMx" param="module.src.path">
+            <fileset dir="${test.module.layouts.src.dir.mx}">
                 <include name="**/*.mxml"/>
             </fileset>
         </foreach>
@@ -88,10 +97,15 @@
     </target>
 
 
-    <target name="compile.test.layoutModule">
-        <flex.compile.test.module module.src.path="${module.src.path}"/>
+    <target name="compile.test.layoutModuleMx">
+        <flex.compile.test.modulemx module.src.path="${module.src.path}"
+                                  flex4.supported="false" flex.mxsupported="true"/>
     </target>
 
+    <target name="compile.test.layoutModuleSpark">
+        <flex.compile.test.modulespark module.src.path="${module.src.path}"
+                                       flex4.supported="true" flex.mxsupported="false"/>
+    </target>
 
     <target name="run.testRunner">
 

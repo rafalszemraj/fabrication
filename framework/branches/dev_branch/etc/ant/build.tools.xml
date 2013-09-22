@@ -1,6 +1,6 @@
 <project name="build.tools">
 
-
+    <property file="project.properties"/>
     <!--
 
         Paths and tasks declarations
@@ -17,35 +17,42 @@
     <taskdef resource="flexUnitTasks.tasks" classpathref="antlib.path"/>
     <taskdef name="gcupload" classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpathref="antlib.path"/>
 
-
+              <!--value="${flex.home}/bin/mxmlc.exe"-->
     <condition property="flex.mxmlc" value="${flex.home}/bin/mxmlc.exe" else="${flex.home}/bin/mxmlc">
         <os family="windows"/>
     </condition>
-    <condition property="flex.amxmlc" value="${flex.home}/bin/amxml.bat" else="${flex.home}/bin/amxmlc">
+    <!--value="${flex.home}/bin/amxml.bat" -->
+    <condition property="flex.amxmlc" value="${flex.home}/bin/amxmlc.bat" else="${flex.home}/bin/amxmlc">
         <os family="windows"/>
     </condition>
+    <!-- value="${flex.home}/bin/compc.exe"-->
     <condition property="flex.compc" value="${flex.home}/bin/compc.exe" else="${flex.home}/bin/compc">
         <os family="windows"/>
     </condition>
-    <condition property="flex.acompc" value="${flex.home}/bin/acompc.bat" else="${flex.home}/bin/acompc">
+    <!--value="${flex.home}/bin/acompc.bat"-->
+    <condition property="flex.acompc" value="${flex.home}/bin/acompc.bat"  else="${flex.home}/bin/acompc">
         <os family="windows"/>
     </condition>
+    <!--value="${flex.home}/bin/adl.exe" -->
     <condition property="flex.adl" value="${flex.home}/bin/adl.exe" else="${flex.home}/bin/adl">
         <os family="windows"/>
     </condition>
+        <!-- value="${flex.home}/bin/adt.bat"-->
     <condition property="flex.adt" value="${flex.home}/bin/adt.bat" else="${flex.home}/bin/adt">
         <os family="windows"/>
     </condition>
-    <condition property="flex.asdoc" value="${flex.home}/bin/asdoc.exe" else="${flex.home}/bin/asdoc">
+        <!--value="${flex.home}/bin/asdoc.exe"-->
+    <condition property="flex.asdoc"  value="${flex.home}/bin/asdoc.exe" else="${flex.home}/bin/asdoc">
         <os family="windows"/>
     </condition>
-    <condition property="flex.standalone.player" value="${flex.home}/runtimes/player/11.1/win/FlashPlayerDebugger.exe"
+    <condition property="flex.standalone.player" value="${flex.home}/runtimes/player/11.8/win/FlashPlayerDebugger.exe"
                else="${flex.home}/runtimes/player/11.1/mac/Flash\ Player.app">
         <os family="windows"/>
     </condition>
-    <condition property="flex.optimizer" value="${flex.home}/bin/optimizer.exe" else="${flex.home}/bin/optimizer">
-		<os family="windows" />
-	</condition>
+        <!-- value="${flex.home}/bin/optimizer.exe"-->
+    <condition property="flex.optimizer" value="${flex.home}/bin/optimizer">
+        <os family="windows"/>
+    </condition>
 
 
     <!-- ================================================================================================================================
@@ -89,7 +96,7 @@
                     <var name="sdk.config" value="flex-config.xml"/>
                 </else>
             </if>
-            <exec executable="${compiler}" failonerror="true">
+            <exec executable="${flex.amxmlc}" failonerror="true">
                 <arg line="-file-specs=@{main.class}"/>
                 <arg line="-output=@{output.swf}"/>
                 <args/>
@@ -97,32 +104,109 @@
         </sequential>
     </macrodef>
 
-    <macrodef name="flex.compile.test.module">
+    <macrodef name="flex.compile.test.modulemx">
         <attribute name="module.src.path"/>
+        <attribute name="flex4.supported" default="false"/>
+        <attribute name="flex.mxsupported" default="true"/>
         <sequential>
-            <echo message="@{module.src.path}"/>
-            <echo message="${test.module.layouts.src.dir}"/>
+            <!--<echo message="@{module.src.path}"/>-->
+            <!--<echo message="${test.module.layouts.src.dir}"/>-->
             <path location="@{module.src.path}" id="moduleSrcPath"/>
-            <pathconvert property="module.src.file" refid="moduleSrcPath">
+            <path location="${test.module.layouts.src.dir.mx}" id="testModuleLayoutsPath"/>
+            <pathconvert property="module.src.path.converted" refid="moduleSrcPath">
+                <filtermapper>
+                    <replacestring from="/" to="\"/>
+                </filtermapper>
+            </pathconvert>
+            <pathconvert property="test.module.layouts.src.dir.converted" refid="testModuleLayoutsPath">
+                <filtermapper>
+                    <replacestring from="/" to="\"/>
+                </filtermapper>
+            </pathconvert>
+            <echo message="${module.src.path.converted}"/>
+            <echo message="${test.module.layouts.src.dir.converted}"/>
+
+            <path location="${module.src.path.converted}" id="moduleSrcPathConverted"/>
+
+            <pathconvert property="module.src.file" refid="moduleSrcPathConverted">
+                <!--<filtermapper>-->
+                    <!--<replacestring from="${test.module.layouts.src.dir.converted}" to=""/>-->
+                <!--</filtermapper>-->
                 <chainedmapper>
-                    <globmapper from="${test.module.layouts.src.dir}*.mxml" to="*"/>
+                    <globmapper from="${test.module.layouts.src.dir.converted}*.mxml" to="*" />
                 </chainedmapper>
             </pathconvert>
+
             <echo message="${module.src.file}"/>
             <flex.compile main.class="@{module.src.path}"
-                          output.swf="${tests.bin.dir}/modules/${module.src.file}.swf">
+                          output.swf="${tests.bin.dir}/modules/mx/${module.src.file}.swf">
                 <args>
                     <arg line="-sp+=${src.dir}"/>
                     <arg line="-sp+=${tests.src.dir}"/>
-                    <arg line="-external-library-path ${puremvc.lib}"/>
-                    <arg line="-external-library-path ${reflection.lib}"/>
-                    <arg line="-external-library-path ${flex.home}/frameworks/libs"/>
-                    <arg line="-external-library-path ${flex.home}/frameworks/libs/air"/>
-                    <arg line="-define+=FLEX4::supported,true"/>
+                  <!--  <arg line="-external-library-path ${puremvc.lib}"/>
+                    <arg line="-external-library-path ${reflection.lib}"/>   -->
+                    <arg line="-l+=${puremvc.lib}"/>
+                    <arg line="-l+=${reflection.lib}"/>
+                    <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
+                    <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
                 </args>
             </flex.compile>
+
             <echo file="${tests.bin.dir}/moduleLayouts.xml" append="true"
-                  message="&lt;module path='modules${module.src.file}.swf'/&gt;"/>
+                  message="&lt;module path='modules\mx${module.src.file}.swf'/&gt;"/>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="flex.compile.test.modulespark">
+        <attribute name="module.src.path"/>
+        <attribute name="flex4.supported" default="true"/>
+        <attribute name="flex.mxsupported" default="false"/>
+        <sequential>
+            <!--<echo message="@{module.src.path}"/>-->
+            <!--<echo message="${test.module.layouts.src.dir}"/>-->
+            <path location="@{module.src.path}" id="moduleSrcPath"/>
+            <path location="${test.module.layouts.src.dir.spark}" id="testModuleLayoutsPathSpark"/>
+            <pathconvert property="module.src.path.converted" refid="moduleSrcPath">
+                <filtermapper>
+                    <replacestring from="/" to="\"/>
+                </filtermapper>
+            </pathconvert>
+            <pathconvert property="test.module.layouts.src.dir.converted" refid="testModuleLayoutsPathSpark">
+                <filtermapper>
+                    <replacestring from="/" to="\"/>
+                </filtermapper>
+            </pathconvert>
+            <echo message="${module.src.path.converted}"/>
+            <echo message="${test.module.layouts.src.dir.converted}"/>
+
+            <path location="${module.src.path.converted}" id="moduleSrcPathConverted"/>
+
+            <pathconvert property="module.src.file" refid="moduleSrcPathConverted">
+                <!--<filtermapper>-->
+                <!--<replacestring from="${test.module.layouts.src.dir.converted}" to=""/>-->
+                <!--</filtermapper>-->
+                <chainedmapper>
+                    <globmapper from="${test.module.layouts.src.dir.converted}*.mxml" to="*" />
+                </chainedmapper>
+            </pathconvert>
+
+            <echo message="${module.src.file}"/>
+            <flex.compile main.class="@{module.src.path}"
+                          output.swf="${tests.bin.dir}/modules/spark/${module.src.file}.swf">
+                <args>
+                    <arg line="-sp+=${src.dir}"/>
+                    <arg line="-sp+=${tests.src.dir}"/>
+                 <!--   <arg line="-external-library-path ${puremvc.lib}"/>
+                    <arg line="-external-library-path ${reflection.lib}"/> -->
+                    <arg line="-l+=${puremvc.lib}"/>
+                    <arg line="-l+=${reflection.lib}"/>
+                    <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
+                    <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
+                </args>
+            </flex.compile>
+
+            <echo file="${tests.bin.dir}/moduleLayouts.xml" append="true"
+                  message="&lt;module path='modules\spark${module.src.file}.swf'/&gt;"/>
         </sequential>
     </macrodef>
 
@@ -161,6 +245,7 @@
         <attribute name="swc.name"/>
         <attribute name="classes.list"/>
         <attribute name="flex4.supported" default="true"/>
+        <attribute name="flex.mxsupported" default="true"/>
         <element name="namespace" optional="true"/>
         <sequential>
             <if>
@@ -184,8 +269,7 @@
                 <namespace/>
                 <arg line="-output ${bin.dir}/@{swc.name}/@{swc.name}.swc"/>
                 <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
-                <!--<arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>-->
-
+                <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
             </exec>
 
 
@@ -199,6 +283,7 @@
                 <arg line="-debug=false"/>
                 <arg line="-optimize=true"/>
                 <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
+                <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
                 <!--<arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>-->
 
             </exec>
@@ -209,20 +294,20 @@
 
             <!--<exec executable="${compiler}" failonerror="true" failifexecutionfails="true">-->
 
-                <!--<arg line="+flex.home=${flex.home}"/>-->
-                <!--<arg line="-include-classes @{classes.list}"/>-->
-                <!--<arg line="-load-config fabrication-config.xml"/>-->
-                <!--<namespace/>-->
-                <!--<arg line="-output ${bin.dir}/rsl/@{swc.name}"/>-->
-                <!--<arg line="-directory=true"/>-->
-                <!--<arg line="-define+=FLEX4::supported,@{flex4.supported}"/>-->
+            <!--<arg line="+flex.home=${flex.home}"/>-->
+            <!--<arg line="-include-classes @{classes.list}"/>-->
+            <!--<arg line="-load-config fabrication-config.xml"/>-->
+            <!--<namespace/>-->
+            <!--<arg line="-output ${bin.dir}/rsl/@{swc.name}"/>-->
+            <!--<arg line="-directory=true"/>-->
+            <!--<arg line="-define+=FLEX4::supported,@{flex4.supported}"/>-->
 
             <!--</exec>-->
 
             <!--<exec executable="${flex.optimizer}" failonerror="true" failifexecutionfails="true">-->
-                <!--<arg line="-keep-as3-metadata Inject InjectProxy InjectMediator InjectService"/>-->
-                <!--<arg line="-input ${bin.dir}/rsl/@{swc.name}/library.swf"/>-->
-                <!--<arg line="-output ${bin.dir}/rsl/@{swc.name}/library.swf"/>-->
+            <!--<arg line="-keep-as3-metadata Inject InjectProxy InjectMediator InjectService"/>-->
+            <!--<arg line="-input ${bin.dir}/rsl/@{swc.name}/library.swf"/>-->
+            <!--<arg line="-output ${bin.dir}/rsl/@{swc.name}/library.swf"/>-->
             <!--</exec>-->
 
         </sequential>

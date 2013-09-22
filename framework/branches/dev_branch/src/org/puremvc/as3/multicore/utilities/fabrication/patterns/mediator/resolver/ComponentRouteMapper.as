@@ -24,11 +24,13 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 
 	import flash.utils.Dictionary;
 
-  //  FLEX4::supported {
+    import spark.components.SkinnableContainer;
+
+    FLEX4::supported {
         import spark.components.Group;
         import mx.core.mx_internal;
         use namespace mx_internal;
-   // }
+    }
 
 
 
@@ -70,12 +72,22 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             var mxmlContent:Array;
 
 
-            //FLEX4::supported {
-                if (component is Group) {
+            FLEX4::supported {
+                if (component is Group || component is SkinnableContainer) {
 
+                    var groupBase:Object = component as Group;
 
-                    var groupBase:Group = component as Group;
-                    mxmlContent = groupBase.mx_internal::getMXMLContent();
+                    if (!groupBase)
+                    {
+                        groupBase = (component as SkinnableContainer);
+                        var gb:Group = groupBase.contentGroup;
+                        mxmlContent = gb.mx_internal::getMXMLContent();
+                    }
+                    else
+                    {
+                        mxmlContent = groupBase.mx_internal::getMXMLContent();
+                    }
+
                     if (mxmlContent && mxmlContent.length) {
 
                         routes.push.apply(this, calcRoutesFromMXMLContent(mxmlContent, path));
@@ -85,7 +97,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
                     return routes;
 
                 }
-           // }
+            }
 
 			if (component is Container) {
 				var container:Container = component as Container;

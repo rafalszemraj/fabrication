@@ -18,7 +18,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
     import flash.events.Event;
 
     import mx.core.UIComponent;
-    import mx.modules.Module;
+    import mx.modules.IModule;
 
     import org.flexunit.async.Async;
     import org.puremvc.as3.multicore.utilities.fabrication.addons.ComponentsDataProvider;
@@ -243,8 +243,8 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         override protected function moduleReadyAsyncHandler(event:Event, passThroughData:Object = null):void
         {
             super.moduleReadyAsyncHandler(event, passThroughData);
-            var module:Module = event.target as Module;
-            assertType(moduleUrl, Module, module);
+            var module:UIComponent = event.target as UIComponent;
+            assertType(moduleUrl, IModule, module);
             assertTrue("Routes property not found in " + moduleUrl, module.hasOwnProperty("routes"));
             var routes:Array = module["routes"];
             assertType(moduleUrl, Array, routes);
@@ -252,7 +252,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
             validateExpressionsInModule(module, routes);
         }
 
-        private function validateExpressionsInModule(module:Module, routes:Array):void
+        private function validateExpressionsInModule(module:UIComponent, routes:Array):void
         {
             this.routes = routes;
 

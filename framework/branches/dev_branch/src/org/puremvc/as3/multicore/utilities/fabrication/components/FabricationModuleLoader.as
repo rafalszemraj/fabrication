@@ -21,6 +21,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
 
     import mx.core.IFlexModuleFactory;
     import mx.events.ModuleEvent;
+
     import mx.modules.IModuleInfo;
     import mx.modules.ModuleManager;
 
