@@ -17,11 +17,12 @@
 package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolver {
 	import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
 
-	import mx.core.Container;
+    FLEX::mxsupported {
+	    import mx.core.Container;
+        import mx.core.UIComponentDescriptor;
+    }
+
 	import mx.core.UIComponent;
-	import mx.core.UIComponentDescriptor;
-
-
 	import flash.utils.Dictionary;
 
     import spark.components.SkinnableContainer;
@@ -64,16 +65,14 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 		}
 
 		public function mapComponentRoutes(component:UIComponent, path:String = ""):Array {
-			var routes:Array = new Array();
-			var childDescriptors:Array;
-			var childDescriptor:UIComponentDescriptor;
-			var id:String;
-			var childPath:String = "";
-            var mxmlContent:Array;
-
+			var routes:Array = [];
 
             FLEX4::supported {
-                if (component is Group || component is SkinnableContainer) {
+
+                var mxmlContent:Array = null;
+
+                if (component is Group || component is SkinnableContainer)
+                {
 
                     var groupBase:Object = component as Group;
 
@@ -95,32 +94,39 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
                     }
 
                     return routes;
-
                 }
             }
 
-			if (component is Container) {
-				var container:Container = component as Container;
-				childDescriptors = container.childDescriptors;
-				id = component.id != null ? component.id : component.name;
+            FLEX::mxsupported
+            {
+                var childPath:String = "";
+                var id:String = null;
+                var childDescriptors:Array = null;
+                var childDescriptor:UIComponentDescriptor;
 
-				if (childDescriptors != null) {
-					routes.push.apply(this, calcRoutesFromDescriptors(childDescriptors, path));
-				}
+                if (component is Container)
+                {
+                    var container:Container = component as Container;
+                    childDescriptors = container.childDescriptors;
+                    id = component.id != null ? component.id : component.name;
+
+                    if (childDescriptors != null) {
+                        routes.push.apply(this, calcRoutesFromDescriptors(childDescriptors, path));
+                    }
+                }
+                else
+                {
+                    childDescriptor = component.descriptor;
+                    if (childDescriptor != null && childDescriptor.id != null) {
+                        id = childDescriptor.id;
+                        childPath = path != "" ? path + "." + id : id;
+
+                        routes.push(new ComponentRoute(id, childPath));
+                    }
+                }
             }
 
-
-            else {
-				childDescriptor = component.descriptor;
-				if (childDescriptor != null && childDescriptor.id != null) {
-					id = childDescriptor.id;
-					childPath = path != "" ? path + "." + id : id;
-
-					routes.push(new ComponentRoute(id, childPath));
-				}
-			}
-
-			return routes;
+            return routes;
 		}
 
 		public function hasCachedRoutes(component:UIComponent):Boolean {
@@ -136,6 +142,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 			delete(cachedRoutes[component]);
 		}
 
+    FLEX::mxsupported {
 		private function calcRoutesFromDescriptors(childDescriptors:Array, path:String = ""):Array {
 			var routes:Array = new Array();
 			var propertiesFactory:Function;
@@ -183,7 +190,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
 
 			return routes;
 		}
-
+    }
         private function calcRoutesFromMXMLContent(mxmlContent:Array, path:String = ""):Array
         {
 
