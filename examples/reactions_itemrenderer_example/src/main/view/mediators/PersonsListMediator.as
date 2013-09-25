@@ -16,6 +16,7 @@
 
 package main.view.mediators
 {
+
     import flash.events.Event;
 
     import main.helpers.PersonVo;
@@ -24,28 +25,29 @@ package main.view.mediators
 
     import mx.collections.ArrayCollection;
 
-    import mx.controls.Alert;
-
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.FlexMediator;
+
+    import spark.components.Alert;
 
     public class PersonsListMediator extends FlexMediator
     {
         //---------------------------------------------------------------
-		// <------ PUBLIC & PRIVATE CONSTS ------>
-		//---------------------------------------------------------------
-		//{
+        // <------ PUBLIC & PRIVATE CONSTS ------>
+        //---------------------------------------------------------------
+        //{
         /**
          * Mediator name
          */
         public static const NAME:String = "PersonsListMediator";
         //}
         //---------------------------------------------------------------
-		// <------ CTOR ------>
-		//{
+        // <------ CTOR ------>
+        //{
         public function PersonsListMediator(viewComponent:PersonsList)
         {
             super(NAME, viewComponent);
         }
+
         //}
         //---------------------------------------------------------------
         // <------ PUBLIC & PRIVATE PROPERTIES ------>
@@ -54,6 +56,7 @@ package main.view.mediators
         {
             return viewComponent as PersonsList;
         }
+
         //}
         //---------------------------------------------------------------
         // <------ PUBLIC METHODS/OVERRIDE ------>
@@ -65,9 +68,9 @@ package main.view.mediators
 
             //Example data
             var arr:ArrayCollection = new ArrayCollection([
-                 new PersonVo("Piter", "Zarzycki", 25, "Poland"),
-                 new PersonVo("Eric", "Kowalski", 35, "Poland"),
-                 new PersonVo("John", "Rambo", 30, "USA")
+                new PersonVo("Piter", "Zarzycki", 25, "Poland"),
+                new PersonVo("Eric", "Kowalski", 35, "Poland"),
+                new PersonVo("John", "Rambo", 30, "USA")
             ]);
 
             personsList.dg.dataProvider = arr;
@@ -111,6 +114,7 @@ package main.view.mediators
             personsList.age.text = String(personVo.age);
             personsList.country.text = personVo.country;
         }
+
         //}
         //---------------------------------------------------------------
         // <------ HELPERS METHODS ------>

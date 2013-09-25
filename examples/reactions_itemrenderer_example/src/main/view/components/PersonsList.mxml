@@ -6,20 +6,21 @@
         <s:VerticalLayout horizontalAlign="left"
                           gap="10"/>
     </s:layout>
-    <mx:DataGrid id="dg"
+    <s:DataGrid id="dg"
                  width="400"
                  height="250">
-        <mx:columns>
-            <mx:DataGridColumn headerText="Name"
-                               dataField="name"/>
-            <mx:DataGridColumn headerText="Surname"
-                               dataField="surname"/>
-            <mx:DataGridColumn headerText="Details"
-                               textAlign="center"
-                               width="100"
-                               itemRenderer="main.view.components.DgItemRenderer"/>
-        </mx:columns>
-    </mx:DataGrid>
+        <s:columns>
+            <s:ArrayList>
+                <s:GridColumn headerText="Name"
+                    dataField="name"/>
+                <s:GridColumn headerText="Surname"
+                              dataField="surname"/>
+                <s:GridColumn headerText="Details"
+                              width="100"
+                              itemRenderer="main.view.components.DgItemRenderer"/>
+            </s:ArrayList>
+        </s:columns>
+    </s:DataGrid>
     <s:HGroup gap="5">
         <s:Label text="Last selection:"/>
         <s:Label id="personName"
