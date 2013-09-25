@@ -43,7 +43,7 @@ package shell.view {
         public function reactToLoadButton$CLICK(evnet:MouseEvent):void
         {
 
-            loadModule("simple_module.swf");
+            loadModule("SimpleModule.swf");
             viewComponent['loadButton'].enabled = viewComponent['unloadButton'].enabled = false;
 
         }
