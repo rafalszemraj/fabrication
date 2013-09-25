@@ -106,8 +106,9 @@
 
     <macrodef name="flex.compile.test.modulemx">
         <attribute name="module.src.path"/>
-        <attribute name="flex4.supported" default="false"/>
+        <attribute name="flex4.supported" default="true"/>
         <attribute name="flex.mxsupported" default="true"/>
+        <attribute name="flex4.sparkmodule" default="false"/>
         <sequential>
             <!--<echo message="@{module.src.path}"/>-->
             <!--<echo message="${test.module.layouts.src.dir}"/>-->
@@ -149,6 +150,7 @@
                     <arg line="-l+=${reflection.lib}"/>
                     <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
                     <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
+                    <arg line="-define+=FLEX4::sparkmodule,@{flex4.sparkmodule}"/>
                 </args>
             </flex.compile>
 
@@ -161,6 +163,7 @@
         <attribute name="module.src.path"/>
         <attribute name="flex4.supported" default="true"/>
         <attribute name="flex.mxsupported" default="false"/>
+        <attribute name="flex4.sparkmodule" default="true"/>
         <sequential>
             <!--<echo message="@{module.src.path}"/>-->
             <!--<echo message="${test.module.layouts.src.dir}"/>-->
@@ -202,6 +205,7 @@
                     <arg line="-l+=${reflection.lib}"/>
                     <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
                     <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
+                    <arg line="-define+=FLEX4::sparkmodule,@{flex4.sparkmodule}"/>
                 </args>
             </flex.compile>
 
@@ -245,7 +249,8 @@
         <attribute name="swc.name"/>
         <attribute name="classes.list"/>
         <attribute name="flex4.supported" default="true"/>
-        <attribute name="flex.mxsupported" default="true"/>
+        <attribute name="flex.mxsupported" default="false"/>
+        <attribute name="flex4.sparkmodule" default="true"/>
         <element name="namespace" optional="true"/>
         <sequential>
             <if>
@@ -270,6 +275,7 @@
                 <arg line="-output ${bin.dir}/@{swc.name}/@{swc.name}.swc"/>
                 <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
                 <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
+                <arg line="-define+=FLEX4::sparkmodule,@{flex4.sparkmodule}"/>
             </exec>
 
 
@@ -284,7 +290,7 @@
                 <arg line="-optimize=true"/>
                 <arg line="-define+=FLEX4::supported,@{flex4.supported}"/>
                 <arg line="-define+=FLEX::mxsupported,@{flex.mxsupported}"/>
-                <!--<arg line="-link-report=${bin.dir}/@{swc.name}.xml"/>-->
+                <arg line="-define+=FLEX4::sparkmodule,@{flex4.sparkmodule}"/>
 
             </exec>
 

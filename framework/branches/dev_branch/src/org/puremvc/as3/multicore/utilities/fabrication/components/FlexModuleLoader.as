@@ -18,7 +18,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.components {
     import flash.system.ApplicationDomain;
     import flash.utils.getDefinitionByName;
 
-    FLEX4::supported {
+    FLEX4::sparkmodule {
         import spark.modules.ModuleLoader;
     }
 

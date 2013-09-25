@@ -55,7 +55,8 @@
                 <arg line="-keep-as3-metadata+=InjectProxy"/>
                 <arg line="-keep-as3-metadata+=InjectMediator"/>
                 <arg line="-define+=FLEX4::supported,true"/>
-                <arg line="-define+=FLEX::mxsupported,false"/>
+                <arg line="-define+=FLEX::mxsupported,true"/>
+                <arg line="-define+=FLEX4::sparkmodule,false"/>
             </args>
         </flex.compile>
 
@@ -74,7 +75,8 @@
                 <arg line="-l+=${mockas3.lib}"/>
                 <arg line="-l+=${reflection.lib}"/>
                 <arg line="-define+=FLEX4::supported,true"/>
-                <arg line="-define+=FLEX::mxsupported,false"/>
+                <arg line="-define+=FLEX::mxsupported,true"/>
+                <arg line="-define+=FLEX4::sparkmodule,false"/>
             </args>
         </flex.compile>
 
@@ -83,11 +85,11 @@
               message="&lt;?xml version='1.0' encoding='UTF-8' standalone='no'?&gt;"/>
         <echo file="${tests.bin.dir}/moduleLayouts.xml" append="true"
               message="&lt;modules&gt;"/>
-        <foreach target="compile.test.layoutModuleSpark" param="module.src.path">
+       <!-- <foreach target="compile.test.layoutModuleSpark" param="module.src.path">
             <fileset dir="${test.module.layouts.src.dir.spark}">
                 <include name="**/*.mxml"/>
             </fileset>
-        </foreach>
+        </foreach>   -->
        <foreach target="compile.test.layoutModuleMx" param="module.src.path">
             <fileset dir="${test.module.layouts.src.dir.mx}">
                 <include name="**/*.mxml"/>
@@ -99,12 +101,12 @@
 
     <target name="compile.test.layoutModuleMx">
         <flex.compile.test.modulemx module.src.path="${module.src.path}"
-                                  flex4.supported="false" flex.mxsupported="true"/>
+                                  flex4.supported="false" flex4.sparkmodule="false" flex.mxsupported="true"/>
     </target>
 
     <target name="compile.test.layoutModuleSpark">
         <flex.compile.test.modulespark module.src.path="${module.src.path}"
-                                       flex4.supported="true" flex.mxsupported="false"/>
+                                       flex4.supported="true" flex4.sparkmodule="true" flex.mxsupported="false"/>
     </target>
 
     <target name="run.testRunner">
