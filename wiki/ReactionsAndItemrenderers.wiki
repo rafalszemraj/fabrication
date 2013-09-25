@@ -12,32 +12,32 @@ Consider creation of DataGrid control and itemrenderer for one of the column in 
 *DataGrid*
 
 {{{
-<mx:DataGrid id="dg"
-             width="400"
-             height="250">
-        <mx:columns>
-            <mx:DataGridColumn headerText="Name"
-                               dataField="name"/>
-            <mx:DataGridColumn headerText="Surname"
-                               dataField="surname"/>
-            <mx:DataGridColumn headerText="Details"
-                               textAlign="center"
-                               width="100"
-                               itemRenderer="main.view.components.DgItemRenderer"/>
-        </mx:columns>
-</mx:DataGrid>
+<s:DataGrid id="dg"
+            width="400"
+            height="250">
+        <s:columns>
+            <s:ArrayList>
+               <s:GridColumn headerText="Name"
+                             dataField="name"/>
+                <s:GridColumn headerText="Surname"
+                              dataField="surname"/>
+                <s:GridColumn headerText="Details"
+                              width="100"  itemRenderer="main.view.components.DgItemRenderer"/>
+            </s:ArrayList>
+        </s:columns>
+</s:DataGrid>
 }}}
 Created itemrenderer contains CheckBox control.
 
 *DgItemRenderer.mxml*
 
 {{{
-<s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                          xmlns:s="library://ns.adobe.com/flex/spark">
+<s:GridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                    xmlns:s="library://ns.adobe.com/flex/spark">
 
     <s:CheckBox height="25"
                 horizontalCenter="0"/>
-</s:MXDataGridItemRenderer>
+</s:GridItemRenderer>
 }}}
 DataGrid control is created in Group container and registered mediator for this container.
 If you whant using reaction for subscribing "Change" event Checkbox control in itemrenderer you must consider following steps:
@@ -59,8 +59,8 @@ If you whant using reaction for subscribing "Change" event Checkbox control in i
  2. Create method handler for "Change" event CheckBox and dispatch "selectedChanged" event with bubbles mode.
 
 {{{
-<s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                          xmlns:s="library://ns.adobe.com/flex/spark">
+<s:GridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                    xmlns:s="library://ns.adobe.com/flex/spark">
 
     <s:CheckBox height="25"
                 horizontalCenter="0"
@@ -79,7 +79,7 @@ If you whant using reaction for subscribing "Change" event Checkbox control in i
         } 
        ]]>
     </fx:Script>
-</s:MXDataGridItemRenderer>
+</s:GridItemRenderer>
 }}}
 
   3. Use reaction in registered Mediator for "selectedChanged" event.
