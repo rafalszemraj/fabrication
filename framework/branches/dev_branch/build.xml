@@ -16,10 +16,10 @@
         <delete dir="${bin.dir}"/>
         <delete dir="${dist.dir}"/>
         <mkdir dir="${bin.dir}"/>
-      <!--  <ant antfile="build.tests.xml"/>  -->
+        <ant antfile="build.tests.xml"/>
         <antcall target="compile.fabrication.library"/>
        <!-- <antcall target="generate.documentation"/>     -->
-     <!--   <antcall target="prepare.distribution.package"/>    -->
+        <antcall target="prepare.distribution.package"/>
       <!--  <antcall target="publish.to.blog"/>             -->
 
     </target>
@@ -85,14 +85,25 @@
             </chainedmapper>
         </pathconvert>
 
+        <!--FABRICATION-AIR WITH MX and SPARK-->
         <compile.fabrication.library air="true" swc.name="fabrication-air" classes.list="${all}"
-                                     flex.mxsupported="false" flex4.supported="true" flex4.sparkmodule="true">
+                                     flex.mxsupported="true" flex4.supported="true" flex4.sparkmodule="false">
             <namespace>
                 <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-air-manifest.xml"/>
                 <arg line="-include-namespaces ${fabrication.namespace}"/>
             </namespace>
         </compile.fabrication.library>
 
+        <!--FABRICATION-AIR SPARKONLY-->
+        <compile.fabrication.library air="true" swc.name="fabrication-air-sparkonly" classes.list="${all}"
+                                     flex.mxsupported="false" flex4.supported="true" flex4.sparkmodule="true">
+            <namespace>
+                <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-air-manifest-sparkonly.xml"/>
+                <arg line="-include-namespaces ${fabrication.namespace}"/>
+            </namespace>
+        </compile.fabrication.library>
+
+        <!--FABRICATION-AIR ONLY MX - MOXIE-->
         <compile.fabrication.library air="true" swc.name="fabrication-air-moxie" classes.list="${all_moxie}"
                                      flex4.supported="false" flex4.sparkmodule="false" flex.mxsupported="true">
             <namespace>
@@ -101,8 +112,19 @@
             </namespace>
         </compile.fabrication.library>
 
-        <compile.fabrication.library air="false" swc.name="fabrication-flex" classes.list="${no_air}"
+        <!--FABRICATION-FLEX WITHOUT MX-->
+        <compile.fabrication.library air="false" swc.name="fabrication-flex-sparkonly" classes.list="${no_air}"
                                      flex.mxsupported="false" flex4.supported="true" flex4.sparkmodule="true">
+
+            <namespace>
+                <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-flex-manifest-sparkonly.xml"/>
+                <arg line="-include-namespaces ${fabrication.namespace}"/>
+            </namespace>
+        </compile.fabrication.library>
+
+        <!--FABRICATION-FLEX WITH MX and SPARK-->
+        <compile.fabrication.library air="false" swc.name="fabrication-flex" classes.list="${no_air}"
+                                     flex.mxsupported="true" flex4.supported="true" flex4.sparkmodule="false">
 
             <namespace>
                 <arg line="-namespace ${fabrication.namespace} ${basedir}/etc/manifests/fabrication-flex-manifest.xml"/>
@@ -110,6 +132,7 @@
             </namespace>
         </compile.fabrication.library>
 
+        <!--FABRICATION-FLEX ONLY MX - MOXIE-->
         <compile.fabrication.library air="false" swc.name="fabrication-flex-moxie" classes.list="${no_air_moxie}"
                                      flex4.supported="false" flex4.sparkmodule="false" flex.mxsupported="true">
             <namespace>
