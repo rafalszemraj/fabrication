@@ -1,6 +1,10 @@
 #summary Fabrication change history.
 
 ----
+= 0.8.7 =
+  * compiled framework with Apache Flex SDK 4.10.0, Adobe Air 3.8
+  * removed all mx dependencies for spark-only build (Removed mx.modules.Module, mx.modules.ModuleLoader for air, flex)
+
 = 0.8.6 =
   * compiled with last official version of Adobe SDK 4.6.0.23201B
 
