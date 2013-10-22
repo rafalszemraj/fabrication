@@ -13,7 +13,7 @@
 
 <flex-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
-    <target-player>11.9</target-player>
+    <target-player>11.8</target-player>
 
     <compiler>
 
@@ -51,7 +51,7 @@
             <path-element>${flex.home}/frameworks/locale</path-element>
             <path-element>${flex.home}/frameworks/locale/en_US</path-element>
             <path-element>${flex.home}/frameworks/libs/air</path-element>
-            <path-element>${flex.home}/frameworks/libs/player/11.9</path-element>
+            <path-element>${flex.home}/frameworks/libs/player/11.8</path-element>
             <path-element>${flex.home}/frameworks/libs/automation</path-element>
             <path-element>${flex.home}/frameworks/libs/mx</path-element>
         </external-library-path>

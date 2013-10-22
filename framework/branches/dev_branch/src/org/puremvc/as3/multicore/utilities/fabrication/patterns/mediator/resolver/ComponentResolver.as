@@ -24,8 +24,6 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
     import flash.utils.Proxy;
     import flash.utils.flash_proxy;
 
-    import mx.core.Application;
-    import mx.core.Container;
     import mx.core.UIComponent;
     import mx.events.ChildExistenceChangedEvent;
     import mx.events.FlexEvent;
@@ -34,7 +32,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
     import org.puremvc.as3.multicore.utilities.fabrication.interfaces.IDisposable;
     import org.puremvc.as3.multicore.utilities.fabrication.patterns.facade.FabricationFacade;
 
-    import spark.components.Group;
+    import spark.components.Application;
 
     FLEX4::supported {
         import spark.events.ElementExistenceEvent;
@@ -323,8 +321,23 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
         public function run():void
         {
             runExpressionOnDescriptors(baseComponent);
-            if (baseComponent is Application && baseComponent["controlBar"] != null) {
-                runExpression(baseComponent["controlBar"]);
+
+            FLEX4::supported {
+                if (baseComponent is spark.components.Application && baseComponent.hasOwnProperty("controlBar") &&
+                        baseComponent["controlBar"] != null)
+                {
+                    runExpression(baseComponent["controlBar"]);
+                    return;
+                }
+            }
+
+            FLEX::mxsupported {
+                if (baseComponent is mx.core.Application &&  baseComponent.hasOwnProperty("controlBar") &&
+                        baseComponent["controlBar"] != null)
+                {
+                    runExpression(baseComponent["controlBar"]);
+                    return;
+                }
             }
         }
 
@@ -543,8 +556,18 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
          */
         private function calcPathFromComponent(component:UIComponent):String
         {
-            if (baseComponent is Application && baseComponent["controlBar"] == component) {
-                return calcID(component);
+            FLEX4::supported {
+                if (baseComponent is spark.components.Application &&  baseComponent.hasOwnProperty("controlBar") &&
+                        baseComponent["controlBar"] == component) {
+                    return calcID(component);
+                }
+            }
+
+            FLEX::mxsupported {
+                if (baseComponent is mx.core.Application &&  baseComponent.hasOwnProperty("controlBar") &&
+                        baseComponent["controlBar"] == component) {
+                    return calcID(component);
+                }
             }
 
             var currentComponent:UIComponent = component;
@@ -564,8 +587,19 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
          */
         private function calcComponentFromPath(path:String):UIComponent
         {
-            if (baseComponent is Application && baseComponent["controlBar"] != null && baseComponent["controlBar"]["id"] == path) {
-                return baseComponent["controlBar"];
+            FLEX4::supported {
+                if (baseComponent is spark.components.Application && baseComponent.hasOwnProperty("controlBar") &&
+                        baseComponent["controlBar"] != null &&  baseComponent["controlBar"]["id"] == path) {
+                    return baseComponent["controlBar"];
+                }
+            }
+
+            FLEX::mxsupported {
+                if (baseComponent is mx.core.Application && baseComponent.hasOwnProperty("controlBar") &&
+                        baseComponent["controlBar"] != null &&
+                        baseComponent["controlBar"]["id"] == path) {
+                    return baseComponent["controlBar"];
+                }
             }
 
             var pathArray:Array = path.split(".");
@@ -637,9 +671,7 @@ package org.puremvc.as3.multicore.utilities.fabrication.patterns.mediator.resolv
          */
         private function findComponentByID(component:UIComponent, id:String):UIComponent
         {
-            var container:Object = component as Container;
-            if (container == null)
-                container = component as Group;
+            var container:Object = component;
 
             if (container == null)
                 return null;

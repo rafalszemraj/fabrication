@@ -85,11 +85,12 @@
               message="&lt;?xml version='1.0' encoding='UTF-8' standalone='no'?&gt;"/>
         <echo file="${tests.bin.dir}/moduleLayouts.xml" append="true"
               message="&lt;modules&gt;"/>
-       <!-- <foreach target="compile.test.layoutModuleSpark" param="module.src.path">
+        <foreach target="compile.test.layoutModuleSpark" param="module.src.path">
             <fileset dir="${test.module.layouts.src.dir.spark}">
                 <include name="**/*.mxml"/>
             </fileset>
-        </foreach>   -->
+        </foreach>
+
        <foreach target="compile.test.layoutModuleMx" param="module.src.path">
             <fileset dir="${test.module.layouts.src.dir.mx}">
                 <include name="**/*.mxml"/>
